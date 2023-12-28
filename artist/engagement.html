@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odalric-Ambrym Maillard - Artist</title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Add the new CSS file for artist page styles -->
+</head>
+<script>
+    document.querySelectorAll('.navigation-links a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetSectionId = this.getAttribute('href').substring(1); // Remove the '#' from the href
+            const targetSection = document.getElementById(targetSectionId);
+
+            // Use the scrollIntoView method with behavior: 'smooth' for a smooth scrolling effect
+            targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start', // Optional: You can adjust the scrolling position
+            });
+        });
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new Glide('.glide', {
+                type: 'carousel',
+                startAt: 0,
+                perView: 1,
+                focusAt: 'center',
+                gap: 0,
+            }).mount();
+        });
+    </script>
+<body>
+
+<header class="shared-banner">
+        <div class="container">
+				<div class="profile-info">	
+					<a href="../index.html">				
+						<img src="../media/odalricambrymmaillard.jpg" alt="Profile Thumbnail">
+					</a>
+					<a href="index.html" class="profile-link">
+							<div class="text-info">
+								<h1>Odalric-Ambrym Maillard</h1>
+								<p class="banner-info">Engagé pour la culture.</p>
+								<p class="banner-quote">"Créativité, Imagination, Epanouissement"</p>
+							</div>			
+					</a>			
+				</div>	
+
+            <nav class="navigation-links">
+                <ul>
+                    <li><a href="engagement.html">Mon engagement</a></li>
+                    <li><a href="#music">Musique</a></li>
+                    <li><a href="#dance">Danse</a></li>
+                    <li><a href="#writing">Ecriture</a></li>
+                </ul>
+            </nav>
+        </div>
+</header>
+
+        <!-- Section: Musique -->
+<section id="music" class="artist-section">
+    <h2>Mon engagement</h2>	
+	La culture, avec l'art est le ciment des civilisations.  C'est elle qui fait d'un simple groupe d'humains un peuple.  Vous voulez vivre mille ans ? Nourissez le bon loup. Créez de l'art. Et peu importe la forme que prend votre art: Danse, Musique, Artisanat, Mathématique, Peinture, Théâtre,  Poésie, Architecture, Gastronomie, etc. Créez, imaginez, épanouissez-vous et rayonnez autour de vous. De même, engagez-vous pour protéger la nature, à votre échelle. Au sein de l'association <a href="https://www.lesblongios.fr" target="_blank">Les Blongios</a>, j'ai d'abord agi en bénévole, en tabt que participant, puis coordinateur de chantier (2022) et membre du conseil d'administration (2023). Quelle est votre voie?
+
+	
+	<div class="center">
+			<div class="impact">
+			 <div><strong>Ê</strong>tre le héros de sa propre aventure</div>
+			 <div><strong>S</strong>e forger une légende éternelle</div>
+			 <div><strong>S</strong>'acharner à lutter pour la liberté et l'épanouissement</div>
+			 <div><strong>A</strong>ffronter avec joie tous les défis</div>
+			 <div><strong>I</strong>nnonder le monde de vitalité, de sagesse et de joie</div>
+			 <div><strong>M</strong>aîtriser un art, s'entourer de soleil</div>
+			 <div><strong>Ê</strong>tre naturel, franc et pragmatique</div>
+			 <div><strong>R</strong>especter et protéger la nature</div>
+			 
+			</div> 
+	</div>
+    <div class="section-content">
+	
+	
+		<div class="slideshow-container">
+						 <div class="glide">
+							<div class="glide__track" data-glide-el="track">
+								<ul class="glide__slides">
+									<li class="glide__slide">
+										<div class="slide-content">
+											<div class="custom-slide-container">
+												<div class="slide-image-container">
+													<img src="../media/blongios.jpg" alt="Image 4" class="slide-image">
+													<div class="slide-image-credit">Chantier Blongios, Citadelle de Lille. OAM</div>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="glide__slide">
+										<div class="slide-content">
+											<div class="custom-slide-container">
+												<div class="slide-image-container">
+													<img src="../media/blongios2.jpg" alt="Image 4" class="slide-image">
+													<div class="slide-image-credit">Chantier Blongios, Forêt de Phalempin. OAM</div>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="glide__arrows" data-glide-el="controls">
+								<button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+								<button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+							</div>
+						</div>
+					</div>
+					
+      
+    </div>
+</section>
+
+
+<footer class="shared-footer">
+    <div class="footer-container">
+        <p class="footer-text">Act in life in such a way that every person you meet wants to remember you and does include you in the definition of her existence.</p>
+        <div class="social-links">
+            <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <!-- Add more social media links as needed -->
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>

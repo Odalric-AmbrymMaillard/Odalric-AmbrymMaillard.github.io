@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odalric-Ambrym Maillard - Researcher</title>
+    <link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha256-WsJH2vQie5DI7gI6AeJLfcTa9gz6NJ4itBRi7P5I2EG01LX/eSvHFDaQNLq1tF5v" crossorigin="anonymous">
+</head>
+<script>
+    function downloadPdf(button) {
+        // Get the download link from the data-link attribute of the button
+        var downloadLink = button.getAttribute('data-link');
+        
+        // Create a dummy anchor element
+        var link = document.createElement('a');
+                
+        // Set the download link as the href attribute of the anchor
+        link.href = downloadLink;
+        
+        // Append the anchor to the body and trigger a click event
+        document.body.appendChild(link);
+        link.click();
+        
+        // Remove the anchor from the body
+        document.body.removeChild(link);
+    }
+</script>
+<body>
+
+<header class="shared-banner">
+        <div class="container">
+				<div class="profile-info">
+					<a href="../index.html">				
+						<img src="../media/odalricambrymmaillard.jpg" alt="Profile Thumbnail">
+					</a>
+					<a href="index.html" class="profile-link">
+						<div class="text-info">
+							<h1>Odalric-Ambrym Maillard</h1>
+							<p class="banner-info">Inria researcher, HDR.</p>
+							<p class="banner-quote">"The more applied you go, the stronger theory you need"</p>
+						</div>			
+					</a>			
+				</div>	
+			<div>			
+               <a href="https://www.inria.fr" target= "_blank"><img src="../media/logo_INRIA.png" alt="Inria" style="width: auto; height: 75px; padding-bottom:30px;"></a>
+			</div>
+            <nav class="navigation-links">
+                <ul>
+                    <li><a href="my_vision.html">My Vision</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="research_projects.html">Research Projects</a></li>
+                    <li><a href="collaborators.html">Collaborators</a></li>
+                    <li><a href="open_positions.html">Open Positions</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+</header>
+
+
+<section id="projects" class="researcher-section">
+        <h2>Contact Information</h2>
+
+ <table>
+    <tr>
+        <th>Email:</th>
+        <td>odalricambrym.maillard @ inria.fr</td>
+    </tr>
+    <tr>
+        <th>Mailbox:</th>
+        <td>
+            Equipe Scool – Bureau A10<br>
+            Inria Lille – Nord Europe<br>
+            Bâtiment A, 40 Avenue Halley<br>
+            59650 Villeneuve d’Ascq
+        </td>
+    </tr>
+	<tr>
+        <th>Phone:</th>
+        <td>(+0033)359577906</td>
+    </tr>
+    <!-- Add more contact information rows as needed -->
+</table>
+
+    </section>
+
+<section id="past-projects" class="researcher-section">   
+
+        <h2>Additional Information</h2>
+        <p>
+My first name is « <strong>Odalric-Ambrym</strong> » and my last name is « <strong>Maillard</strong> ».<br> Odalric is an old scandinavian name and Ambrym is an island from Vanuatu. Some friends simply call me « <strong>Oda</strong> ».<br> A common mispelling of my name is « Oldaric ». 
+        </p>
+
+        <p style="display:flex;">
+		<button class="download-button" data-link="../pdfs/CV_2023.pdf" onclick="downloadPdf(this)">CV</button>
+		<button class="download-button" data-link="../pdfs/HDR_Maillard.pdf" onclick="downloadPdf(this)">Habilitation manuscript</button>
+		<button class="download-button" data-link="../pdfs/PhDThesis_Maillard.pdf" onclick="downloadPdf(this)">PhD manuscript</button>
+        </p>
+		
+	</section>
+
+<section id="past-projects" class="researcher-section">	
+
+        <h2>My Academic Career</h2>
+		<div class="impact">
+			<div>
+			2022. Indepent researchers name an algorithm after me (<a href=" https://proceedings.mlr.press/v151/bian22a.html">Link</a>).
+			</div>
+			<div>
+			2019. Habilitation à diriger les recherches
+			</div>
+			<div>	
+			2015. Chargé de recherche Inria.
+			</div>
+			<div>	
+			2013. Postdoctorat Technion, Haifa, Israël.
+			</div>
+			<div>
+			2012. Lauréat du 1er Prix de thèse national AFIA (<a href="https://afia.asso.fr/le-prix-de-these-afia/">Link</a>).
+			</div>
+			<div>	
+			2011. Postdoctorat Montanuniversität, Leoben, Autriche.
+			</div>
+			<div>
+			2008. Thèse de Doctorat «Apprentissage Séquentiel : Bandits, Statistique et Renforcement.» 
+			</div>
+			<div>
+			2007. Magistère d'Informatique: Master Maths-Vision-Apprentissage, ENS Cachan (major).
+			</div>	
+			<div>
+			2006. Magistère de Mathématiques: Master Théorie Statistique, Université  Rennes  1(major).
+			</div>	
+			<div>
+			2004. Normalien (Ecole Normale Supérieure)
+			</div>	
+		</div>	
+</section>
+
+
+<footer class="shared-footer">
+    <div class="footer-container">
+        <p class="footer-text">Act in life in such a way that every person you meet wants to remember you and does include you in the definition of her existence.</p>
+        <div class="social-links">
+            <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <!-- Add more social media links as needed -->
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>

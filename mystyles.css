@@ -1,0 +1,168 @@
+body {
+    margin: 0;
+    font-family: 'Times', serif;
+    background-color: #000;
+	display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.centered {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.small-caps {
+    font-variant: small-caps;
+}
+
+h1 {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.categories {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.category {
+    display: inline-block;
+    width: 40%;
+    padding: 20px;
+    margin: 10px 30px;
+    box-sizing: border-box;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    position: relative;
+}
+
+.category:hover {
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
+    transform: scale(1.05);
+    border-color: rgba(255, 165, 0, 0.8);
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+
+.category a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.researcher {
+    background-color: #333;
+}
+
+.artist {
+    background-color: #333;
+}
+
+
+.quote {
+    color: #888;
+    font-size: 14px;
+    font-style: italic; /* Add italic style */
+}
+
+
+
+
+.shared-footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto; /* Push the footer to the bottom */
+}
+
+.shared-footer p {
+    margin: 0;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 10px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.social-links a i {
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover i {
+    color: #FFA500; /* Orange color on hover */
+}
+
+
+.custom-slide-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.slide-image {
+    height: 400px;
+    width: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+.slide-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slide-image-credit {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 8px;
+    font-size: 12px;
+    width: 100%;
+    text-align: left;
+}
+
+
+/* Customize the appearance of Glide prev and next buttons */
+.glide__arrows button {
+    background-color: #FFA500; /* Set the background color */
+    color: #fff; /* Set the text color */
+    border: none;
+    border-radius: 8px; /* Optional: Add rounded corners */
+    padding: 10px; /* Adjust padding as needed */
+    font-size: 16px; /* Adjust font size as needed */
+}
+
+/* Optional: Hover effect */
+.glide__arrows button:hover {	
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
+    border-color: rgba(255, 165, 0, 0.8);
+}

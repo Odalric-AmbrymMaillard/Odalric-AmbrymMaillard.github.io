@@ -1,0 +1,370 @@
+body {
+    margin: 0;
+    font-family: 'Times', serif;
+	
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Enable smooth scrolling behavior for the entire page */
+}
+
+.centered {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.small-caps {
+    font-variant: small-caps;
+}
+
+h1 {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+
+
+.shared-banner {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+}
+
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.banner {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.banner-quote {
+    font-size: 14px;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+
+.banner-info {
+    font-size: 14px;
+	font-variant: small-caps;
+    margin-top: 5px;
+}
+
+
+.artist-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333; /* Stylish black background color */
+    color: #fff; /* Text color */
+}
+
+
+.profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-info img {
+    width: 80px; /* Adjust the size of the thumbnail */
+    height: 80px;
+    border-radius: 50%;
+    margin: 15px;
+}
+
+.profile-link {
+    display: block;
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit; /* Inherit the text color from the parent */
+}
+
+
+
+.text-info {
+    max-width: 300px;
+}
+
+.text-info h1 {
+    margin: 0;
+    font-size: 1.5em;
+	font-variant: small-caps;
+}
+
+
+.navigation-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navigation-links li {
+    margin-right: 25px;
+	font-variant: small-caps;	
+	letter-spacing: 2px;
+    transition: transform 0.3s ease;
+}
+
+.navigation-links a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.navigation-links a:hover {
+    color: #FFA500; /* Orange color on hover */
+}
+
+.navigation-links li:hover {
+    transform: scale(1.15); /* Enlarge on hover */
+}
+
+/* Example in your CSS */
+.artist-section {
+    padding: 40px 0;
+    border-bottom: 2px solid #999; /* Lighter color for the separation line */
+    width: 60%; /* Set the width to 60% */
+    margin: 0 auto; /* Center the section on the page */
+}
+
+h2 {
+    font-size: 28px;
+    margin: 20px auto; /* Adjust margin for spacing */
+    width: fit-content; /* Set width to fit content */
+    padding: 10px 20px; /* Add padding to extend borders */
+    font-variant: small-caps;
+    letter-spacing: 2px;
+    display: block;
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
+    text-align: center; /* Center the text */
+}
+
+.section-content table {
+    width: 100%; /* Ensure the table takes up the full width of the container */
+    border-collapse: collapse; /* Collapse border spacing */
+}
+
+.section-image,
+.section-text {
+    width: 50%; /* Set the width of each column */
+	border: 1px solid transparent; /* Set border color to transparent */
+
+}
+
+.section-image img {
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image {
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
+.image-credit {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 8px;
+    font-size: 12px;
+    width: 100%;
+    text-align: left;
+}
+
+.section-text {
+    font-family: 'Helvetica', sans-serif;
+    font-style: italic; /* Add italic style */
+}
+
+
+
+.shared-footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;	
+	letter-spacing: 1px;
+    margin-top: auto; /* Push the footer to the bottom */
+}
+
+.shared-footer p {
+    margin: 0;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 10px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.social-links a i {
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover i {
+    color: #FFA500; /* Orange color on hover */
+}
+
+/* Add this to your existing CSS file or create a new CSS file for contact page styles */
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Adjust the second value for the desired horizontal spacing */
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+/* Add more specific styling as needed */
+
+
+
+/* Add this to your existing CSS file or create a new CSS file for artist page styles */
+
+.artist-container {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 20px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.artist-tiles {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.artist-tile {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.artist-tile h3 {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+}
+
+
+.custom-slide-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.slide-image {
+    height: 400px;
+    width: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+.slide-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slide-image-credit {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 8px;
+    font-size: 12px;
+    width: 100%;
+    text-align: left;
+}
+
+
+/* Customize the appearance of Glide prev and next buttons */
+.glide__arrows button {
+    background-color: #FFA500; /* Set the background color */
+    color: #fff; /* Set the text color */
+    border: none;
+    border-radius: 8px; /* Optional: Add rounded corners */
+    padding: 10px; /* Adjust padding as needed */
+    font-size: 16px; /* Adjust font size as needed */
+}
+
+/* Optional: Hover effect */
+.glide__arrows button:hover {	
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
+    border-color: rgba(255, 165, 0, 0.8);
+}
+
+
+
+.center {	
+	text-align: center;
+}
+
+.impact {	
+	font-variant: small-caps;	
+	letter-spacing: 2px;
+	text-align: left;
+    display: inline-block;
+	margin: 20px;
+	padding: 20px;
+            border: 2px solid #333;
+            border-radius: 8px;
+}

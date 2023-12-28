@@ -1,0 +1,458 @@
+body {
+    margin: 0;
+    font-family: 'Times', serif;
+	
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.centered {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.small-caps {
+    font-variant: small-caps;
+}
+
+h1 {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.categories {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.category {
+    display: inline-block;
+    width: 40%;
+    padding: 20px;
+    margin: 10px 30px;
+    box-sizing: border-box;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    position: relative;
+}
+
+.category:hover {
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
+    transform: scale(1.05);
+    border-color: rgba(255, 165, 0, 0.8);
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+
+.category a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.researcher {
+    background-color: #333;
+}
+
+.artist {
+    background-color: #333;
+}
+
+
+.quote {
+    color: #666;
+    font-size: 14px;
+}
+
+.quote-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.quote-text {
+    font-size: 24px;
+    font-style: italic;
+    color: #333; /* Choose your desired text color */
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+
+
+.shared-banner {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+}
+
+
+
+
+.banner {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.banner-quote {
+    font-size: 14px;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+
+.banner-info {
+    font-size: 14px;
+	font-variant: small-caps;
+    margin-top: 5px;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-info img {
+    width: 80px; /* Adjust the size of the thumbnail */
+    height: 80px;
+    border-radius: 50%;
+    margin: 15px;
+}
+
+.profile-link {
+    display: block;
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit; /* Inherit the text color from the parent */
+}
+
+
+.text-info h1 {
+    margin: 0;
+    font-size: 1.5em;
+	font-variant: small-caps;
+}
+
+
+.navigation-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navigation-links li {
+    margin-right: 25px;
+	font-variant: small-caps;	
+	letter-spacing: 2px;
+    transition: transform 0.3s ease;
+}
+
+.navigation-links a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.navigation-links a:hover {
+    color: #FFA500; /* Orange color on hover */
+}
+
+.navigation-links li:hover {
+    transform: scale(1.15); /* Enlarge on hover */
+}
+
+
+
+
+.main-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    align-items: center;  
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased !important;
+    line-height: 1.75;
+}
+
+
+h2 {
+    font-size: 28px;
+    margin: 20px auto; /* Adjust margin for spacing */
+    width: fit-content; /* Set width to fit content */
+    padding: 10px 20px; /* Add padding to extend borders */
+    font-variant: small-caps;
+    letter-spacing: 2px;
+    display: block;
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
+    text-align: center; /* Center the text */
+}
+
+
+/* Example in your CSS */
+.researcher-section {
+    padding: 40px 0;
+    border-bottom: 2px solid #999; /* Lighter color for the separation line */
+    width: 45%;  /*Set the width to 60% */
+    margin: 0 auto; /* Center the section on the page */
+    text-align: justify; /* Add this line for justified text */
+}
+
+
+
+
+
+.position-type {
+    margin-bottom: 20px;	
+}
+
+.position-type h3 {
+    font-size: 24px;
+    color: #555; /* Adjust the color as needed */
+    margin-bottom: 10px;
+}
+
+
+.position-type img {
+    border-radius: 12px;
+}
+
+.researcher-section-content p {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.researcher-section-content ul {
+    list-style-type: square;
+    margin-left: 20px;
+}
+
+.shared-footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;	
+	letter-spacing: 1px;
+    margin-top: auto; /* Push the footer to the bottom */
+}
+
+.shared-footer p {
+    margin: 0;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 10px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.social-links a i {
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover i {
+    color: #FFA500; /* Orange color on hover */
+}
+
+/* Add this to your existing CSS file or create a new CSS file for contact page styles */
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Adjust the second value for the desired horizontal spacing */
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid transparent;
+}
+
+/* Customize the styles as needed */
+.carousel {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.carousel-item {
+    position: relative;
+}
+
+.carousel img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.carousel-caption {
+    position: absolute;
+	bottom: 80px; /* Adjust the distance from the bottom */
+    right: 80px; /* Adjust the distance from the right */
+     /* transform: translate(-50%, -50%); */
+    text-align: center;
+    background-color: rgba(32, 32, 32, 0.4);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.carousel-caption h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+	color: #EEE;
+}
+
+.carousel-caption p {
+    font-size: 20px;
+    margin: 0;
+	color: #EEE;
+}
+
+
+
+.download-button {
+    display: block;
+    margin: 0 auto;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #FFA500; /* Button color */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.download-button:hover {
+    background-color: #DD8300; /* Button color on hover */
+}
+
+.apply-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none; /* Remove underline from anchor */
+    background-color: #FFA500; /* Button color */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.apply-button:hover {
+    background-color: #DD8300; /* Button color on hover */
+}
+
+.paragraph-text {
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+
+
+.quote-cell {
+    width: 50%;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid transparent;
+}
+
+blockquote {
+    font-size: 24px;
+    font-style: italic;
+}
+
+.explanation-cell {
+    width: 50%;
+    padding: 20px;
+    border: 1px solid transparent;
+    text-align: justify; /* Add this line for justified text */
+}
+
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+
+.image-credit {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 8px;
+    font-size: 12px;
+    width: 100%;
+    text-align: left;
+}
+
+
+.image {
+    border-radius: 8px;
+    display: block;
+}
+
+.center {	
+	text-align: center;
+}
+
+.impact {	
+	font-variant: small-caps;	
+	letter-spacing: 2px;
+	text-align: left;
+    display: inline-block;
+}
+
+
+.date-info {
+font-weight: bold;
+display: inline-block;
+        }
+
+.details-info {
+	margin-left: 10px; /* Add margin between date and details */
+}
+
+
+
+.events li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.date-info {
+    flex: 1;
+}
+
+.details-info {
+    flex: 2;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odalric-Ambrym Maillard - Researcher</title>
+    <link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha256-WsJH2vQie5DI7gI6AeJLfcTa9gz6NJ4itBRi7P5I2EG01LX/eSvHFDaQNLq1tF5v" crossorigin="anonymous">
+</head>
+<script>
+    function downloadPublication(button) {
+        // Get the download link from the data-link attribute of the button
+        var downloadLink = button.getAttribute('data-link');
+        
+        // Create a dummy anchor element
+        var link = document.createElement('a');
+                
+        // Set the download link as the href attribute of the anchor
+        link.href = downloadLink;
+        
+        // Append the anchor to the body and trigger a click event
+        document.body.appendChild(link);
+        link.click();
+        
+        // Remove the anchor from the body
+        document.body.removeChild(link);
+    }
+</script>
+
+
+<body>
+<header class="shared-banner">
+        <div class="container">
+				<div class="profile-info">
+					<a href="../index.html">				
+						<img src="../media/odalricambrymmaillard.jpg" alt="Profile Thumbnail">
+					</a>
+					<a href="index.html" class="profile-link">
+						<div class="text-info">
+							<h1>Odalric-Ambrym Maillard</h1>
+							<p class="banner-info">Inria researcher, HDR.</p>
+							<p class="banner-quote">"The more applied you go, the stronger theory you need"</p>
+						</div>			
+					</a>			
+				</div>	
+			<div>			
+               <a href="https://www.inria.fr" target= "_blank"><img src="../media/logo_INRIA.png" alt="Inria" style="width: auto; height: 75px; padding-bottom:30px;"></a>
+			</div>
+            <nav class="navigation-links">
+                <ul>
+                    <li><a href="my_vision.html">My Vision</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="research_projects.html">Research Projects</a></li>
+                    <li><a href="collaborators.html">Collaborators</a></li>
+                    <li><a href="open_positions.html">Open Positions</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+</header>
+
+
+<section id="publications" class="researcher-section">
+    <h2 class="section-title">Publications</h2>
+    <div>
+<!-- Add the button with a custom data-link attribute -->
+<button class="download-button" data-link="../pdfs/BibliographieAnnotee_nov2022.pdf" onclick="downloadPublication(this)">Download My Annotated Publication List</button>
+        <p class="paragraph-text"> In this annoted publication list, I clarify my role as a contributor using simple font conventions and  encourage everyone to use them in their publication list.  Indeed it is virtually impossible to understand the contributing role to an article from the mere position in the author list alone (seriously, who imagined that?): the rules for ordering the authors vary from place to place, communities, your role as a supervisor or not, plus various ad-hoc rules. In many cases, the alphabetical order is considered, mixed together with academic positions and seniority, which gives little clue on the actual contributing role of an author.
+		</p>
+		<p>
+		You can  also access my full list of publications my <a href="https://scholar.google.com/citations?user=7EweMdoAAAAJ&hl=en&oi=ao" target="_blank">google-scholar profile</a>.
+		</p>
+		<p>The code for most publications can be found on my GitHub pages <a href="https://gitlab.inria.fr/omaillar/average-reward-reinforcement-learning" target="_blank">here</a> or <a href= "https://gitlab.inria.fr/omaillar/article-companion" target="_blank">here</a>.
+		</p>
+    </div>
+</section>
+
+<section id="publications" class="researcher-section">
+    <iframe src="https://haltools.archives-ouvertes.fr/Public/afficheRequetePubli.php?auteur_exp=Odalric-Ambrym+Maillard&CB_auteur=oui&CB_titre=oui&CB_article=oui&CB_resume=oui&langue=Anglais&tri_exp=annee_publi&tri_exp2=typdoc&tri_exp3=date_publi&ordre_aff=TA&Fen=Aff&css=../css/VisuCondense.css" width="100%" height="600px" frameborder="0"></iframe>
+	<!--
+ <iframe src="https://haltools.archives-ouvertes.fr/Public/afficheRequetePubli.php?auteur_exp=Odalric-Ambrym+Maillard&CB_auteur=oui&CB_titre=oui&CB_article=oui&CB_resume=oui&langue=Anglais&tri_exp=annee_publi&tri_exp2=typdoc&tri_exp3=date_publi&ordre_aff=TA&Fen=Aff&css=../css/styles_publicationsHAL.css" width="100%" height="600px" frameborder="0"></iframe>
+ -->
+</section>
+
+
+<footer class="shared-footer">
+    <div class="footer-container">
+        <p class="footer-text">Act in life in such a way that every person you meet wants to remember you and does include you in the definition of her existence.</p>
+        <div class="social-links">
+            <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <!-- Add more social media links as needed -->
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>
