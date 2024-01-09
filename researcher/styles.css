@@ -214,15 +214,81 @@ h2 {
 
 /* Example in your CSS */
 .researcher-section {
-    padding: 40px 0;
+    padding: 30px 0;
     border-bottom: 2px solid #999; /* Lighter color for the separation line */
-    width: 45%;  /*Set the width to 60% */
+    width: 40%;  /*Set the width to 60% */
     margin: 0 auto; /* Center the section on the page */
     text-align: justify; /* Add this line for justified text */
 }
 
 
+.quote-section {
+    border: 6px solid #FFA500; /* 	#3498db; /* Set the border width and color */
+    border-radius: 15px; /* Set the border radius for rounded corners */
+	padding: 30px; /* Add padding for spacing inside the border */
+    position: absolute; /* Use fixed positioning */
+    top: 180px; /* Adjust top position as needed */
+    right: 20px; /* Align to the right side */
+    width: 25%; /* Set the width for the quote section */
+    margin-top: 40px; /* Adjust top margin to align with existing content */
+	
+    display: flex; /* Use flex display for flex container properties */
+    flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+    justify-content: space-between; /* Distribute items evenly with space between */
+}
+.quote-items {
+    display: flex;
+    flex-direction: column;
+}
+.quote-item {
+    margin-bottom: 60px; /* Adjust margin as needed for spacing between items */
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+}
+.quote-item:last-child {
+    margin-bottom: 0px; /* Adjust margin as needed for spacing before the first item */
+}
 
+.quote-item img {
+    width: 80px; /* Set width for the image */
+    border-radius: 50%; /* Make the image round */
+    margin-right: 15px; /* Adjust right margin for spacing */
+}
+
+.quote-details {
+    flex-grow: 1; /* Allow the details to grow and take remaining space */
+}
+
+.quote-details h4 {
+    font-weight: bold; /* Make collaborator name bold */
+    line-height: 0.1; /* Adjust line height for spacing */
+    margin-bottom: 5px; /* Adjust margin for spacing */
+}
+
+.quote-details p.quote {
+    font-style: italic;
+    margin: 0; /* Remove default margins */
+	margin-top: 10px;
+    padding-left: 30px; /* Add padding for indentation */
+    position: relative; /* Create a relative positioning context for pseudo-elements */
+    font-size: 24px; /* Adjust the font size for the quote signs */
+}
+
+.quote-details p.quote:before{
+    /*content: '\201C'; Unicode for left double quotation mark */
+    content: '\00AB'; /* Unicode for left-pointing double angle quotation mark («) */
+    color: #6c757d; /* Light gray-blue color */
+    font-size: 32px; /* Adjust the font size for the quote signs */
+    left: -30; /* Position the left quote on the left side */
+}
+
+.quote-details p.quote:after {
+    /*content: '\201D';  Unicode for right double quotation mark */
+    content: '\00BB'; /* Unicode for right-pointing double angle quotation mark (») */
+    color: #6c757d; /* Light gray-blue color */
+    font-size: 32px; /* Adjust the font size for the quote signs */
+    right: 0; /* Position the right quote on the right side */
+}
 
 
 .position-type {
@@ -247,7 +313,7 @@ h2 {
 
 .researcher-section-content ul {
     list-style-type: square;
-    margin-left: 20px;
+    margin-left: 15px;
 }
 
 .shared-footer {
@@ -439,7 +505,7 @@ display: inline-block;
         }
 
 .details-info {
-	margin-left: 10px; /* Add margin between date and details */
+	margin-left: 5px; /* Add margin between date and details */
 }
 
 
@@ -454,5 +520,5 @@ display: inline-block;
 }
 
 .details-info {
-    flex: 2;
+    flex: 1.8;
 }
