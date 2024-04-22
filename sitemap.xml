@@ -5,6 +5,10 @@
         <changefreq>monthly</changefreq>
     </url>
     <url>
+        <loc>https://odalric-ambrymmaillard.github.io/media/odalricambrymmaillard.jpg</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
         <loc>https://odalric-ambrymmaillard.github.io/researcher/collaborators.html</loc>
         <changefreq>monthly</changefreq>
     </url>
