@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://odalric-ambrymmaillard.github.io/index.html</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>https://odalric-ambrymmaillard.github.io/researcher/collaborators.html</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>https://odalric-ambrymmaillard.github.io/researcher/contact.html</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>https://odalric-ambrymmaillard.github.io/researcher/events.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+    <url>
+        <loc>https://odalric-ambrymmaillard.github.io/researcher/index.html</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://odalric-ambrymmaillard.github.io/researcher/my_vision.html</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>https://odalric-ambrymmaillard.github.io/researcher/open_positions.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+    <url>
+        <loc>https://odalric-ambrymmaillard.github.io/researcher/publications.html</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>https://odalric-ambrymmaillard.github.io/researcher/research_projects.html</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+	
+    <url>
+        <loc>https://odalric-ambrymmaillard.github.io/artist/index.html</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+	
+    <url>
+        <loc>https://odalric-ambrymmaillard.github.io/artist/engagement.html</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+</urlset>
