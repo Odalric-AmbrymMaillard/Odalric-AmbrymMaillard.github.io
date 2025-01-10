@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Internship Proposal</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
+    </script>
+	
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- CSS Styling -->
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin: 20px 0;
+        }
+		
+		.header p {
+		text-align: center; /* Override the global p style */
+		}
+        .logos {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 10px auto;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logos img {
+            max-height: 60px;
+            margin: 10px;
+        }
+        .title {
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #333;
+            margin: 20px 0;
+        }
+        .section {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+        .keywords {
+            font-weight: bold;
+            color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.9em;
+            margin: 40px 0;
+            color: #555;
+        }
+		.footer p {
+		text-align: center; /* Override the global p style */
+		}
+        .bibliography {
+			margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;			
+        }
+		
+		.bibliography p {
+		text-align: justify; /* Override the global p style */
+		}
+		
+		
+.bibliography h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.bibliography ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.bibliography li {
+    margin-bottom: 10px;
+    font-size: 1em;
+    line-height: 1.5em;
+	text-align: justify;
+}
+
+.bibliography li i {
+    font-style: italic;
+    color: #555;
+}
+
+.citation {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Bibliography Citation Tags */
+.citation-tag {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Logos Header -->
+    <div class="logos">
+        <img src="logo_INRIA.png" alt="INRIA Logo">
+        <img src="logoCRIStAL.png" alt="CRIStAL Logo">
+        <img src="Logo_Universite_Lille.png" alt="Université de Lille Logo">
+        <img src="logo_CNRS.png" alt="CNRS Logo">
+    </div>
+
+    <!-- Title -->
+    <div class="header">
+        <h1>Research Topic Proposal</h1>
+        <p><strong>Centre Inria de l'Université de Lille</strong><br>
+        Team project Scool -- Spring 2025</p>
+        <div class="title">
+            <em>“Piecewise-deterministic Hawkes-Markov Decision Processes”</em>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="section">
+        <p><span class="keywords">Keywords:</span> Autonomous Systems, Markov Decision Process, Hawkes process.</p>
+        <p><span class="keywords">Investigator:</span> The project is proposed and advised by Odalric-Ambrym Maillard from Inria team-project Scool.</p>
+        <p><span class="keywords">Place:</span> This project will be primarily held at the research center Inria Lille -- Nord Europe, 40 avenue Halley, 59650 Villeneuve d'Ascq, France.</p>
+    </div>
+
+    <hr>
+
+    <!-- Context Section -->
+    <div class="section">
+        <h3>Context</h3>
+        <p>In this proposal we study  a variant of the traditional Markov Decision Process (MDP) formulation adapted to capture systems displaying an autonomous (that is, uncontrolled) dynamics. Such systems naturally appear when monitoring a physical system. 
+For instance, think of a production line which usually works in a nominal way, but as the physical systems ages, some parts spontaneously deteriorate with time or even break, causing the  dynamics of the system to change (autonomously). 
+Another example is that of patient followed after an important treatment or medical intervention, 
+whose health status evolves autonomously, usually in a positive way, but with potential relapses occurring spontaneously.
+Yet another example is the monitoring of an agrosytem, where plants autonomously grow from one stage to the other in a predictable manner, depending on the given conditions and resources available, and this evolution can be modified by sudden changes of weather conditions, or apparition of some pathogen.
+In each situation, the decision maker (maintenance officer, physician, farmer) may see a variant of a control problem, with some variables evolving in an autonomous, but predictable way, plus with a specific form on non-stationarity, where the dynamics may suddenly change at seemingly random times. 
+The first type of evolution may be modeled e.g. with a popular linear system or PDE formulation, while  the occasional changes modify the parameters of the dynamics. The change occurrences and intensities may further be modeled. 
+Elaborating on the considered examples, when a change of dynamics spontaneously occurs, such as a system part that brokes, it is natural to model that some overshoots may appear, that is, a subsequent spontaneous change of the system, caused by the first change.
+Such self-excitation is reminiscent of the modeling of earthquakes,  epidemic or biological neurons modeling. 
+Now, the agent acts on this system, causing (controlled) impulse jumps of the dynamics. The autonomous evolution suggests that the decision maker should carefully choose not only what intervention to do but also when to perform it. In particular, this means the set of policies considered by a decision maker should handle decision time. </p>
+    </div>
+
+   <!-- Modeling Section -->
+    <div class="section">
+        <h3>Modeling</h3>
+        <p> Mathematically, the traditional way to model decision in dynamical systems is via the Markov Decision Process framework 
+    <span class="citation">Puterman, 2014; Sutton, 2018</span>, which models controlled systems. Autonomous dynamics are 
+    naturally specified by flow equations <span class="citation">Davis, 1984; De Saporta et al., 2016; Cleynen et al., 2024</span>, 
+    while spontaneous changes are naturally modeled using Hawkes processes 
+    <span class="citation">Hawkes, 2018; Siviero et al., 2024</span>.
+All three frameworks have been extensively studied in the literature, offering sound basis for possible extensions. We here combine the frameworks of Markov Decision Processes, autonomous dynamics via flow equations, and Hawkes processes to model spontaneous changes. This results in the model:</p>
+        <div class="math">$${\bf M} = ((\mathcal{X}, \Theta), \mathcal{A}, (F, \Lambda, Q), c)$$</div>
+        <p>Where:</p>
+        <ul>
+            <li>\(\mathcal{X}\): Position space</li>
+            <li>\(\Theta\): Modes parameterizing autonomous dynamics</li>
+            <li>\(\mathcal{A}\): Action space for  impulse jumps controlled by the agent</li>
+            <li>\(F\): Evolution (flow) between jumps</li>
+            <li>\(\Lambda\): Intensity function of the Hawkes process for spontaneous jumps</li>
+            <li>\(Q\): Transition kernel specifying the effect of any jump on the mode.</li>
+            <li>\(c\): Cost function</li>
+        </ul>
+    </div>
+
+    <!-- Formalization Section -->
+
+	
+    <div class="section">
+        <h3>Light formalization</h3>
+        <p>The process evolves in a state space \(\mathcal{X} \subseteq \mathbb{R}^d\) with \(d \in \mathbb{N}\), where the position at time \(t \in \mathbb{R}_+\) is denoted as \(X_t \in \mathcal{X}\).</p>
+
+        <h4>Autonomous Dynamics</h4>
+        <p>Between jump times \(\tau_n, \tau_{n+1}\), the system follows:</p>
+        <div class="math">$$\frac{dX_t}{dt} = F(\theta_n, X_t), \quad t \in (\tau_n, \tau_{n+1})$$</div>
+        <p>The solution flow \(\Phi_n\) satisfies:</p>
+        <div class="math">$$X_t = \Phi_n(X_{\tau_n}, t - \tau_n), \quad t \in (\tau_n, \tau_{n+1})$$</div>
+
+        <h4>Jump Dynamics</h4>
+        <p>At jump times \(\tau=\tau_{n+1}\), the system transitions to a new position \(X_\tau\) and mode \(\theta_{n+1}\). Jump types include:</p>
+        <ul>
+            <li><strong>Natural jumps (\(\natural\)):</strong> Triggered at time \(\tau^{\natural}\) and to position \(X_{\tau^{\natural}}\) by a Hawkes process with intensity function:</li>
+        </ul>
+        <div class="math">
+            $$\lambda(x, t) = \mu(x - X_t) + \sum_{(x_n, t_n) \in \mathcal{H}_t} \phi(x - x_n, t - t_n)$$
+        </div>
+        <ul>
+            <li><strong>Boundary jumps (\(\flat\)):</strong> Triggered at time \(\tau^{\flat}\)  when \(X_t\) reaches the domain boundary \(\partial \mathcal{X}\), to a new position \(X_{\tau^\flat}\sim \beta\) generated from a reset distribution \(\beta\)</li>
+            <li><strong>Impulse jumps (\(\sharp\)):</strong> Triggered at time \(\tau^{\sharp}\) controlled by the decision-maker, to either a choosen position \(X_{\tau^\sharp}\) or to \(\Phi_n(X_{\tau_n}, \tau^\sharp - \tau_n)\), choosing action \(a_{n+1} \in \mathcal{A} \)</li>
+        </ul>
+		<p>Eventually, the next change occurs at \( \tau_{n+1} = \min\{\tau^\natural,\tau^\flat,\tau^\sharp\} \), and the system transits to a new mode according to </p>
+		
+        <div class="math">
+            $$ 	\theta_{n+1}\sim Q(\theta_n,X_{\tau},a_{n+1}), \quad \text{with extended action }\,a_{n+1}\in \mathcal{A}\cup \{\natural,\flat\}$$
+        </div>
+
+        <h4>Cost Function</h4>
+        <p>The instantaneous cost is defined as \(c(X_t)\) for \(t \notin \{\tau_1,\dots,\tau_n,\dots\}\) and 
+		\(c(X_\tau) + c_{a_\tau}\) at a any jump time \(\tau\).</p>
+    </div>
+
+
+<div class="bibliography">
+    <h3>Bibliography</h3>
+    <ul>
+        <li><span class="citation-tag">Cleynen et al., 2024</span> Cleynen, A., de Saporta, B., Rossini, O., and Sabbadin, R. (2024). Contrôle dynamique stochastique: une approche à base de modèles semi-markov. In <i>10èmes Rencontres des Jeunes Statistien.ne.s</i>.</li>
+        <li><span class="citation-tag">Davis, 1984</span> Davis, M. H. (1984). Piecewise-deterministic markov processes: A general class of non-diffusion stochastic models. <i>Journal of the Royal Statistical Society: Series B (Methodological)</i>, 46(3):353–376.</li>
+        <li><span class="citation-tag">De Saporta et al., 2016</span> De Saporta, B., Dufour, F., and Zhang, H. (2016). Numerical methods for simulation and optimization of piecewise deterministic Markov processes: application to reliability. <i>John Wiley & Sons</i>.</li>
+        <li><span class="citation-tag">Hawkes, 2018</span> Hawkes, A. G. (2018). Hawkes processes and their applications to finance: a review. <i>Quantitative Finance</i>, 18(2):193–198.</li>
+        <li><span class="citation-tag">Puterman, 2014</span> Puterman, M. L. (2014). Markov decision processes: discrete stochastic dynamic programming. <i>John Wiley & Sons</i>.</li>
+        <li><span class="citation-tag">Siviero et al., 2024</span> Siviero, E., Staerman, G., Clémençon, S., and Moreau, T. (2024). Flexible parametric inference for space-time hawkes processes. <i>arXiv e-prints</i>, pages arXiv–2406.</li>
+        <li><span class="citation-tag">Sutton, 2018</span> Sutton, R. S. (2018). Reinforcement learning: An introduction. <i>A Bradford Book</i>.</li>
+
+    </ul>
+</div>
+
+
+    <!-- Host Institution Section -->
+    <div class="section">
+        <h3>Host Institution and Supervision</h3>
+        <p>The proejct will be hosted at <strong>Centre Inria de l'Université de Lille</strong>, in the Scool team. Scool (Sequential COntinual and Online Learning) focuses on the study of sequential decision-making under uncertainty.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p><a href="mailto:odalric.maillard@inria.fr">Odalric-Ambrym Maillard</a> | <a href="https://www.inria.fr/fr/centre-inria-de-luniversite-de-lille">Inria Lille</a> | <a href="https://team.inria.fr/scool">Scool Team</a> | <a href="https://team.inria.fr/scool/projects">Scool Projects</a></p>
+    </div>
+
+    <!-- Bibliography Placeholder -->
+    <div class="bibliography">
+        <p><em>References are available upon request or via the Scool project page.</em></p>
+    </div>
+</body>
+</html>
