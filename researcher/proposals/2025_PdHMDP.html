@@ -240,6 +240,115 @@ All three frameworks have been extensively studied in the literature, offering s
     </div>
 
 
+<div class="section">
+    <h2>Objective and Goals</h2>
+    <p>The main objectives of this work are as follows:</p>
+    <ul>
+        <li>
+            <strong>Parameter Estimation:</strong> Estimate the parameters of the Hawkes process, including the baseline intensity 
+            <i>μ</i> and the kernel <i>ϕ</i>, following e.g. <span class="citation">Siviero et al., 2024</span>. Estimate the parameters of the flow 
+            <i>Φ</i>, assuming a linear parametric form via regression. Estimate the transition <i>Q</i>, e.g., considering a discrete set 
+            <i>Θ</i>.
+        </li>
+        <li>
+            <strong>Optimal Control:</strong> Develop control strategies for selecting impulse actions 
+            \( a \in \mathcal{A}\) to optimize a given cost function, relating the problem to Markov Decision Processes (MDPs).
+        </li>
+        <li>
+            <strong>Uncertainty Quantification:</strong> Quantify uncertainty in the estimated parameters and assess its impact on the system's evolution.
+        </li>
+        <li>
+            <strong>System Analysis:</strong> Analyze the behavior of the extended PD-HMDP under various control strategies, with applications to systems such as agroecosystems or medicine.
+        </li>
+        <li>
+            <strong>Reinforcement Learning strategy:</strong> Design a reinforcement learning strategy, to interact with the system and minimiza cost while learning the different parameters.
+        </li>
+    </ul>
+</div>
+
+
+<div class="section">
+    <h2>Example: Pest Infestation Application: Illustrative Example</h2>
+    <p>
+        This example models the dynamics of an agroecosystem using a state-space approach. 
+        The system is represented by four key state variables, each normalized to lie within the range [0, 1]: 
+        <strong>growth</strong> (\(x_1\)), <strong>growth nutrients</strong> (\(x_2\)), 
+        <strong>health nutrients</strong> (\(x_3\)), and <strong>pest infestation</strong> (\(x_4\)).
+    </p>
+    <p>
+        Intuitively, the model captures the following interactions:
+        <ul>
+            <li>
+                Plant growth (\(x_1\)) benefits from growth nutrients (\(x_2\)) but is hindered by pest infestation (\(x_4\)).
+            </li>
+            <li>
+                Growth nutrients (\(x_2\)) are depleted as plants grow, reflecting their consumption in supporting plant development.
+            </li>
+            <li>
+                Health nutrients (\(x_3\)) are also consumed during plant growth. A reduction in health nutrients makes plants more vulnerable to pests.
+            </li>
+            <li>
+                Pest infestation (\(x_4\)) increases when health nutrients (\(x_3\)) are low, as plants become less resistant to pest attacks.
+            </li>
+        </ul>
+        Together, these dynamics highlight the feedback loops between plant growth, nutrient levels, and pest infestation, illustrating the challenges in maintaining a healthy agroecosystem.
+    </p>
+    <p>
+        The free dynamics of the system, in the absence of external interventions (e.g., fertilizers or pesticides), are mathematically defined as follows:
+    </p>
+    <div class="equations">
+        <p>\[
+        F(X) = \begin{bmatrix}
+        a x_2 - e x_4 \\
+        -b x_1 \\
+        -c x_1 \\
+        d(1 - x_3)
+        \end{bmatrix}
+        \]</p>
+        <ul>
+            <li>\(F_1(X) = a x_2 - e x_4\): Growth depends on nutrients for growth (\(x_2\)) and is reduced by pest damage (\(x_4\)).</li>
+            <li>\(F_2(X) = -b x_1\): Growth nutrients (\(x_2\)) are depleted proportionally to plant growth (\(x_1\)).</li>
+            <li>\(F_3(X) = -c x_1\): Health nutrients (\(x_3\)) are also consumed as plants grow (\(x_1\)).</li>
+            <li>\(F_4(X) = d(1 - x_3)\): Pest infestation (\(x_4\)) increases when health nutrients (\(x_3\)) are low.</li>
+        </ul>
+    </div>
+    <p>
+        Here, \(a, b, c, d, e\) are constants that define the specific rates of interaction between the variables. This model provides a foundation for simulating the agroecosystem's evolution and exploring strategies to optimize growth while managing nutrient levels and controlling pests.
+    </p>
+	<p>
+        To model the stochastic nature of pest infestations, we incorporate a <strong>Hawkes process</strong> into the system. 
+        Specifically, the infestation component (\(x_4\)) of the state \(X_t\) is influenced by the intensity function \(\lambda(x, t)\), 
+        which governs the occurrence of pest-related events over time.
+    </p>
+    <p>
+        The intensity function \(\lambda(x, t)\) is defined as:
+        <ul>
+            <li>For \(i = 1, 2, 3\): \(\lambda_i(x, t) = 0\), as no events are associated with the other state components.</li>
+            <li>
+                For \(i = 4\): 
+                \[
+                \lambda_4(x, t) = \mu_4(x - X_t) + \int_{-\infty}^t \phi_4(t - s) dN_s,
+                \]
+                where:
+                <ul>
+                    <li>\(\mu_4(x - X_t)\): A baseline intensity determined by the current state \(X_t\), reflecting environmental and agroecosystem factors.</li>
+                    <li>\(\phi_4(t - s)\): A self-excitation kernel accounting for the influence of past infestations on future events, with \(\phi_4 = 0\) or a small positive value for sparsity.</li>
+                </ul>
+            </li>
+        </ul>
+    </p>
+    <p>
+        When a pest infestation event occurs, the state \(X_t\) is updated with a small increase (\(\Delta\)) in the infestation component (\(x_4\)), 
+        reflecting the immediate impact of the event on the system.
+    </p>
+    <p>
+        This extended model captures the interplay between deterministic system dynamics and stochastic pest infestations, 
+        providing a framework for simulating and analyzing scenarios where pest occurrences depend on system conditions and past events.
+    </p>
+</div>
+
+
+
 <div class="bibliography">
     <h3>Bibliography</h3>
     <ul>
