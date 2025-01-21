@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Internship Proposal</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
+    </script>
+	
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- CSS Styling -->
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin: 20px 0;
+        }
+		
+		.header p {
+		text-align: center; /* Override the global p style */
+		}
+        .logos {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 10px auto;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logos img {
+            max-height: 60px;
+            margin: 10px;
+        }
+        .title {
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #333;
+            margin: 20px 0;
+        }
+        .section {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+        .keywords {
+            font-weight: bold;
+            color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.9em;
+            margin: 40px 0;
+            color: #555;
+        }
+		.footer p {
+		text-align: center; /* Override the global p style */
+		}
+        .bibliography {
+			margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;			
+        }
+		
+		.bibliography p {
+		text-align: justify; /* Override the global p style */
+		}
+		
+		
+.bibliography h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.bibliography ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.bibliography li {
+    margin-bottom: 10px;
+    font-size: 1em;
+    line-height: 1.5em;
+	text-align: justify;
+}
+
+.bibliography li i {
+    font-style: italic;
+    color: #555;
+}
+
+.citation {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Bibliography Citation Tags */
+.citation-tag {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Logos Header -->
+    <div class="logos">
+        <img src="logo_INRIA.png" alt="INRIA Logo">
+        <img src="logoCRIStAL.png" alt="CRIStAL Logo">
+        <img src="Logo_Universite_Lille.png" alt="Université de Lille Logo">
+        <img src="logo_CNRS.png" alt="CNRS Logo">
+    </div>
+
+    <!-- Title -->
+    <div class="header">
+        <h1>Research Topic Proposal</h1>
+        <p><strong>Centre Inria de l'Université de Lille</strong><br>
+        Team project Scool -- Spring 2025</p>
+        <div class="title">
+            <em>“Hierarchical Bandits with Wavelet Coherence”</em>
+        </div>
+    </div>
+	
+	 <div class="section">
+        <p><span class="keywords">Keywords:</span> Multi-aremd bandits, Hierarchical, Wavelet theory.</p>
+        <p><span class="keywords">Investigator:</span> The project is proposed and advised by Odalric-Ambrym Maillard from Inria team-project Scool.</p>
+        <p><span class="keywords">Place:</span> This project will be primarily held at the research center Inria Lille -- Nord Europe, 40 avenue Halley, 59650 Villeneuve d'Ascq, France.</p>
+    </div>
+
+
+<div class="section" id="introduction-background">
+    <h2>Introduction and Background Motivation</h2>
+    <p>
+        Multi-armed bandit (MAB) problems are a fundamental framework in decision-making under uncertainty, with applications in domains such as online advertising, clinical trials, and recommendation systems. However, real-world problems often involve hierarchical structures where decisions must be refined progressively across multiple levels. To address this, we propose a novel extension of MAB to Hierarchical Bandits, positioning this work within the broader Continual Reinforcement Learning (CRL) paradigm.
+    </p>
+    <p>
+        CRL focuses on learning and adapting sequentially in a sequence of environments. Hierarchical Bandits extend MAB by introducing a tree-partition structure, where decisions evolve from broad categories to specific actions, supporting both adaptation and knowledge transfer across levels. 
+		For example, in agricultural treatments, a coarse-level decision might specify a general strategy (e.g., applying nitrogen), while finer levels refine this strategy (e.g., specifying dosage). While one may initially only consider the bandit problem at the coarse-level decision, we may later consider its refined version.
+		Hence this hierarchy aligns with CRL's goals of progressive skill refinement and efficient adaptation over environments by considering a specific structure linking these environments.
+    </p>
+    <p>
+        The primary motivation is to develop a formal framework that captures the hierarchical nature of such problems, enabling coherent decision-making across different levels of granularity. Current bandit literature often neglects these hierarchical relationships, leading to suboptimal strategies in structured decision spaces. By integrating wavelet-like decomposition and hierarchical structures, we aim to provide both theoretical insights and practical algorithms for addressing these challenges in a way that complements and enhances CRL methodologies.
+    </p>
+</div>
+
+
+<div class="section" id="modeling-formalization">
+    <h2>Modeling and Formalization</h2>
+	<p>
+            The hierarchical bandit problem can be formalized as a tuple \( ( \mathcal{A},\mathcal{T}, \mathbf{r}) \), where:
+        </p>
+        <ul>
+            <li>\( \mathcal{A} \): The set of available actions, organized hierarchically.</li>
+            <li>\( \mathcal{T} \): A tree-partition structure of  the set \( \mathcal{A} \).</li>
+            <li>\( \mathbf{r} \): The reward function defined over \( \mathcal{A}\) whose mean is reconstructed on  \( \mathcal{T} \).</li>
+        </ul>
+        
+    <p>
+        The arm set \( \mathcal{A} \) is structured as a tree-partition \( \mathcal{T} \), where each vertex \( \nu \in \mathcal{T} \) corresponds to a subset \( \mathcal{A}_\nu \subset \mathcal{A} \), and its children vertices \( \mathcal{C}_\nu \) form a partition of \( \mathcal{A}_\nu \). The root node \( \nu_0 \) represents the full set \( \mathcal{A}_{\nu_0} = \mathcal{A} \), and leaf nodes are singletons corresponding to individual arms.
+    </p>
+    <p>
+        A slice of \( \mathcal{T} \) is defined as a partition of \( \mathcal{A} \) where each element corresponds to a subset \( \mathcal{A}_\nu \) for \( \nu \in \mathcal{T} \). Slices can be refined progressively, modeling scenarios where treatments or actions become more detailed over time. For example, consider an agricultural context with three broad treatments that are later refined into specific dosages or techniques. This hierarchical modeling allows for coherent exploration and exploitation across levels.
+    </p>
+    <p>
+        To enforce coherence, we adopt ideas from wavelet theory. The mean-reward function \( \mathbf{m}: \mathcal{A} \to \mathbb{R} \) is treated as a signal, decomposed into levels corresponding to \( \mathcal{T} \). For each node \( \nu \in \mathcal{T} \), we define transformations \( T_\nu[\mathbf{m}] \) and partial reconstructions \( \mathbf{m}[\nu] \), enabling a meta-bandit framework at varying levels of granularity. 
+		    </p>
+    <p>
+		More formally, let \(\phi:\mathbb{R}\to\mathbb{C}\) and assume that \(\phi(x)=0\) for all \(x\notin[0,1]\), \(\int_{0}^1 \phi(x)dx=0\) and 
+\(\int_{0}^1 |\phi(x)|^2dx=1\).
+For any subset \(\mathcal{A}^\dagger=\{a_1,a_1+1,\dots,a_2\}\subset \mathbb{N}\) of consecutive integers,
+we define the \(\mathcal{A}^\dagger\)-rescaled  version of \(\phi\) as 
+$$\phi_{\mathcal{A}^\dagger}(a)=\frac{1}{\sqrt{|\mathcal{A}^\dagger|}}\int_{a}^{a+1}\phi(\frac{x-a_1}{|\mathcal{A}^\dagger|})dx.$$
+We further define for a signal \(x:\mathcal{A}\to\mathbb{R}^d\), and \(\nu\in\mathcal{T}\),
+the transform 
+$$T_\nu[x]=\sum_{a\in\mathcal{A}}x(a)\phi_{\mathcal{A}_\nu}(a),$$ which enables to reconstruct a signal via
+\(x(a) = \sum_{\nu'\in \mathcal{T}} T_{\nu'}[x] \phi_{\mathcal{A}_{\nu'}}(a)\).
+    </p>
+	<p>
+	For each node \( \nu \in \mathcal{T} \), denoting \( p_\nu=(\nu_0,\dots,\nu_{j-1},\nu_j) \) the ancestors node of \(\nu=\nu_j\), such that \(\mathcal{A}_\nu\subset\mathcal{A}_{\nu_{j-1}}\subset\dots\subset\mathcal{A}_{\nu_0}=\mathcal{A}\), we can now use the \(\mathcal{T}\)-Wavelet coefficients at these nodes to reconstruct a partial version of the signal \(x[\nu]\) adapted to precision of node \(\nu\).	
+	</p>
+</div>
+
+
+<div class="section" id="example">
+    <h2>Illustrative Example</h2>
+    <p>
+        Consider a bandit problem in agriculture involving three initial treatments:
+    </p>
+    <ul>
+        <li><strong>Treatment 1:</strong> Adding nitrogen, which can be refined into two specific doses, \( \{1, 2\} \).</li>
+        <li><strong>Treatment 2:</strong> Applying tillage, which can vary by intensity, \( \{3, 4\} \).</li>
+        <li><strong>Treatment 3:</strong> Removing diseased plant parts, represented as a single option, \( \{5\} \).</li>
+    </ul>
+    <p>
+        This structure corresponds to the following hierarchical tree \( \mathcal{T} \):
+    </p>
+    <pre>
+        Root (All Actions): {1, 2, 3, 4, 5}
+        ├── Node 1: {1, 2} (Nitrogen Application)
+        │   ├── Leaf 1: {1} (Low Dose)
+        │   └── Leaf 2: {2} (High Dose)
+        ├── Node 2: {3, 4} (Tillage)
+        │   ├── Leaf 3: {3} (Low Intensity)
+        │   └── Leaf 4: {4} (High Intensity)
+        └── Node 3: {5} (Plant Part Removal)
+             └── Leaf 5: {5} (Single Option)
+    </pre>
+    <p>
+        Initially, decisions are made at a coarse level, exploring the broader categories \( \{\{1, 2\}, \{3, 4\}, \{5\}\} \), referred to as a "slice" of \( \mathcal{T} \). As more data is gathered, refinements such as \( \{\{1\}, \{2\}, \{3, 4\}, \{5\}\} \) allow for more detailed exploration of nitrogen doses while keeping other treatments aggregated.
+    </p>
+    <p>
+        Using wavelet-like decomposition, the signal (mean reward \( \mathbf{m}: \mathcal{A} \to \mathbb{R} \)) is analyzed hierarchically. Transformations \( T_\nu[\mathbf{m}] \) capture reward variations at each node, and partial reconstructions \( \mathbf{m}[\nu] \) summarize the aggregated performance across levels. For example:
+    </p>
+    <ul>
+        <li>\( T_{\text{Node 1}}[\mathbf{m}] \): Captures the average reward for nitrogen applications (coarse level).</li>
+        <li>\( T_{\text{Leaf 1}}[\mathbf{m}] \): Details the reward for low-dose nitrogen applications (fine level).</li>
+        <li>\( \mathbf{m}[\text{Node 2}] \): Provides a summary of tillage rewards across intensities.</li>
+    </ul>
+    <p>
+        This hierarchical structure ensures efficient exploration by leveraging information from broader categories to guide finer-level decisions, optimizing both exploration and exploitation across the decision space.
+    </p>
+</div>
+
+
+<div class="section" id="methodology">
+    <h2>Proposed Methodology</h2>
+	<p>
+            The primary challenge lies in balancing exploration and exploitation across levels while maintaining coherence.
+            This requires designing algorithms that:
+        </p>
+        <ul>
+            <li>Efficiently explore the tree to identify promising actions.</li>
+            <li>Ensure consistent decisions across levels using wavelet-based coherence.</li>
+        </ul>
+    <p>
+        The research will focus on:
+    </p>
+    <ul>
+        <li>Formalizing hierarchical bandits with tree-partition structures.</li>
+        <li>Developing wavelet-inspired decomposition methods for coherent decision-making across levels.</li>
+        <li>Designing algorithms that leverage hierarchical relationships to optimize exploration and exploitation.</li>
+    </ul>
+    <p>
+        Theoretical analyses will establish regret bounds and convergence properties, while empirical studies will validate the framework in domains such as agriculture and adaptive testing.
+    </p>
+</div>
+
+
+<div class="section" id="impact-relevance">
+    <h2>Impact and Relevance</h2>
+    <p>
+        Hierarchical bandits address a critical gap in decision-making under uncertainty by incorporating structured relationships among actions. This research has significant implications for fields requiring adaptive and granular decision-making, such as personalized medicine, education, and sustainable agriculture. By aligning theoretical advancements with practical needs, the proposed work aims to bridge the gap between abstract modeling and real-world applications.
+    </p>
+</div>
+
+
+
+
+<div class="bibliography">
+    <h3>Bibliography</h3>
+    <ul>
+        <li><span class="citation-tag">Lattimore & Szepesvári, 2020</span> Lattimore, Tor, and Csaba Szepesvári. Bandit algorithms. <i>Cambridge University Press</i> (2020).</li>
+        <li><span class="citation-tag">Mallat, 1999</span> Stephane, Mallat. "A wavelet tour of signal processing." (1999).</li>
+        <li><span class="citation-tag">De Saporta et al., 2016</span> Young, Randy K. Wavelet theory and its applications. Vol. 189. <i>Springer Science & Business Media</i> (2012).</li>
+    </ul>
+</div>
+
+
+    <!-- Host Institution Section -->
+    <div class="section">
+        <h3>Host Institution and Supervision</h3>
+        <p>The project will be hosted at <strong>Centre Inria de l'Université de Lille</strong>, in the Scool team. Scool (Sequential COntinual and Online Learning) focuses on the study of sequential decision-making under uncertainty.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p><a href="mailto:odalric.maillard@inria.fr">Odalric-Ambrym Maillard</a> | <a href="https://www.inria.fr/fr/centre-inria-de-luniversite-de-lille">Inria Lille</a> | <a href="https://team.inria.fr/scool">Scool Team</a> | <a href="https://team.inria.fr/scool/projects">Scool Projects</a></p>
+    </div>
+</body>
+</html>
