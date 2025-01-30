@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Internship Proposal</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
+    </script>
+	
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- CSS Styling -->
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin: 20px 0;
+        }
+		
+		.header p {
+		text-align: center; /* Override the global p style */
+		}
+        .logos {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 10px auto;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logos img {
+            max-height: 60px;
+            margin: 10px;
+        }
+        .title {
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #333;
+            margin: 20px 0;
+        }
+        .section {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+        .keywords {
+            font-weight: bold;
+            color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.9em;
+            margin: 40px 0;
+            color: #555;
+        }
+		.footer p {
+		text-align: center; /* Override the global p style */
+		}
+        .bibliography {
+			margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;			
+        }
+		
+		.bibliography p {
+		text-align: justify; /* Override the global p style */
+		}
+		
+		
+.bibliography h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.bibliography ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.bibliography li {
+    margin-bottom: 10px;
+    font-size: 1em;
+    line-height: 1.5em;
+	text-align: justify;
+}
+
+.bibliography li i {
+    font-style: italic;
+    color: #555;
+}
+
+.citation {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Bibliography Citation Tags */
+.citation-tag {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Logos Header -->
+    <div class="logos">
+        <img src="logo_INRIA.png" alt="INRIA Logo">
+        <img src="logoCRIStAL.png" alt="CRIStAL Logo">
+        <img src="Logo_Universite_Lille.png" alt="Université de Lille Logo">
+        <img src="logo_CNRS.png" alt="CNRS Logo">
+    </div>
+
+    <!-- Title -->
+    <div class="header">
+        <h1>Research Topic Proposal</h1>
+        <p><strong>Centre Inria de l'Université de Lille</strong><br>
+        Team project Scool -- Spring 2025</p>
+        <div class="title">
+            <em>“Group-sequential contextual learning under changing therapeutic landscape”</em>
+        </div>
+    </div>
+	
+	 <div class="section">
+        <p><span class="keywords">Keywords:</span> Multi-armed bandits, Group-sequential, Hypothesis testing.</p>
+        <p><span class="keywords">Investigator:</span> The project is proposed and advised by Odalric-Ambrym Maillard from Inria team-project Scool.</p>
+        <p><span class="keywords">Place:</span> This project will be primarily held at the research center Inria Lille -- Nord Europe, 40 avenue Halley, 59650 Villeneuve d'Ascq, France.</p>
+    </div>
+
+
+<div class="section" id="introduction-background">
+    <h2>Sequential trials under long experiment cycles</h2>
+    <p>
+Experimental research in long-cycle domains such as agroecology and clinical trials faces unique challenges that arise from the interplay between the length of individual experiments and the need for timely, actionable insights. Unlike short-duration studies, where results can be quickly synthesized, these domains require extended observation periods—spanning entire growing seasons for agricultural practices or several months to years for clinical outcomes. This temporal constraint makes traditional experimental designs insufficiently agile to address the dynamic needs of stakeholders, such as farmers seeking practical guidance or clinicians adapting to emerging therapeutic options.
+ </p>
+<p>
+In agroecology, the study of sustainable farming practices involves complex, multivariate systems that demand meticulous observation over extended periods to capture outcomes like crop yield, soil health, and biodiversity. While the underlying agroecosystem remains relatively stationary over these timescales, <strong>the set of available practices may evolve</strong> incrementally. New innovations, such as biofertilizers or intercropping techniques, emerge and must be integrated into ongoing studies. Simultaneously, older practices may become obsolete as they are outperformed by more sustainable or cost-effective alternatives. The evolving action space reflects the practical reality of agricultural systems, where farmers need timely recommendations that can be implemented across diverse contexts without waiting for the full conclusion of multi-year trials.
+ </p>
+<p>
+Similarly, clinical trials for chronic conditions operate within a stable disease framework but may face an <strong>evolving therapeutic landscape</strong>. The introduction of novel drugs, combination therapies, or personalized treatment approaches alters the available set of interventions, while older treatments may be deprioritized due to inferior efficacy or emerging safety concerns. Given the high stakes of patient outcomes, ethical imperatives demand early identification of effective therapies to benefit current patients, even as the experiment is still underway. Long observation periods, required to assess efficacy and safety, further complicate the design of traditional trials, necessitating methodologies that can accommodate gradual changes in the set of available treatments without compromising statistical rigor or ethical oversight.
+</p>
+ <p>
+The confluence of these factors—long experiment cycles, the evolving set of practices or treatments, and the need for real-time decision-making—positions the research challenge at the intersection of adaptive experimentation and group-sequential methodologies. Unlike classical designs that assume fixed action spaces, the evolving nature of agroecological practices and clinical therapies calls for a dynamic approach where <strong>new options can be integrated into the experimental framework as they emerge</strong>. Group-sequential methods provide a natural structure for addressing these challenges by enabling interim analyses that respect the long observational cycles while ensuring early actionable insights. This framework allows researchers to dynamically manage evolving action sets, balance ethical considerations, and maximize the practical utility of their findings, all while maintaining the robustness and reliability demanded in high-stakes experimental settings.
+</p>
+</div>
+
+<div class="section">
+    <h2>Contextual sequential decision making</h2>
+<p>
+            Building on the challenges of long-cycle experimentation and evolving action sets, a further complexity arises when incorporating 
+            <em>contextual information</em> into decision-making. Unlike standard hypothesis testing or multi-armed bandit frameworks that operate 
+            under stationary and context-independent assumptions, many real-world applications require models that adapt to variations in contextual 
+            features. For example, in agroecology, the optimal practice for a specific field may depend on soil type, weather patterns, or crop variety. 
+            Similarly, in clinical trials, the efficacy of a treatment may vary across patient subgroups, such as age, comorbidities, or genetic markers. 
+            Addressing this contextual dependency requires extending traditional methods to <em>contextual hypothesis testing</em> and, correspondingly, 
+            to <em>contextual bandits</em> with a response model that depends on observable covariates, such as a linear response function.
+        </p>
+        <p>
+            This contextual extension introduces a new paradigm for experimentation that we term <strong>"hypothesis charting"</strong> or 
+            <strong>"bandit charting"</strong> (akin to contextual best-arm identification). The goal is no longer simply to identify the best overall action but rather to map the contextual space 
+            to determine which action is optimal for each region of the context. In essence, this process seeks to chart a "map" of contexts where the 
+            superiority of each action can be established with confidence. The challenge becomes efficiently identifying these regions while balancing 
+            exploration and exploitation, particularly under resource constraints or ethical considerations. This paradigm intersects with both the 
+            hypothesis testing and bandit axes, as well as the fully sequential and group-sequential axes. The most challenging formulation emerges in 
+            <strong>group-sequential bandit charting</strong>, where the need for interim decisions, evolving contexts, and adaptive experimentation 
+            converges.
+        </p>
+</div>
+
+<div class="section">
+        <h2>Formalization</h2>
+
+
+  <p>We consider a <strong>sequential decision-making framework</strong> where the learner interacts with an environment over multiple rounds \( t = 1, 2, \ldots \). At each round, the learner is presented with a **context** \( x_t \in \mathbb{R}^d \), drawn from a distribution \( \mathcal{D} \). Based on this context, the learner selects an **action** \( a_t \in \mathcal{A}_t \), where \( \mathcal{A}_t \subseteq \mathcal{A} \) denotes the set of available actions at time \( t \). Importantly, we allow \( \mathcal{A}_t \) to evolve over time, reflecting practical scenarios where actions (e.g., treatments, interventions) can appear, disappear, or be deemed obsolete.</p>
+
+    <p>Upon selecting an action \( a_t \), the learner observes a **reward** \( r_t \) drawn from a stochastic reward function \( r_t \sim \mathcal{R}(x_t, a_t) \), where the expected reward is modeled as:</p>
+    <p class="math">$$
+    \mathbb{E}[r_t | x_t, a_t] = \mu(x_t, a_t) = x_t^\top \theta_{a_t}.
+    $$</p>
+    <p>Here, \( \theta_{a_t} \in \mathbb{R}^d \) is the parameter vector associated with action \( a_t \), and the linear reward structure reflects the **contextual nature** of the problem.</p>
+
+    <p>The overarching goal depends on the specific <strong>problem setting</strong>:</p>
+    <ul>
+        <li><strong>Hypothesis Testing:</strong> Determine whether specific actions are optimal under given conditions, including when considering <strong>group-sequential decision-making</strong>.</li>
+        <li><strong>Best-Arm Identification (BAI):</strong> Efficiently identify the action that is optimal for a given context or subset of contexts.</li>
+        <li><strong>Regret Minimization:</strong> Minimize cumulative regret over all rounds, where regret is defined as the difference between the reward of the optimal action and the reward of the chosen action.</li>
+    </ul>
+	
+    <p>For each action \( a \), a key object of study is the <strong>set of contexts</strong> \( \mathcal{C}_a \) for which \( a \) is the optimal action. Formally:</p>
+    <p class="math">$$
+    \mathcal{C}_a = \{ x \in \mathbb{R}^d : \mu(x, a) > \mu(x, a'), \forall a' \neq a \}.
+    $$</p>
+    <p>In other words, \( \mathcal{C}_a \) is the region of the context space where the reward for action \( a \) is strictly greater than the reward for all other actions. Identifying these regions is crucial for understanding the <strong>decision boundaries</strong> between actions and plays a key role in defining efficient sampling strategies.</p>
+
+
+
+    <h3>Group-Sequential Decision-Making</h3>
+    <p>In the <strong>group-sequential setting</strong>, decisions are not made round-by-round but instead in <strong>batches</strong> or groups of rounds. At the end of each group \( g = 1, 2, \ldots, G \), the learner evaluates accumulated evidence to decide whether to <strong>continue or stop</strong>. Formally, the timeline is divided into \( G \) groups, each comprising \( n_g \) rounds, such that \( T = \sum_{g=1}^G n_g \). The stopping criteria are defined in terms of statistical thresholds, balancing <strong>exploration</strong>, <strong>exploitation</strong>, and <strong>error control</strong>.</p>
+    <p>For example, in a group-sequential hypothesis testing setup, the null hypothesis \( H_0: \mu(x, a_1) \leq \mu(x, a_2) \) might be rejected in favor of the alternative \( H_1: \mu(x, a_1) > \mu(x, a_2) \) if:</p>
+    <p class="math">$$
+    \text{Cumulative evidence: } \sum_{t \in \text{Group } g} r_t(a_1) - r_t(a_2) > \text{Threshold}.
+    $$</p>
+
+    <h3>Contextual Bandits with Evolving Action Sets</h3>
+    <p>To handle <strong>evolving action sets</strong>, we redefine the decision process dynamically. At each round \( t \), the learner is presented with a subset \( \mathcal{A}_t \subseteq \mathcal{A} \), where \( \mathcal{A}_t \) may change over time. This reflects real-world constraints, such as:</p>
+    <ul>
+        <li>In agroecology, new farming practices emerge, while older ones may become obsolete.</li>
+        <li>In clinical trials, newly approved treatments enter the pool, while others are discontinued.</li>
+    </ul>
+    <p>The key challenge lies in maintaining **optimality** despite the dynamically evolving action set. The reward function remains contextual, but the learner must adaptively re-evaluate the expected rewards \( \mu(x_t, a) \) for actions \( a \in \mathcal{A}_t \) as the set evolves.</p>
+
+    <h3>Mathematical Objectives</h3>
+    <p>For a given setting, the learner optimizes one of the following objectives:</p>
+    <ol>
+        <li><strong>Hypothesis Testing (HT):</strong> Test hypotheses of the form:
+        <p class="math">$$
+        H_0: \mu(x, a_1) \leq \mu(x, a_2), \quad \text{vs.} \quad H_1: \mu(x, a_1) > \mu(x, a_2),
+        $$</p>
+        with **group-sequential error control**.</li>
+        <li><strong>Best-Arm Identification (BAI):</strong> Minimize the expected number of rounds required to identify the **optimal action** \( a^*(x) \):
+        <p class="math">$$
+        a^*(x) = \arg\max_{a \in \mathcal{A}_t} \mu(x, a).
+        $$</p></li>
+        <li><strong>Regret Minimization (RM):</strong> Minimize cumulative regret:
+        <p class="math">$$
+        \text{Regret}(T) = \sum_{t=1}^T \big(\mu(x_t, a^*(x_t)) - \mu(x_t, a_t)\big).
+        $$</p></li>
+    </ol>
+
+    <h3>Combined Problem: Group-Sequential Contextual Bandits with Evolving Action Sets</h3>
+    <p>The most challenging and novel setting combines both dimensions:</p>
+    <ol>
+        <li><strong>Group-sequential decision-making:</strong> Optimize decisions within and across batches.</li>
+        <li><strong>Contextual learning:</strong> Incorporate linear reward dependencies on context \( x_t \).</li>
+        <li><strong>Evolving action sets:</strong> Adapt to dynamically changing \( \mathcal{A}_t \).</li>
+    </ol>
+    <p>The decision-making strategy must account for:</p>
+    <ul>
+        <li><strong>Statistical efficiency:</strong> Minimize sample complexity in hypothesis testing.</li>
+        <li><strong>Adaptive learning:</strong> Update reward estimates \( \hat{\mu}(x_t, a) \) as \( \mathcal{A}_t \) evolves.</li>
+        <li><strong>Optimality across contexts:</strong> Identify the best action for each relevant context region.</li>
+    </ul>
+      
+    </div>
+ <div class="section">
+        <h2>Illustrative Examples</h2>
+        <p>
+            <strong>1. Agroecological Example:</strong> Consider an agricultural field divided into multiple regions, each characterized by a unique 
+            context \( x \), including soil type, sunlight exposure, and moisture levels. The actions \( \mathcal{A} \) represent different cropping 
+            strategies, such as intercropping, monoculture, and organic fertilizers. Initially, only a subset of actions \( \mathcal{A}_0 \subset \mathcal{A} \) 
+            is available due to resource constraints or prior knowledge. Over time, new actions are introduced as additional techniques or resources 
+            become accessible, dynamically expanding the action set \( \mathcal{A}_t \).
+        </p>
+        <p>
+            In the group-sequential setting, experiments are conducted in predefined phases, with each phase corresponding to a growing season. After 
+            each phase, the cumulative data are analyzed to update the reward models \( r_a(x) \) for each action \( a \) and context \( x \). For 
+            example, the analysis may reveal that intercropping is superior in sandy soils but less effective in clay soils with low rainfall. The 
+            goal is to iteratively refine the "chart" of optimal actions across the context space while ensuring efficient use of experimental resources.
+        </p>
+        <p>
+            As the action set evolves, the challenge becomes balancing exploration of newly introduced cropping strategies with exploitation of 
+            previously identified optimal strategies, all while respecting the sequential nature of the growing seasons.
+        </p>
+        <p>
+            <strong>2. Clinical Trial Example:</strong> In a clinical trial setting, the context \( x \) represents patient characteristics, such as 
+            age, comorbidities, and genetic markers. The actions \( \mathcal{A} \) correspond to different treatment options. Initially, only a few 
+            treatments are available, and new treatments are introduced over time as they pass preliminary safety checks. 
+        </p>
+        <p>
+            In the group-sequential framework, the trial is conducted in stages, with interim analyses performed after each batch of patients is 
+            enrolled. For example, after the first stage, it may be observed that Treatment A is more effective for older patients, whereas Treatment B 
+            is optimal for younger patients with a specific genetic marker. These findings inform the allocation of patients in subsequent stages, 
+            prioritizing exploration of less-understood subgroups while exploiting the known optimal treatments for certain contexts.
+        </p>
+        <p>
+            The evolving action set adds complexity to the problem, as newly introduced treatments must be evaluated against existing treatments 
+            while maintaining ethical constraints and ensuring patient safety. The ultimate goal is to map the context space to determine the optimal 
+            treatment for each patient subgroup as efficiently and rigorously as possible.
+        </p>
+    </div>
+
+
+<div class="section">
+    <h2>Methodology and Objectives</h2>
+	    <p>
+        We organize this research program around two key axes of methodological advancement: the integration of group-sequential methodologies with contextual 
+        structure and the incorporation of evolving action sets into sequential decision-making frameworks. While these axes are largely independent, their combination 
+        within the three fundamental problems of hypothesis testing, best arm identification (BAI), and regret minimization offers unique challenges and opportunities 
+        for advancing the field. Our approach is to methodically explore each axis, starting from the foundational problems, and progressively addressing their most 
+        challenging extensions.
+    </p>
+    <p>
+        The first axis focuses on the intersection of group-sequential methods and contextual decision-making. Standard hypothesis testing and BAI approaches 
+        typically assume continuous or fully sequential data collection, while group-sequential methods partition observations into pre-determined stages, allowing 
+        for interim analyses. Extending these methods to incorporate contextual information, such as environmental conditions in agriculture or patient demographics 
+        in healthcare, introduces additional complexity. For hypothesis testing, this involves designing group-sequential tests that remain robust under varying 
+        contextual conditions. For BAI, the goal is to efficiently identify the best action in each region of the contextual space while balancing exploration and 
+        exploitation across stages. In regret minimization, the challenge is to adaptively optimize decisions while respecting group-sequential constraints on 
+        information flow and error control.
+    </p>
+    <p>
+        The second axis addresses the dynamic nature of action sets in many real-world applications. Traditional bandit problems assume a fixed set of actions, 
+        but practical scenarios often feature new actions emerging over time and others becoming obsolete. This evolution poses unique challenges for hypothesis 
+        testing, BAI, and regret minimization. For instance, in hypothesis testing, new hypotheses may need to be tested as they appear, requiring flexible designs 
+        that account for a growing number of comparisons. In BAI, the identification of optimal actions must be revisited as new actions are introduced, demanding 
+        algorithms that can efficiently explore and evaluate these additions. Similarly, in regret minimization, the objective is to maintain near-optimal performance 
+        despite the changing landscape of available actions.
+    </p>
+    <p>
+        The most ambitious objective combines these two axes: group-sequential decision-making in the presence of both contextual structure and evolving action sets. 
+        For example, this could involve mapping the optimal agricultural practice across varying soil types and weather conditions while accounting for the introduction 
+        of new practices over time. Alternatively, in clinical trials, this might mean identifying the best treatment for patient subgroups as new drugs enter the pipeline. 
+        By unifying group-sequential methods, contextual models, and adaptive mechanisms for evolving action sets, we aim to develop a comprehensive framework capable 
+        of addressing these complex, real-world problems.
+    </p>
+    <p>
+        This research program is designed to contribute not only to theoretical advancements but also to academic growth and interdisciplinary collaboration. Each 
+        step in the program offers opportunities for students and researchers to engage with cutting-edge challenges, fostering a deeper understanding of statistical 
+        and machine learning principles. Moreover, the program’s focus on applications in agronomy and healthcare underscores its societal relevance, providing a 
+        foundation for future work in sequential experimentation and decision-making under uncertainty.
+    </p>
+
+</div>
+
+
+
+
+
+<div class="bibliography">
+    <h3>Bibliography</h3>
+    <ul>
+        <li><span class="citation-tag">Bartroff & Lai, 2012</span> Bartroff, J., Lai, T. L., and Shih, M.-C. "Sequential experimentation in clinical trials: design and
+analysis". volume 298. <i>Springer Science & Business Media.</i> (2012).</li>
+        <li><span class="citation-tag">Lattimore & Szepesvári, 2020</span> Lattimore, Tor, and Csaba Szepesvári. Bandit algorithms. <i>Cambridge University Press</i> (2020).</li>
+		<li><span class="citation-tag">Mourtada & Maillard, 2017</span> Mourtada, J. and Maillard, O.-A. "Efficient tracking of a growing number of experts".
+		<i>In International Conference on Algorithmic Learning Theory</i>, pages 517–539. PML (2017).<li>
+    </ul>
+</div>
+
+
+    <!-- Host Institution Section -->
+    <div class="section">
+        <h3>Host Institution and Supervision</h3>
+        <p>The project will be hosted at <strong>Centre Inria de l'Université de Lille</strong>, in the Scool team. Scool (Sequential COntinual and Online Learning) focuses on the study of sequential decision-making under uncertainty.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p><a href="mailto:odalric.maillard@inria.fr">Odalric-Ambrym Maillard</a> | <a href="https://www.inria.fr/fr/centre-inria-de-luniversite-de-lille">Inria Lille</a> | <a href="https://team.inria.fr/scool">Scool Team</a> | <a href="https://team.inria.fr/scool/projects">Scool Projects</a></p>
+    </div>
+</body>
+</html>
