@@ -180,7 +180,37 @@ Elaborating on the considered examples, when a change of dynamics spontaneously 
 Such self-excitation is reminiscent of the modeling of earthquakes,  epidemic or biological neurons modeling. 
 Now, the agent acts on this system, causing (controlled) impulse jumps of the dynamics. The autonomous evolution suggests that the decision maker should carefully choose not only what intervention to do but also when to perform it. In particular, this means the set of policies considered by a decision maker should handle decision time. </p>
     </div>
+ <div class="section">
+        <h3>RL models for Spontaneous and Self-exciting Disturbances</h3>
+	 <p>Reinforcement learning (RL) has witnessed remarkable success in addressing decision-making problems across discrete and continuous domains. However, many real-world systems remain outside the effective scope of traditional Markov Decision Process (MDP) frameworks, particularly those governed by continuous-time dynamics punctuated by random events. 
+My research aims to bridge this gap by extending RL methodologies to autonomous systems described by e.g. <strong>Piecewise Deterministic Markov Processes (PDMPs)</strong> or  <strong>Hawkes processes</strong>. 
+These systems naturally emerge in fields as diverse as physics-inspired RL, manufacturing, healthcare and agroecology, where control strategies must account for continuous evolution punctuated by stochastic disturbances.
+	 </p>
 
+	 <p>
+	 <strong>From Classical Models to Poisson Disturbance</strong>
+	 Put simply, unlike classical modeling of bandits considering a treatment produces an immediate output,
+one should consider that in healthcare, a patient’s health status evolves continuously (e.g., tumor growth) but is interrupted by stochastic events like relapses or side effects. Similarly, in agroecology, the plant growth dynamics are influenced by random occurrences like pest outbreaks or adverse weather.  Likewise, in manufacturing, a production line operates under predictable dynamics but can experience sudden failures or deterioration over time.
+</p>
+	 <p>
+In hypothesis testing and clinical trials \cite{bartroff2012sequential}, these phenomenon
+have been modeled using Poisson processes \cite{li2010conditional}, particularly in vaccine studies considering safety requirement over a large population.
+Likewise  in control, PDMPs  where deterministic dynamics govern system evolution between stochastic Poisson events,  offer a more expressive framework compared to 
+the traditional MDP by enabling to model spontaneous changes.
+These scenarios share a critical feature:  decision-making is influenced by the interplay of deterministic evolution, stochastic events, and require interventions that balance the timing of interventions (e.g., optimal treatment or agricultural practice scheduling) on top of the nature of the intervention (e.g., dosage or method). 
+</p>
+	 <p>
+However, current models typically assume static decision contexts, leaving the integration of such disturbances into dynamic systems and RL frameworks underexplored. Incorporating Poisson disturbances into sequential decision-making hence represents a significant opportunity to extend classical bandit and MDP to alternative models.
+By enabling adaptive, resource-efficient decision-making, \hl{PDMPs} provide a rigorous foundation for adapting RL in these domains, enabling policies that address \hl{when} to act and \hl{what} actions to take.
+	 </p>
+
+	 <p><srong>From Poisson to Hawkes Processes</srong>
+		 Beyond Poisson processes, many systems exhibit self-exciting events, where one occurrence increases the likelihood of subsequent events.  
+Hawkes processes are the natural extension, enabling the modeling of cascading failures in factories, relapse dynamics in healthcare (e.g., tumor recurrence), or pest infestations in agroecology. These processes capture the temporal dependencies between events, offering a richer representation of real-world phenomena than memoryless Poisson processes.
+Besides, many real-world \hl{interventions} introduce such disturbances that are not instantaneous but unfold over time, resembling aftershocks following an earthquake: administering a medical treatment may cause immediate effects but also trigger side effects at random future times, requiring careful monitoring. 
+	Similarly, agroecological practices (e.g., pesticide application) can have delayed effects, such as pest outbreaks influenced by environmental factors, while industrial repairs may induce future system fragility.
+	 </p>
+ </div>
    <!-- Modeling Section -->
     <div class="section">
         <h3>Modeling</h3>
