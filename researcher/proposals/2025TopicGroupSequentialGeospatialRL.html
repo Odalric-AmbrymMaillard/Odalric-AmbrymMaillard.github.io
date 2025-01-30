@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Internship Proposal</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
+    </script>
+	
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- CSS Styling -->
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin: 20px 0;
+        }
+		
+		.header p {
+		text-align: center; /* Override the global p style */
+		}
+        .logos {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 10px auto;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logos img {
+            max-height: 60px;
+            margin: 10px;
+        }
+        .title {
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #333;
+            margin: 20px 0;
+        }
+        .section {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+        .keywords {
+            font-weight: bold;
+            color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.9em;
+            margin: 40px 0;
+            color: #555;
+        }
+		.footer p {
+		text-align: center; /* Override the global p style */
+		}
+        .bibliography {
+			margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;			
+        }
+		
+		.bibliography p {
+		text-align: justify; /* Override the global p style */
+		}
+		
+		
+.bibliography h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.bibliography ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.bibliography li {
+    margin-bottom: 10px;
+    font-size: 1em;
+    line-height: 1.5em;
+	text-align: justify;
+}
+
+.bibliography li i {
+    font-style: italic;
+    color: #555;
+}
+
+.citation {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Bibliography Citation Tags */
+.citation-tag {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Logos Header -->
+    <div class="logos">
+        <img src="logo_INRIA.png" alt="INRIA Logo">
+        <img src="logoCRIStAL.png" alt="CRIStAL Logo">
+        <img src="Logo_Universite_Lille.png" alt="Université de Lille Logo">
+        <img src="logo_CNRS.png" alt="CNRS Logo">
+    </div>
+
+    <!-- Title -->
+    <div class="header">
+        <h1>Research Topic Proposal</h1>
+        <p><strong>Centre Inria de l'Université de Lille</strong><br>
+        Team project Scool -- Spring 2025</p>
+        <div class="title">
+            <em>“Group-sequential contextual and geospatial reinforcement learning”</em>
+        </div>
+    </div>
+	
+	 <div class="section">
+        <p><span class="keywords">Keywords:</span> Contextual Multi-armed bandits, Group-sequential, Geospatial statistics.</p>
+        <p><span class="keywords">Investigator:</span> The project is proposed and advised by Odalric-Ambrym Maillard from Inria team-project Scool.</p>
+        <p><span class="keywords">Place:</span> This project will be primarily held at the research center Inria Lille -- Nord Europe, 40 avenue Halley, 59650 Villeneuve d'Ascq, France.</p>
+    </div>
+
+
+<div class="section" id="introduction-background">
+    <h2>Bridging Experimental Science and Adaptive Decision-Making</h2>
+    <p>
+Traditional experimental methodologies in medicine and agriculture often rely on long-term monitoring to assess treatment effectiveness. This makes purely sequential experimental designs impractical due to the extended time required before making informed decisions.
+</p>
+        <p>
+Group-sequential methodologies \cite{BartroffLai} address this limitation by allowing interim analyses on cohorts treated in parallel. While both hypothesis testing and bandit-based approaches have been explored within this framework, fundamental optimality properties remain underdeveloped.
+</p>
+        <p>
+This research program aims to extend the scope of group-sequential decision-making by incorporating reinforcement learning (RL) and bandit theory. Specifically, we will explore how contextual information, geospatial correlations, and adversarial robustness can be integrated into group-sequential adaptive sampling strategies.
+The integration of **group-sequential methodologies** with **reinforcement learning** opens exciting new research directions at the intersection of **experimental design**, **adaptive decision-making**, and **geostatistics**. By exploring contextual RL, adversarial robustness, structured bandits, and geospatial optimization, this program aims to develop novel methodologies with applications across medicine, agriculture, and environmental science.
+</p>
+</div>
+
+<div class="section">
+    <h2>Part I: Contextual Bandits and MDP-Based Reinforcement Learning for Group-Sequential Decision-Making</h2>
+<p>
+ One of the key advancements in modern bandit theory is the use of **linear contextual structures**, allowing external covariates (e.g., patient age, weather conditions) to inform decision-making. This motivates a reconsideration of group-sequential methodologies through the lens of **contextual bandits**. By leveraging this framework, we can design more efficient adaptive experiments where each batch of experiments contributes directly to improving future decisions.
+</p><p>
+Beyond contextual bandits, a natural extension is to incorporate **MDP-based RL algorithms** into the group-sequential paradigm. This shift enables decision-making over multiple stages, allowing for a more comprehensive adaptive learning process. Addressing these questions requires developing new methodological tools to balance exploration and exploitation within structured group-sequential setups.
+</p>
+</div>
+
+
+<div class="section">
+    <h2>Part II: Hypothesis Testing and Experiment Design in Group-Sequential Bandits</h2>
+<p>
+ An important theoretical direction is the adaptation of **hypothesis testing** methodologies to the group-sequential bandit framework. Unlike purely sequential bandit strategies, which operate on a one-step-at-a-time basis, group-sequential approaches allow for batch experimentation at each decision step. Key open questions include:
+ <ul>
+ <li>How can state-of-the-art sequential bandit strategies be extended to group-sequential settings, particularly when batch sizes are fixed, evolving, or adaptively chosen?</li>
+<li>What are the theoretical limits of regret minimization and statistical power in these setups?</li>
+<li>How can structured bandits, which exploit problem-specific structure (e.g., graph-based or low-rank reward models), be adapted to the group-sequential setting?</li>
+</ul>
+</p>
+<p>
+In structured settings, the challenge is to rapidly identify the optimal action **within specific contexts** while minimizing the number of required trials. Exploiting correlations across experimental slots naturally reduces sample complexity, but the characterization of optimal performance guarantees remains an open problem
+</p>
+</div>
+
+
+<div class="section">
+    <h2>Part III: Geospatial Context and Group-Sequential Bandits</h2>
+<p>
+ Many real-world applications involve decision-making in **geographically distributed** environments. Standard contextual bandit models often rely on linear regression or kernel methods, but in **geostatistical settings**, more advanced techniques such as **Kriging** \cite{SivieroKriging} offer improved interpolation capabilities.
+</p>
+<p>
+However, integrating geostatistical methods into bandit-based decision-making presents several challenges:
+ <ul>
+ <li>1. **Sparse Observations:** Unlike traditional regression settings, we often observe only a single realization of the spatio-temporal process rather than repeated samples.</li>
+<li>2. **Spatial Correlations:** High correlation among nearby observations introduces dependence structures that standard bandit algorithms do not account for.</li>
+<li>3. **Exploration-Exploitation in Geostatistical Bandits:** Balancing information gain and sampling cost is crucial, particularly in fields such as **hydrogeology** (where optimal sensor placement affects map accuracy) and **agroecology** (where adaptive field experiments inform sustainable practices).</li>
+</ul>
+</p>
+<p>
+This program will explore how **recent advances in geostatistics** can be combined with **multi-armed bandit theory** to improve experimental design and decision-making in geospatial contexts.
+</p>
+</div>
+
+
+<div class="section">
+    <h2>Part IV: Robustness Against Adversarial Corruption in Group-Sequential Bandits</h2>
+<p>
+ One fundamental challenge in real-world experiments is the presence of **adversarial corruption**, where a subset of observations may be unreliable due to systematic biases, sensor failures, or external disruptions. For instance, in agricultural trials, sensor malfunctions could lead to incorrect soil moisture readings, or a pest outbreak in a subset of test fields might skew yield results. In clinical trials, certain patient subgroups might exhibit non-compliance with treatment protocols, leading to misleading outcomes. Traditional sequential bandit models assume a single-arm selection per time step, limiting their ability to mitigate adversarial attacks.
+</p>
+<p>
+A more robust alternative is to consider **group-sequential bandits**, where multiple experimental slots (e.g., multiple farms, patient cohorts) can be tested in parallel. This setting offers two major advantages:
+<ul>
+<li>1. **Scalability:** Many experimental sciences already operate in batch settings, making group-sequential designs more practical.</li>
+<li>2. **Resilience:** By ensuring a batch size large enough relative to the corruption level, we can guarantee that enough uncorrupted observations remain to draw reliable conclusions.</li>
+</ul>
+</p>
+<p>
+Additionally, group-sequential bandits introduce new challenges related to **group-correlated corruption**. When experimental units (e.g., farms, clinical sites) are geographically proximate, external hazards (e.g., weather events, local epidemics) can simultaneously affect multiple slots. For instance, a prolonged drought might impact all test fields in a region, distorting yield comparisons, while a hospital-wide data logging error could corrupt multiple patient records. This motivates the need for **diversity-enforcing strategies** that avoid over-concentration on a single alternative within geographically correlated environments.
+</p>
+</div>
+
+
+
+
+
+
+
+<div class="bibliography">
+    <h3>Bibliography</h3>
+    <ul>
+        <li><span class="citation-tag">Bartroff & Lai, 2012</span> Bartroff, J., Lai, T. L., and Shih, M.-C. "Sequential experimentation in clinical trials: design and
+analysis". volume 298. <i>Springer Science & Business Media.</i> (2012).</li>
+        <li><span class="citation-tag">Lattimore & Szepesvári, 2020</span> Lattimore, Tor, and Csaba Szepesvári. Bandit algorithms. <i>Cambridge University Press</i> (2020).</li>
+		<li><span class="citation-tag">Siviero et al, 2024</span> Siviero, E., Chautru, E., and Clémençon, S. "A statistical learning view of simple kriging".
+		<i>TEST</i>, 33(1):271–296. (2024).<li>
+    </ul>
+</div>
+
+
+    <!-- Host Institution Section -->
+    <div class="section">
+        <h3>Host Institution and Supervision</h3>
+        <p>The project will be hosted at <strong>Centre Inria de l'Université de Lille</strong>, in the Scool team. Scool (Sequential COntinual and Online Learning) focuses on the study of sequential decision-making under uncertainty.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p><a href="mailto:odalric.maillard@inria.fr">Odalric-Ambrym Maillard</a> | <a href="https://www.inria.fr/fr/centre-inria-de-luniversite-de-lille">Inria Lille</a> | <a href="https://team.inria.fr/scool">Scool Team</a> | <a href="https://team.inria.fr/scool/projects">Scool Projects</a></p>
+    </div>
+</body>
+</html>
