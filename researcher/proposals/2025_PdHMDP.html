@@ -153,7 +153,7 @@
         <p><strong>Centre Inria de l'Université de Lille</strong><br>
         Team project Scool -- Spring 2025</p>
         <div class="title">
-            <em>“Piecewise-deterministic Hawkes-Markov Decision Processes”</em>
+            <em>“Reinforcement Learning models for Spontaneous and Self-exciting Disturbances”</em>
         </div>
     </div>
 
@@ -167,19 +167,6 @@
     <hr>
 
     <!-- Context Section -->
-    <div class="section">
-        <h3>Context</h3>
-        <p>In this proposal we study  a variant of the traditional Markov Decision Process (MDP) formulation adapted to capture systems displaying an autonomous (that is, uncontrolled) dynamics. Such systems naturally appear when monitoring a physical system. 
-For instance, think of a production line which usually works in a nominal way, but as the physical systems ages, some parts spontaneously deteriorate with time or even break, causing the  dynamics of the system to change (autonomously). 
-Another example is that of patient followed after an important treatment or medical intervention, 
-whose health status evolves autonomously, usually in a positive way, but with potential relapses occurring spontaneously.
-Yet another example is the monitoring of an agrosytem, where plants autonomously grow from one stage to the other in a predictable manner, depending on the given conditions and resources available, and this evolution can be modified by sudden changes of weather conditions, or apparition of some pathogen.
-In each situation, the decision maker (maintenance officer, physician, farmer) may see a variant of a control problem, with some variables evolving in an autonomous, but predictable way, plus with a specific form on non-stationarity, where the dynamics may suddenly change at seemingly random times. 
-The first type of evolution may be modeled e.g. with a popular linear system or PDE formulation, while  the occasional changes modify the parameters of the dynamics. The change occurrences and intensities may further be modeled. 
-Elaborating on the considered examples, when a change of dynamics spontaneously occurs, such as a system part that brokes, it is natural to model that some overshoots may appear, that is, a subsequent spontaneous change of the system, caused by the first change.
-Such self-excitation is reminiscent of the modeling of earthquakes,  epidemic or biological neurons modeling. 
-Now, the agent acts on this system, causing (controlled) impulse jumps of the dynamics. The autonomous evolution suggests that the decision maker should carefully choose not only what intervention to do but also when to perform it. In particular, this means the set of policies considered by a decision maker should handle decision time. </p>
-    </div>
  <div class="section">
         <h3>RL models for Spontaneous and Self-exciting Disturbances</h3>
 	 <p>Reinforcement learning (RL) has witnessed remarkable success in addressing decision-making problems across discrete and continuous domains. However, many real-world systems remain outside the effective scope of traditional Markov Decision Process (MDP) frameworks, particularly those governed by continuous-time dynamics punctuated by random events. 
@@ -201,7 +188,7 @@ These scenarios share a critical feature:  decision-making is influenced by the 
 </p>
 	 <p>
 However, current models typically assume static decision contexts, leaving the integration of such disturbances into dynamic systems and RL frameworks underexplored. Incorporating Poisson disturbances into sequential decision-making hence represents a significant opportunity to extend classical bandit and MDP to alternative models.
-By enabling adaptive, resource-efficient decision-making, \hl{PDMPs} provide a rigorous foundation for adapting RL in these domains, enabling policies that address \hl{when} to act and \hl{what} actions to take.
+By enabling adaptive, resource-efficient decision-making, <strong>PDMPs</strong> provide a rigorous foundation for adapting RL in these domains, enabling policies that address <strong>when</strong> to act and <strong>what</strong> actions to take.
 	 </p>
 
 	 <p><strong>From Poisson to Hawkes Processes</strong>
@@ -211,6 +198,21 @@ Besides, many real-world \hl{interventions} introduce such disturbances that are
 	Similarly, agroecological practices (e.g., pesticide application) can have delayed effects, such as pest outbreaks influenced by environmental factors, while industrial repairs may induce future system fragility.
 	 </p>
  </div>
+
+	    <div class="section">
+        <h3>Towards piecewise-deterministic Hawkes-Markov Decision Processes</h3>
+        <p>In this proposal we further study  a variant of the traditional Markov Decision Process (MDP) formulation adapted to capture systems displaying an autonomous (that is, uncontrolled) dynamics. Such systems naturally appear when monitoring a physical system. 
+For instance, think of a production line which usually works in a nominal way, but as the physical systems ages, some parts spontaneously deteriorate with time or even break, causing the  dynamics of the system to change (autonomously). 
+Another example is that of patient followed after an important treatment or medical intervention, 
+whose health status evolves autonomously, usually in a positive way, but with potential relapses occurring spontaneously.
+Yet another example is the monitoring of an agrosytem, where plants autonomously grow from one stage to the other in a predictable manner, depending on the given conditions and resources available, and this evolution can be modified by sudden changes of weather conditions, or apparition of some pathogen.
+In each situation, the decision maker (maintenance officer, physician, farmer) may see a variant of a control problem, with some variables evolving in an autonomous, but predictable way, plus with a specific form on non-stationarity, where the dynamics may suddenly change at seemingly random times. 
+The first type of evolution may be modeled e.g. with a popular linear system or PDE formulation, while  the occasional changes modify the parameters of the dynamics. The change occurrences and intensities may further be modeled. 
+Elaborating on the considered examples, when a change of dynamics spontaneously occurs, such as a system part that brokes, it is natural to model that some overshoots may appear, that is, a subsequent spontaneous change of the system, caused by the first change.
+Such self-excitation is reminiscent of the modeling of earthquakes,  epidemic or biological neurons modeling. 
+Now, the agent acts on this system, causing (controlled) impulse jumps of the dynamics. The autonomous evolution suggests that the decision maker should carefully choose not only what intervention to do but also when to perform it. In particular, this means the set of policies considered by a decision maker should handle decision time. </p>
+    </div>
+	
    <!-- Modeling Section -->
     <div class="section">
         <h3>Modeling</h3>
