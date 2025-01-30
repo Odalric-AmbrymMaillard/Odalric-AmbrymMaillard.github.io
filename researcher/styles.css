@@ -606,3 +606,40 @@ display: inline-block;
 	background-color: #e0e0e0;
 	color: #000;
 }
+
+
+
+.proposals ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.proposals li {
+    margin: 10px 0;
+    padding: 12px;
+    background: linear-gradient(135deg, #0077b6, #00a8e8);
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.proposals li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 120, 180, 0.3);
+}
+
+.proposals a {
+    display: block;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    transition: opacity 0.2s;
+}
+
+.proposals a:hover {
+    opacity: 0.85;
+}
+
