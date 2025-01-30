@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Internship Proposal</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
+    </script>
+	
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- CSS Styling -->
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin: 20px 0;
+        }
+		
+		.header p {
+		text-align: center; /* Override the global p style */
+		}
+        .logos {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 10px auto;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logos img {
+            max-height: 60px;
+            margin: 10px;
+        }
+        .title {
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #333;
+            margin: 20px 0;
+        }
+        .section {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+        .keywords {
+            font-weight: bold;
+            color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.9em;
+            margin: 40px 0;
+            color: #555;
+        }
+		.footer p {
+		text-align: center; /* Override the global p style */
+		}
+        .bibliography {
+			margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;			
+        }
+		
+		.bibliography p {
+		text-align: justify; /* Override the global p style */
+		}
+		
+		
+.bibliography h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.bibliography ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.bibliography li {
+    margin-bottom: 10px;
+    font-size: 1em;
+    line-height: 1.5em;
+	text-align: justify;
+}
+
+.bibliography li i {
+    font-style: italic;
+    color: #555;
+}
+
+.citation {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Bibliography Citation Tags */
+.citation-tag {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Logos Header -->
+    <div class="logos">
+        <img src="logo_INRIA.png" alt="INRIA Logo">
+        <img src="logoCRIStAL.png" alt="CRIStAL Logo">
+        <img src="Logo_Universite_Lille.png" alt="Université de Lille Logo">
+        <img src="logo_CNRS.png" alt="CNRS Logo">
+    </div>
+
+    <!-- Title -->
+    <div class="header">
+        <h1>Research Topic Proposal</h1>
+        <p><strong>Centre Inria de l'Université de Lille</strong><br>
+        Team project Scool -- Spring 2025</p>
+        <div class="title">
+            <em>“Foundations of RL: The Most-Confusing Instance Paradigm”</em>
+        </div>
+    </div>
+	
+	 <div class="section">
+        <p><span class="keywords">Keywords:</span> Multi-armed bandits, Markov Decision Procceses, Regret minimization.</p>
+        <p><span class="keywords">Investigator:</span> The project is proposed and advised by Odalric-Ambrym Maillard from Inria team-project Scool.</p>
+        <p><span class="keywords">Place:</span> This project will be primarily held at the research center Inria Lille -- Nord Europe, 40 avenue Halley, 59650 Villeneuve d'Ascq, France.</p>
+    </div>
+
+<div class="section">
+        <h2>Context</h2>
+        <p>Despite significant advances in regret minimization for bandits and reinforcement learning (RL), efficiently handling structured bandits and general structured Markov Decision Processes (MDPs) remains an open challenge, even in discrete state-action spaces <span class="citation">Boone & Maillard, 2025</span>. One promising approach is leveraging the concept of the <strong>most-confusing instance</strong>, initially developed for performance lower bounds, and transforming it into an algorithmic principle rooted in information theory.</p>
+        <p>The "most-confusing instance" methodology departs from traditional optimistic and Bayesian approaches, aligning instead with hypothesis-testing principles. Recent studies demonstrate its efficacy across multiple structured settings, leading to both theoretical and computational improvements <span class="citation">Saber & Maillard 2024</span>, <span class="citation">Pesquerel & Maillard, 2022</span>. Key challenges include:</p>
+        <ul>
+            <li>Generalizing these methods to a broader class of structured decision problems.</li>
+            <li>Applying this paradigm to <strong>linear systems</strong>, which are central to control theory.</li>
+            <li>Developing scalable function approximation techniques based on this framework.</li>
+        </ul>
+		<p><strong>The Linear Quadratic Regulator (LQR)</strong>: In particular, one significant extension would involve adapting these principles to the Linear Quadratic Regulator (LQR), a fundamental control problem with applications in robotics, autonomous systems, and large-scale industrial processes. LQR provides an ideal benchmark for structured control due to its tractability and practical importance. The goal is to extend regret-minimization techniques to continuous-state MDPs where function approximation becomes necessary.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Light Formalization</h2>
+        <p>Regret minimization in MDPs can be approached through multi-armed bandit theory. A modern information-theoretic approach consists in tracking, for each sub-optimal action \(a\), the <em>confusion cost</em>:</p>
+        <p>\[ \inf \{ L(\hat{\mathbf{M}}_t, \mathbf{M}^\dagger) : \mathbf{M}^\dagger \in \mathcal{C}(a, \hat{\mathbf{M}}_t) \} \]</p>
+        <p>where \( L(\hat{\mathbf{M}}_t, \mathbf{M}^\dagger) \) represents the log-likelihood ratio between the current maximum likelihood estimate \( \hat{\mathbf{M}}_t \) and the closest model where \(a\) is optimal.</p>
+        <p>Tracking this cost can be performed deterministically using <a href="https://www.jmlr.org/papers/volume16/honda15a/honda15a.pdf">IMED</a> or stochastically via <a href="https://proceedings.mlr.press/v151/bian22a.html">Maillard sampling</a> from <span class="citation">Bian & Jun, 2022</span>. Applying this principle to MDPs led to the development of <strong>IMED-RL</strong>, a provably optimal regret minimization algorithm.</p>
+		<p>This research program formalizes statistical decision-making as a <strong>three-player game</strong> between:</p>
+        <ol>
+            <li><strong>Nature</strong>: Defines the environment \(\mathbf{M}\) (e.g., an MDP).</li>
+            <li><strong>The Critic</strong>: Constructs a statistically indistinguishable but strategically challenging alternative \(\mathbf{M}^\dagger\).</li>
+            <li><strong>The Learner</strong>: Adapts its strategy to optimize regret.</li>
+        </ol>
+        <p>This game-theoretic perspective enables a transition from passive lower-bound derivations to active learning processes, informing algorithm design for regret-efficient decision-making.</p>
+    </div>
+    
+    
+    <div class="section">
+        <h2>Future Research Directions</h2>
+		<p>Future research will explore reinforcement learning as a dynamic game against stochastic environments, extend structured bandit techniques to large-scale reinforcement learning problems, and analyze the <strong>policy neighborhood structure</strong> in high-dimensional MDPs. For example, in discrete ergodic MDPs, every sub-optimal policy \(\pi\) has a neighbor differing in only one state, yet achieving a strictly larger gain. This property enables efficient policy iteration via local updates, significantly reducing computational complexity.</p>
+    </div>
+
+<div class="bibliography">
+    <h3>Bibliography</h3>
+    <ul>
+        <li><span class="citation-tag">Lattimore & Szepesvári, 2020</span> Lattimore, Tor, and Csaba Szepesvári. Bandit algorithms. <i>Cambridge University Press</i> (2020).</li>
+		
+		<li><span class="citation-tag">Bian & Jun, 2022</span>
+		Bian, Jie, and Kwang-Sung Jun. "Maillard sampling: Boltzmann exploration done optimally." In <i>International Conference on Artificial Intelligence and Statistics</i>, pp. 54-72. PMLR, 2022.</li>
+		
+		<li><span class="citation-tag">Pesquerel & Maillard 2022</span>
+		Pesquerel, F. and Maillard, O.A., 2022. IMED-RL: Regret optimal learning of ergodic Markov decision processes. <i>Advances in Neural Information Processing Systems</i>, 35, pp.26363-26374.</li>
+		
+		
+		<li><span class="citation-tag">Saber & Maillard 2024</span>
+		Saber, H. and Maillard, O.A., 2024, August. Bandits with Multimodal Structure. In <i>Reinforcement Learning Conference</i> (Vol. 1, No. 5, p. 39).</li>
+		
+		<li><span class="citation-tag">Boone & Maillard 2025</span>
+		Boone, V. and Maillard, O.A., 2025. The regret lower bound for communicating Markov Decision Processes. <i>arXiv preprint</i> arXiv:2501.13013.
+		<li>
+		
+    </ul>
+</div>
+
+
+    <!-- Host Institution Section -->
+    <div class="section">
+        <h3>Host Institution and Supervision</h3>
+        <p>The project will be hosted at <strong>Centre Inria de l'Université de Lille</strong>, in the Scool team. Scool (Sequential COntinual and Online Learning) focuses on the study of sequential decision-making under uncertainty.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p><a href="mailto:odalric.maillard@inria.fr">Odalric-Ambrym Maillard</a> | <a href="https://www.inria.fr/fr/centre-inria-de-luniversite-de-lille">Inria Lille</a> | <a href="https://team.inria.fr/scool">Scool Team</a> | <a href="https://team.inria.fr/scool/projects">Scool Projects</a></p>
+    </div>
+</body>
+</html>
