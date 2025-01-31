@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Internship Proposal</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
+    </script>
+	
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- CSS Styling -->
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin: 20px 0;
+        }
+		
+		.header p {
+		text-align: center; /* Override the global p style */
+		}
+        .logos {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 10px auto;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logos img {
+            max-height: 60px;
+            margin: 10px;
+        }
+        .title {
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #333;
+            margin: 20px 0;
+        }
+        .section {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+        .keywords {
+            font-weight: bold;
+            color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.9em;
+            margin: 40px 0;
+            color: #555;
+        }
+		.footer p {
+		text-align: center; /* Override the global p style */
+		}
+        .bibliography {
+			margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;			
+        }
+		
+		.bibliography p {
+		text-align: justify; /* Override the global p style */
+		}
+		
+		
+.bibliography h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.bibliography ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.bibliography li {
+    margin-bottom: 10px;
+    font-size: 1em;
+    line-height: 1.5em;
+	text-align: justify;
+}
+
+.bibliography li i {
+    font-style: italic;
+    color: #555;
+}
+
+.citation {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Bibliography Citation Tags */
+.citation-tag {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Logos Header -->
+    <div class="logos">
+        <img src="logo_INRIA.png" alt="INRIA Logo">
+        <img src="logoCRIStAL.png" alt="CRIStAL Logo">
+        <img src="Logo_Universite_Lille.png" alt="Université de Lille Logo">
+        <img src="logo_CNRS.png" alt="CNRS Logo">
+    </div>
+
+    <!-- Title -->
+    <div class="header">
+        <h1>Research Topic Proposal</h1>
+        <p><strong>Centre Inria de l'Université de Lille</strong><br>
+        Team project Scool -- Spring 2025</p>
+        <div class="title">
+            <em>“Agroecosystem Gymnasium Simulator suite”</em>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="section">
+        <p><span class="keywords">Keywords:</span> Autonomous Systems, Markov Decision Process, Hawkes process.</p>
+        <p><span class="keywords">Investigator:</span> The project is proposed and advised by Odalric-Ambrym Maillard from Inria team-project Scool.</p>
+        <p><span class="keywords">Place:</span> This project will be primarily held at the research center Inria Lille -- Nord Europe, 40 avenue Halley, 59650 Villeneuve d'Ascq, France.</p>
+    </div>
+
+    <hr>
+
+    <!-- Context Section -->
+<div class="section">
+        <h2>Context & Motivation</h2>
+        <p>Simulation-based learning has transformed <strong>AI research</strong>, enabling rapid experimentation and algorithmic development. However, in <strong>agriculture</strong>, the integration of <strong>Reinforcement Learning (RL)</strong> remains limited due to a lack of adaptable, research-friendly simulators. Traditional agronomic models like <strong>DSSAT</strong> and <strong>STICS</strong> offer scientific rigor but lack modularity for AI experimentation. Meanwhile, simpler models fail to capture critical agroecological challenges. To bridge this gap, we propose a standardized <strong>suite of Gymnasium-compatible agroecosystem simulators</strong>, balancing <strong>biological realism</strong>, <strong>computational efficiency</strong>, and <strong>modularity</strong> for AI-driven decision-making in agriculture.</p>
+        <p>Beyond facilitating AI research in agriculture, this initiative has the <strong>potential for a transformative impact</strong>. By providing a standardized benchmark for the research community—akin to platforms like the <strong>Arcade Learning Environment (Atari)</strong> or <strong>MuJoCo</strong>—it will foster innovation, reproducibility, and collaboration in RL-based agroecosystem modeling.</p>
+    </div>
+
+    <div class="section">
+        <h2>Key Challenges & Research Directions</h2>
+        <p>Our primary goal is to extend <strong>Gym-DSSAT</strong> and integrate new simulators like <strong>Gym-STICS</strong>. A crucial challenge is ensuring <strong>biological realism</strong> while maintaining computational efficiency. Designing <strong>structured policy spaces</strong> and adaptive observation models will allow RL agents to learn under <strong>partial observability</strong>, mimicking real-world farming constraints.</p>
+        <p>RL adaptation must address <strong>high stochasticity, sparse rewards, and long-term dependencies</strong>, which are fundamental in agroecological decision-making. Investigating <strong>model-based RL</strong> can improve sample efficiency, while exploring <strong>multi-objective RL</strong> can help balance yield maximization with sustainability constraints.</p>
+        <p>Ensuring <strong>real-world transferability</strong> is key. We aim to validate RL-driven policies through controlled experimental farms, notably via <strong>FarmBot-controlled micro-farms</strong> and <strong>CIRAD collaborations</strong>. Integrating <strong>human-in-the-loop RL</strong> will refine learned policies with expert feedback, enhancing practical applicability.</p>
+    </div>
+
+    <div class="section">
+        <h2>Initial Work & Long-Term Vision</h2>
+        <p>Our foundations include <strong>Gym-DSSAT</strong>, the first RL-compatible crop model simulator, and gamified agroecosystem environments like <strong>Farm-gym</strong> and <strong>Wegarden</strong>. The <strong>Gym-DSSAT in Mali</strong> project has already demonstrated real-world applications in collaboration with <strong>CIRAD</strong>, see <span class="citation">Gautron et al. 2024</span>. 
+  </p>
+        <p>We envision an <strong>open, standardized suite of agroecosystem simulators</strong> serving as a testbed for RL-driven agricultural decision-making. Inspired by platforms like the <strong>Arcade Learning Environment</strong>, our goal is to establish <strong>public leaderboards, modular benchmarks, and shared datasets</strong>, fostering global collaboration. By integrating <strong>biophysical simulation, AI-based decision-making, and real-world testing</strong>, this initiative aims to develop <strong>novel, resource-efficient farming strategies</strong>, addressing pressing challenges in <strong>sustainability, food security, and climate-resilient agriculture</strong>.</p>
+    </div>
+
+
+<div class="section">
+<h3>Simulators</h3>
+<p>
+The <strong>Decision Support System for Agrotechnology Transfer (DSSAT)</strong> is a comprehensive software application that includes dynamic crop growth simulation models for over 45 crops. It is supported by various utilities and apps for weather, soil, genetic, crop management, and observational experimental data, and includes example data sets for all crop models. The crop simulation models simulate growth, development, and yield as a function of the soil-plant-atmosphere dynamics.
+</p>
+
+<p>
+The <strong>STICS (Simulateur mulTIdisciplinaire pour les Cultures Standard)</strong> crop model has been developed since 1996 at INRA (French National Institute for Agronomic Research) in collaboration with other research and technical institutes. It synthesizes and concretizes a significant part of French agronomic knowledge, providing a perspective on field and cropping systems. The model's formalisations can be considered as references in the framework of crop sciences
+</p>
+<p>
+<strong>Gym-DSSAT</strong> is an RL-compatible crop model simulator that interfaces with the Decision Support System for Agrotechnology Transfer (DSSAT).
+The <strong>Gym-DSSAT</strong> interface has been developed to facilitate daily interactions between simulated crop environments and RL agents. This integration allows for the optimization of nitrogen management, among other applications, by training RL agents to make informed decisions based on simulated crop data.
+Gym-DSSAT provides predefined simulations based on real-world maize experiments and is designed to be as user-friendly as any gym environment. Preliminary experimental results suggest that RL can help researchers improve the sustainability of fertilization and irrigation practices.
+</p>
+<p>
+<strong>Farm-gym</strong> is an open-source farming environment written in Python that models sequential decision-making in farms using Reinforcement Learning (RL). It conceptualizes a farm as a dynamic system with many interacting entities, allowing for the creation of both simple and complex environments. Farm-gym features intrinsically stochastic games, utilizing stochastic growth models and weather data. Its modular design enables the activation or deactivation of various entities, such as weeds, pests, and pollinators, resulting in non-trivial coupled dynamics. Each game can be customized with .yaml files for rewards, feasible actions, and initial/end-game conditions. This platform aims to present new challenges to the RL community and stimulate collaboration with the agronomy community
+</p>
+</div>
+  
+
+
+
+<div class="bibliography">
+    <h3>Bibliography</h3>
+    <ul>
+        <li><span class="citation-tag">Hoogenboom et al. 2019 </span> Hoogenboom, G., Porter, C.H., Boote, K.J., Shelia, V., Wilkens, P.W., Singh, U., White, J.W., Asseng, S., Lizaso, J.I., Moreno, L.P. and Pavan, W., 2019. "The DSSAT crop modeling ecosystem". <i>In Advances in crop modelling for a sustainable agriculture (pp. 173-216)</i>. Burleigh Dodds Science Publishing.</li>
+        <li><span class="citation-tag">Brisson et al, 1998</span> Brisson, N., Mary, B., Ripoche, D., Jeuffroy, M.H., Ruget, F., Nicoullaud, B., Gate, P., Devienne-Barret, F., Antonioletti, R., Durr, C. and Richard, G., 1998. "STICS: a generic model for the simulation of crops and their water and nitrogen balances. I. Theory and parameterization applied to wheat and corn". <i>Agronomie</i>, 18(5-6), pp.311-346.</li>
+        <li><span class="citation-tag">Gautron et al. 2022</span> Gautron, R., Padrón, E.J., Preux, P., Bigot, J., Maillard, O.A. and Emukpere, D., 2022. "gym-DSSAT: a crop model turned into a Reinforcement Learning environment". <i>arXiv preprint arXiv:2207.03270</i>.</li>
+        <li><span class="citation-tag">Maillard et al.2023</span> Maillard, O.A., Mathieu, T. and Basu, D., 2023, February. "Farm-gym: A modular reinforcement learning platform for stochastic agronomic games". <i>In AIAFS 2023-Artificial Intelligence for Agriculture and Food Systems</i>.</li>
+		<li><span class="citation-tag">Gautron et al. 2024</span> Gautron, R., Baudry, D., Adam, M., Falconnier, G.N., Hoogenboom, G., King, B. and Corbeels, M., 2024. "A new adaptive identification strategy of best crop management with farmers". <i>Field Crops Research</i>, 307, p.109249.</li>
+
+    </ul>
+</div>
+
+
+    <!-- Host Institution Section -->
+    <div class="section">
+        <h3>Host Institution and Supervision</h3>
+        <p>The proejct will be hosted at <strong>Centre Inria de l'Université de Lille</strong>, in the Scool team. Scool (Sequential COntinual and Online Learning) focuses on the study of sequential decision-making under uncertainty.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p><a href="mailto:odalric.maillard@inria.fr">Odalric-Ambrym Maillard</a> | <a href="https://www.inria.fr/fr/centre-inria-de-luniversite-de-lille">Inria Lille</a> | <a href="https://team.inria.fr/scool">Scool Team</a> | <a href="https://team.inria.fr/scool/projects">Scool Projects</a></p>
+    </div>
+
+    <!-- Bibliography Placeholder -->
+    <div class="bibliography">
+        <p><em>References are available upon request or via the Scool project page.</em></p>
+    </div>
+</body>
+</html>
