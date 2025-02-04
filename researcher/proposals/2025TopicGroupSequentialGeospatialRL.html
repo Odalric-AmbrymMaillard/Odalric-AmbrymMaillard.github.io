@@ -174,16 +174,16 @@ Group-sequential methodologies \cite{BartroffLai} address this limitation by all
 </p>
         <p>
 This research program aims to extend the scope of group-sequential decision-making by incorporating reinforcement learning (RL) and bandit theory. Specifically, we will explore how contextual information, geospatial correlations, and adversarial robustness can be integrated into group-sequential adaptive sampling strategies.
-The integration of **group-sequential methodologies** with **reinforcement learning** opens exciting new research directions at the intersection of **experimental design**, **adaptive decision-making**, and **geostatistics**. By exploring contextual RL, adversarial robustness, structured bandits, and geospatial optimization, this program aims to develop novel methodologies with applications across medicine, agriculture, and environmental science.
+The integration of <strong>group-sequential methodologies</strong> with <strong>reinforcement learning</strong> opens exciting new research directions at the intersection of <strong>experimental design</strong>, <strong>adaptive decision-making</strong>, and <strong>geostatistics</strong>. By exploring contextual RL, adversarial robustness, structured bandits, and geospatial optimization, this program aims to develop novel methodologies with applications across medicine, agriculture, and environmental science.
 </p>
 </div>
 
 <div class="section">
     <h2>Part I: Contextual Bandits and MDP-Based Reinforcement Learning for Group-Sequential Decision-Making</h2>
 <p>
- One of the key advancements in modern bandit theory is the use of **linear contextual structures**, allowing external covariates (e.g., patient age, weather conditions) to inform decision-making. This motivates a reconsideration of group-sequential methodologies through the lens of **contextual bandits**. By leveraging this framework, we can design more efficient adaptive experiments where each batch of experiments contributes directly to improving future decisions.
+ One of the key advancements in modern bandit theory is the use of <strong>linear contextual structures</strong>, allowing external covariates (e.g., patient age, weather conditions) to inform decision-making. This motivates a reconsideration of group-sequential methodologies through the lens of <strong>contextual bandits</strong>. By leveraging this framework, we can design more efficient adaptive experiments where each batch of experiments contributes directly to improving future decisions.
 </p><p>
-Beyond contextual bandits, a natural extension is to incorporate **MDP-based RL algorithms** into the group-sequential paradigm. This shift enables decision-making over multiple stages, allowing for a more comprehensive adaptive learning process. Addressing these questions requires developing new methodological tools to balance exploration and exploitation within structured group-sequential setups.
+Beyond contextual bandits, a natural extension is to incorporate <strong>MDP-based RL algorithms</strong> into the group-sequential paradigm. This shift enables decision-making over multiple stages, allowing for a more comprehensive adaptive learning process. Addressing these questions requires developing new methodological tools to balance exploration and exploitation within structured group-sequential setups.
 </p>
 </div>
 
@@ -191,7 +191,7 @@ Beyond contextual bandits, a natural extension is to incorporate **MDP-based RL 
 <div class="section">
     <h2>Part II: Hypothesis Testing and Experiment Design in Group-Sequential Bandits</h2>
 <p>
- An important theoretical direction is the adaptation of **hypothesis testing** methodologies to the group-sequential bandit framework. Unlike purely sequential bandit strategies, which operate on a one-step-at-a-time basis, group-sequential approaches allow for batch experimentation at each decision step. Key open questions include:
+ An important theoretical direction is the adaptation of <strong>hypothesis testing</strong> methodologies to the group-sequential bandit framework. Unlike purely sequential bandit strategies, which operate on a one-step-at-a-time basis, group-sequential approaches allow for batch experimentation at each decision step. Key open questions include:
  <ul>
  <li>How can state-of-the-art sequential bandit strategies be extended to group-sequential settings, particularly when batch sizes are fixed, evolving, or adaptively chosen?</li>
 <li>What are the theoretical limits of regret minimization and statistical power in these setups?</li>
@@ -199,7 +199,7 @@ Beyond contextual bandits, a natural extension is to incorporate **MDP-based RL 
 </ul>
 </p>
 <p>
-In structured settings, the challenge is to rapidly identify the optimal action **within specific contexts** while minimizing the number of required trials. Exploiting correlations across experimental slots naturally reduces sample complexity, but the characterization of optimal performance guarantees remains an open problem
+In structured settings, the challenge is to rapidly identify the optimal action <strong>within specific contexts</strong> while minimizing the number of required trials. Exploiting correlations across experimental slots naturally reduces sample complexity, but the characterization of optimal performance guarantees remains an open problem
 </p>
 </div>
 
@@ -207,18 +207,18 @@ In structured settings, the challenge is to rapidly identify the optimal action 
 <div class="section">
     <h2>Part III: Geospatial Context and Group-Sequential Bandits</h2>
 <p>
- Many real-world applications involve decision-making in **geographically distributed** environments. Standard contextual bandit models often rely on linear regression or kernel methods, but in **geostatistical settings**, more advanced techniques such as **Kriging** \cite{SivieroKriging} offer improved interpolation capabilities.
+ Many real-world applications involve decision-making in <strong>geographically distributed<strong> environments. Standard contextual bandit models often rely on linear regression or kernel methods, but in <strong>geostatistical settings</strong>strong>, more advanced techniques such as <strong>Kriging</strong>, recently revisited <span class="citation">SivieroKriging</span>, offer improved interpolation capabilities including in a dependent context.
 </p>
 <p>
 However, integrating geostatistical methods into bandit-based decision-making presents several challenges:
  <ul>
- <li>1. **Sparse Observations:** Unlike traditional regression settings, we often observe only a single realization of the spatio-temporal process rather than repeated samples.</li>
-<li>2. **Spatial Correlations:** High correlation among nearby observations introduces dependence structures that standard bandit algorithms do not account for.</li>
-<li>3. **Exploration-Exploitation in Geostatistical Bandits:** Balancing information gain and sampling cost is crucial, particularly in fields such as **hydrogeology** (where optimal sensor placement affects map accuracy) and **agroecology** (where adaptive field experiments inform sustainable practices).</li>
+ <li>1. <strong>Sparse Observations:</strong> Unlike traditional regression settings, we often observe only a single realization of the spatio-temporal process rather than repeated samples.</li>
+<li>2. <strong>Spatial Correlations:</strong> High correlation among nearby observations introduces dependence structures that standard bandit algorithms do not account for.</li>
+<li>3. <strong>Exploration-Exploitation in Geostatistical Bandits:</strong> Balancing information gain and sampling cost is crucial, particularly in fields such as hydrogeology (where optimal sensor placement affects map accuracy) and agroecology (where adaptive field experiments inform sustainable practices).</li>
 </ul>
 </p>
 <p>
-This program will explore how **recent advances in geostatistics** can be combined with **multi-armed bandit theory** to improve experimental design and decision-making in geospatial contexts.
+This program will explore how <strong>recent advances in geostatistics</strong> can be combined with <strong>multi-armed bandit theory</strong> to improve experimental design and decision-making in geospatial contexts.
 </p>
 </div>
 
@@ -231,12 +231,12 @@ This program will explore how **recent advances in geostatistics** can be combin
 <p>
 A more robust alternative is to consider **group-sequential bandits**, where multiple experimental slots (e.g., multiple farms, patient cohorts) can be tested in parallel. This setting offers two major advantages:
 <ul>
-<li>1. **Scalability:** Many experimental sciences already operate in batch settings, making group-sequential designs more practical.</li>
-<li>2. **Resilience:** By ensuring a batch size large enough relative to the corruption level, we can guarantee that enough uncorrupted observations remain to draw reliable conclusions.</li>
+<li>1. <strong>Scalability:</strong> Many experimental sciences already operate in batch settings, making group-sequential designs more practical.</li>
+<li>2. <strong>Resilience:</strong> By ensuring a batch size large enough relative to the corruption level, we can guarantee that enough uncorrupted observations remain to draw reliable conclusions.</li>
 </ul>
 </p>
 <p>
-Additionally, group-sequential bandits introduce new challenges related to **group-correlated corruption**. When experimental units (e.g., farms, clinical sites) are geographically proximate, external hazards (e.g., weather events, local epidemics) can simultaneously affect multiple slots. For instance, a prolonged drought might impact all test fields in a region, distorting yield comparisons, while a hospital-wide data logging error could corrupt multiple patient records. This motivates the need for **diversity-enforcing strategies** that avoid over-concentration on a single alternative within geographically correlated environments.
+Additionally, group-sequential bandits introduce new challenges related to <strong>group-correlated corruption</strong>. When experimental units (e.g., farms, clinical sites) are geographically proximate, external hazards (e.g., weather events, local epidemics) can simultaneously affect multiple slots. For instance, a prolonged drought might impact all test fields in a region, distorting yield comparisons, while a hospital-wide data logging error could corrupt multiple patient records. This motivates the need for **diversity-enforcing strategies** that avoid over-concentration on a single alternative within geographically correlated environments.
 </p>
 </div>
 
