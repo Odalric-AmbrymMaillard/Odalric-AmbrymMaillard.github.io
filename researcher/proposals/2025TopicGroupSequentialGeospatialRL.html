@@ -226,10 +226,10 @@ This program will explore how <strong>recent advances in geostatistics</strong> 
 <div class="section">
     <h2>Part IV: Robustness Against Adversarial Corruption in Group-Sequential Bandits</h2>
 <p>
- One fundamental challenge in real-world experiments is the presence of **adversarial corruption**, where a subset of observations may be unreliable due to systematic biases, sensor failures, or external disruptions. For instance, in agricultural trials, sensor malfunctions could lead to incorrect soil moisture readings, or a pest outbreak in a subset of test fields might skew yield results. In clinical trials, certain patient subgroups might exhibit non-compliance with treatment protocols, leading to misleading outcomes. Traditional sequential bandit models assume a single-arm selection per time step, limiting their ability to mitigate adversarial attacks.
+ One fundamental challenge in real-world experiments is the presence of <strong>adversarial corruption</strong> where a subset of observations may be unreliable due to systematic biases, sensor failures, or external disruptions. For instance, in agricultural trials, sensor malfunctions could lead to incorrect soil moisture readings, or a pest outbreak in a subset of test fields might skew yield results. In clinical trials, certain patient subgroups might exhibit non-compliance with treatment protocols, leading to misleading outcomes. While corruption models have been studied as a variant of bandits <span class="citation">Agrawal et al, 2024</span>, Traditional sequential bandit models assume a single-arm selection per time step, limiting their ability to mitigate adversarial attacks.
 </p>
 <p>
-A more robust alternative is to consider **group-sequential bandits**, where multiple experimental slots (e.g., multiple farms, patient cohorts) can be tested in parallel. This setting offers two major advantages:
+A more robust alternative is to consider <strong>group-sequential bandits</strong>, where multiple experimental slots (e.g., multiple farms, patient cohorts) can be tested in parallel. This setting offers two major advantages:
 <ul>
 <li>1. <strong>Scalability:</strong> Many experimental sciences already operate in batch settings, making group-sequential designs more practical.</li>
 <li>2. <strong>Resilience:</strong> By ensuring a batch size large enough relative to the corruption level, we can guarantee that enough uncorrupted observations remain to draw reliable conclusions.</li>
@@ -254,6 +254,9 @@ analysis". volume 298. <i>Springer Science & Business Media.</i> (2012).</li>
         <li><span class="citation-tag">Lattimore & Szepesvári, 2020</span> Lattimore, Tor, and Csaba Szepesvári. Bandit algorithms. <i>Cambridge University Press</i> (2020).</li>
 		<li><span class="citation-tag">Siviero et al, 2024</span> Siviero, E., Chautru, E., and Clémençon, S. "A statistical learning view of simple kriging".
 		<i>TEST</i>, 33(1):271–296. (2024).<li>
+			<li><span class="citation-tag">Agrawal et al, 2024</span> 
+				Agrawal, S., Mathieu, T., Basu, D. and Maillard, O.A. "CRIMED: Lower and Upper Bounds on Regret for Bandits with Unbounded Stochastic Corruption". In <i>International Conference on Algorithmic Learning Theory</i> (pp. 74-124). PMLR (2024).
+			</li>
     </ul>
 </div>
 
