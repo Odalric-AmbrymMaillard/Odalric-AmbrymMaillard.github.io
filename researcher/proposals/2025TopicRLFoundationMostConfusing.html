@@ -182,7 +182,7 @@
         <p>\[ \inf \{ L(\hat{\mathbf{M}}_t, \mathbf{M}^\dagger) : \mathbf{M}^\dagger \in \mathcal{C}(a, \hat{\mathbf{M}}_t) \} \]</p>
         <p>where \( L(\hat{\mathbf{M}}_t, \mathbf{M}^\dagger) \) represents the log-likelihood ratio between the current maximum likelihood estimate \( \hat{\mathbf{M}}_t \) and a model \( \mathbf{M}^\dagger \),
 		and where \(\mathcal{C}(a, \hat{\mathbf{M}}_t)\) denotes the models where \(a\) is optimal that are undistinguishable from \( \hat{\mathbf{M}}_t\) when playing optimal strategy in \( \hat{\mathbf{M}}_t \)</p>
-        <p>Tracking this cost can be performed deterministically using <a href="https://www.jmlr.org/papers/volume16/honda15a/honda15a.pdf">IMED</a> or stochastically via <a href="https://proceedings.mlr.press/v151/bian22a.html">Maillard sampling</a> from <span class="citation">Bian & Jun, 2022</span>. Applying this principle to MDPs led to the development of <strong>IMED-RL</strong>, a provably optimal regret minimization algorithm.</p>
+        <p>Tracking this cost can be performed deterministically using <a href="https://www.jmlr.org/papers/volume16/honda15a/honda15a.pdf">IMED</a> or stochastically via <a href="https://proceedings.mlr.press/v151/bian22a.html">Maillard sampling</a> from <span class="citation">Bian & Jun, 2022</span>. Applying this principle to MDPs led e.g. to the development of <strong>IMED-RL</strong>, a provably optimal regret minimization algorithm for ergodic MDPs.</p>
 		<p>This research program formalizes statistical decision-making as a <strong>three-player game</strong> between:</p>
         <ol>
             <li><strong>Nature</strong>: Defines the environment \(\mathbf{M}\) (e.g., an MDP).</li>
