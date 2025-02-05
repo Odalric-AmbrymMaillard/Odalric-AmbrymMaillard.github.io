@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Internship Proposal</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
+    </script>
+	
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- CSS Styling -->
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin: 20px 0;
+        }
+		
+		.header p {
+		text-align: center; /* Override the global p style */
+		}
+        .logos {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 10px auto;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logos img {
+            max-height: 60px;
+            margin: 10px;
+        }
+        .title {
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #333;
+            margin: 20px 0;
+        }
+        .section {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+        .keywords {
+            font-weight: bold;
+            color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.9em;
+            margin: 40px 0;
+            color: #555;
+        }
+		.footer p {
+		text-align: center; /* Override the global p style */
+		}
+        .bibliography {
+			margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;			
+        }
+		
+		.bibliography p {
+		text-align: justify; /* Override the global p style */
+		}
+		
+		
+.bibliography h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.bibliography ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.bibliography li {
+    margin-bottom: 10px;
+    font-size: 1em;
+    line-height: 1.5em;
+	text-align: justify;
+}
+
+.bibliography li i {
+    font-style: italic;
+    color: #555;
+}
+
+.citation {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Bibliography Citation Tags */
+.citation-tag {
+    background-color: #d1c4e9;
+    color: #4a148c;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Logos Header -->
+    <div class="logos">
+        <img src="logo_INRIA.png" alt="INRIA Logo">
+        <img src="logoCRIStAL.png" alt="CRIStAL Logo">
+        <img src="Logo_Universite_Lille.png" alt="Université de Lille Logo">
+        <img src="logo_CNRS.png" alt="CNRS Logo">
+    </div>
+
+    <!-- Title -->
+    <div class="header">
+        <h1>Research Topic Proposal</h1>
+        <p><strong>Centre Inria de l'Université de Lille</strong><br>
+        Team project Scool -- Spring 2025</p>
+        <div class="title">
+            <em>“Sim-to-Real Adaptation in Continual Reinforcement Learning”</em>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="section">
+        <p><span class="keywords">Keywords:</span> Reinforcement Learning, Transfer learning, Simulator, Aggregation of experts.</p>
+        <p><span class="keywords">Investigator:</span> The project is proposed and advised by Odalric-Ambrym Maillard from Inria team-project Scool.</p>
+        <p><span class="keywords">Place:</span> This project will be primarily held at the research center Inria Lille -- Nord Europe, 40 avenue Halley, 59650 Villeneuve d'Ascq, France.</p>
+    </div>
+
+    <hr>
+<div class="section">
+        <h2>Context</h2>
+        <p>Simulators provide valuable yet often imperfect approximations of real-world systems. They typically fail to capture complex interactions, leading to discrepancies between simulated and real dynamics. A striking example arises in <strong>mixed-cropping systems</strong>, where multiple plant species grow simultaneously. While AI models can learn the growth behavior of each species in isolation, no current simulator accurately describes their <strong>joint dynamics</strong>. Consequently, reinforcement learning (RL) agents trained in simulators must not only learn effective policies but also <strong>adapt these policies to real-world data</strong>, where interactions between species introduce new, unmodeled effects. This adaptation falls under <strong>transfer reinforcement learning</strong>, where an agent refines its decision-making process as it transitions from simulation to reality.</p>
+		<p>		
+	A fundamental challenge in sim-to-real adaptation is that <strong>the optimal policy in simulation is not necessarily optimal in reality</strong>. Some adaptation is required, but the extent of this adaptation varies: in some cases, a simple fine-tuning of parameters may suffice, while in others, entirely new strategies must be learned from scratch. Our goal is to understand when and how <strong>existing knowledge can be efficiently leveraged to minimize learning costs</strong> while maintaining strong performance in the real environment.
+		</p>
+    </div>
+
+    <div class="section">
+        <h2>Formalization</h2>
+        <p>Let us consider two environments: <strong>Environment A</strong> representing a simplified, approximate version of the real-world system, and <strong>Environment B</strong>, representing the real-world environment, where the agent ultimately needs to perform well. The goal is to transfer a policy \( \pi \), learned in \( A \), to perform well in \( B \), and later extend this adaptation process to <strong>a sequence of environments</strong> representing variations of \( B \).</p>
+        <p>
+        <strong>Representing Policy Spaces </strong>To fix ideas, consider a policy is parameterized by a (potentially high-dimensional) vector \( \theta \in \mathbb{R}^d \), where typically \( \log_{10}(d) > 3 \) (i.e., thousands to millions of parameters). We denote the set of \( \varepsilon \)-near-optimal policies in environment \( A \) as \( \Theta(A, \varepsilon) \), and likewise introduce \( \Theta(B, \varepsilon) \).</p>
+        <p>For computational efficiency, one may further approximate this set using a convex polytope built on a small set of representative policies. Formally:</p>
+        <p>\[
+        \Theta^+(\boldsymbol{\theta}_A, \varepsilon) = \left\{ \sum_{\ell=1}^{L} \alpha_\ell \theta_\ell : \alpha \in \mathcal{P}([0,1]^L) \right\}
+        \]</p>
+        <p>where \( L \) is significantly smaller than \( d \) (typically \( L = O(\log(d)) \)), and \( \boldsymbol{\theta}_A = \{\theta_\ell\}_{\ell=1}^{L} \) represents a small number of diverse, near-optimal policies—akin to an <strong>"ensemble of experts"</strong>. Searching in this space significantly reduces optimization time when \(L\) is significant smaller than \( d \).
+		</p>
+   <p>
+        
+		<p><strong>Adaptation scenarios</strong> The interplay of the near-optimal policies in \(A\) and \(B\) yields four illustrative scenarios:
+	</p>
+        <ul>
+            <li><strong>Direct Transfer Success:</strong> If \( \Theta^+(A, \varepsilon) \cap \Theta(B, \varepsilon) \neq \emptyset \), adaptation reduces to selecting an appropriate convex combination of expert policies. Indeed, 
+			there exists at least one policy that is near-optimal in both environments. Hence, adaptation reduces to selecting an appropriate convex combination of expert policies in \(A\), requiring optimization only over the small parameter space of \(\alpha\) rather than the full-dimensional space \(\theta\).
+			</li>
+            <li><strong>Mild Adaptation:</strong> If no \( \varepsilon \)-optimal policy in \( A \) remains \( \varepsilon \)-optimal in \( B \), but at least one policy is \( 2\varepsilon \)-optimal in \( B \), 
+			that is 
+			\[ \Theta^+(\boldsymbol{\theta}_A, \varepsilon) \cap \Theta(B, 2\varepsilon) \neq \emptyset, \] then a pre-trained strategy can still perform reasonably well in \(B\), albeit with some degradation. Hence adaptation remains feasible by searching within the convex polytope, adjusting the mixture of expert policies.</li>
+            <li><strong>Significant Adaptation Required:</strong> If no near-optimal policy in \( A \) performs even \( 2\varepsilon \)-optimally in \( B \), but a slightly worse policy in \( A \) can be adapted, local modifications may suffice. Formally, consider 
+			\[ 		\Theta^+(\boldsymbol{\theta}_A, 2\varepsilon) \cap \Theta(B, \varepsilon) \neq \emptyset\]
+			In this case, one need to perturbate the anchor points in \(\boldsymbol{\theta}_A\),  hence to modify the expert policies themselves. But crucially, it may still be possible to achieve adaptation efficiently if local modifications suffice—scaling with $L$ rather than the full parameter dimension $d$.
+			</li>
+            <li><strong>Severe Domain Shift:</strong> If \( \Theta^+(\boldsymbol{\theta}_A, 2\varepsilon) \cap \Theta(B, 2\varepsilon) = \emptyset \), the original policies are entirely inadequate for \( B \) and new learning is required.
+			This case is costly, as requires optimizing in dimension \(d \).
+			</li>
+        </ul>
+		</p>
+        <p>
+        <strong>Balancing Learning Costs and Adaptation</strong> In practice, we do not know in advance which scenario applies. Instead, we must <strong>balance the cost of attempting adaptation against the cost of full retraining</strong>.</p>
+        <p>Denoting \( f_1, f_2, f_3, f_4 \) as the costs of different approaches,
+and considering a progressive procedure prioritizing the cheapest approaches and swithching to more costly ones only when they fail, transfer learning is only beneficial if:</p>
+        <p>\[
+        \sum_{m < 4} f_m< f_4
+        \]</p>
+		<p>Note that \(f_1\) and \(f_2\) typically depend on \(L\) rather than \(d\), 
+		while \(f_4\) depends on \(d\). The key challenge is designing <strong>stopping criteria</strong> to recognize <strong>when</strong> adaptation is failing and to switch to a more costly but necessary approach.</p>
+        <p>
+        <strong>Continual Learning Across Multiple Environments</strong> Next, consider adapting not just to \( B \), but to a sequence of environments \( B_1, B_2, ..., B_p \). The goal is now to <strong>maintain a small, efficient set of policies</strong> that generalize well across multiple tasks.</p>
+        <p>Define a <strong>core set</strong> of policies \( \boldsymbol{\theta} = \{\theta_1, ..., \theta_{L_p}\} \) such that for all \( i \):</p>
+        <p>\[
+        \Theta(B_i, \varepsilon) \cap \Theta^+(\boldsymbol{\theta}, \varepsilon) \neq \emptyset
+        \]</p>
+        <p>Ideally, we want \( \frac{L_p}{p} \to 0 \), ensuring that the number of required policies does not grow <strong>linearly</strong> with the number of tasks.
+		Indeed if that case the system becomes unmanageable, as we would need to store and retrieve an excessive number of policies. Likewise, we want to avoid that \(L_p\) becomes too large compared to \(\log(d)\). 	Instead, we seek sparse additions of novel policies to avoid computational and memory blow-up, while maintaining near-optimal performance in all environments. An interesting question is to characterize simple situations in which core set policies exist such that \(L_p/p\to0\) happens.</p>
+    </div>
+
+    <div class="section">
+        <h2>Key Research Questions</h2>
+		<p>	By leveraging <strong>aggregations of expert policies</strong>, we hope to efficiently transfer knowledge while minimizing unnecessary retraining. The ultimate goal is to <strong>strike a balance</strong> between computational efficiency, adaptability, and long-term performance across diverse environments.
+	Some research questions that need to be investigated include:
+		</p>
+        <ul>
+            <li>How can we efficiently determine or test when a pre-trained policy is inadequate and should be modified or replaced?</li>
+            <li>What are the computational trade-offs between modifying existing policies versus learning new ones?</li>
+            <li>Under what conditions does the number of required policies remain sublinear in the number of environments?</li>
+        </ul>
+    </div>
+
+
+
+<div class="bibliography">
+    <h3>Bibliography</h3>
+  <p><em>References are available upon request or via the Scool project page.</em></p>
+</div>
+
+
+    <!-- Host Institution Section -->
+    <div class="section">
+        <h3>Host Institution and Supervision</h3>
+        <p>The proejct will be hosted at <strong>Centre Inria de l'Université de Lille</strong>, in the Scool team. Scool (Sequential COntinual and Online Learning) focuses on the study of sequential decision-making under uncertainty.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p><a href="mailto:odalric.maillard@inria.fr">Odalric-Ambrym Maillard</a> | <a href="https://www.inria.fr/fr/centre-inria-de-luniversite-de-lille">Inria Lille</a> | <a href="https://team.inria.fr/scool">Scool Team</a> | <a href="https://team.inria.fr/scool/projects">Scool Projects</a></p>
+    </div>
+
+</body>
+</html>
