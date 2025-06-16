@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>RECAP & PERSPECTIVE</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>April 22, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+<section class="slide intro">
+    <h1>Road map</h1>	
+	   <div>
+	<ul>
+	<li> What we have seen </li>
+	<li> Take home messages </li>
+	</ul>
+	</div>	
+</section>
+
+
+
+
+
+<section class="slide intro">
+    <h1>What we have seen</h1>	
+	   <div>
+	   <ul>
+	<li>Markov Decision Processes</li>
+	<li>Dynamic programming, Value iteration</li>
+	<li>Planning objective</li>
+	<li>Optimisitci Planning</li>
+	<li>Application context: heart surgery</li>
+	<li>Extension to Stochastic systems</li>
+	<li>Extension to Graphs</li>
+	<li>Robust planning for risk-sensitive context</li>
+	</ul>
+	</div>	
+</section>
+
+
+
+<section class="slide intro">
+<h1> Bellman and Optimal Bellman equations </h1>
+
+<div>
+Value for a <l>single policy</l> \(\pi\):
+<p class="highlight-box">
+\( V^\pi(s)  = m_\pi(s) + \gamma \sum\limits_{s'} P_\pi(s'|s) V^\pi(s')\)
+</p>
+</div>
+<div>
+Optimal value for an <l>optimal policy</l> \(\star\):
+<p class="highlight-box">
+\( V^\star(s)  = \max\limits_{a\in\cA}m_a(s) + \gamma \sum\limits_{s'} P_\pi(s'|s) V^\star(s')\)
+</p>
+</p>
+Optimal quality for an <l>optimal policy</l> \(\star\):
+<p class="highlight-box">
+\( Q^\star(s,a)  = m_a(s) + \gamma \sum\limits_{s'} P(s'|s,a) V^\star(s')\)
+</p>
+</div>
+<div>
+Optimal value and optimal policy
+<p class="highlight-box">
+\( V^\star(s) = \max\limits_{a\in\cA} Q^\star(s,a) \) and  \(\star(s) = \argmax\limits_{a\in\cA}\, Q^\star(s,a)\)
+</p>
+</div>
+</section>
+
+
+<section class="slide intro">
+    <h1>Discussion</h1>	
+	   <div>
+	<ul>
+	<li> What you remember. </li>
+	<li> Application in your company work ?</li>
+	</ul>
+	</div>	
+</section>
+
+<section class="slide intro">
+<h1> Perpspective: </h1>
+
+<div>
+Dynamic Programming and Value Iteration require to <l>know</l>  transitions P and rewards R exactly.
+</div>
+<div>
+<ul>
+<li>When is this known ?  <l>Simulators</l></li>
+<li>What if they are unknown?<l>Learning</l></li> 
+<ul>
+</div>	
+	  <div>	  
+	   What happens when we <l>do not</l> have a simulator, or when P,R are unknown?
+	</div>	
+		  <div>	  
+	   How to handle large state, action spaces?
+	</div>	
+</section>
+
+
+
+</section>
+
+<section class="slide intro">
+    <h1>Take-home messages ?</h1>	
+	   <div>
+	</div>	
+</section>
+    
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	<a href="Day2_Part1_PlanJourneeTeaser.html">Back</a>
+</section>
+    </div>
+	
+	
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+    
+    <script src="slides.js"></script>
+</body>
+</html>
