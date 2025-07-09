@@ -4,6 +4,7 @@ window.MathJax = {
         macros: {
             cA: "\\mathcal{A}",
             cB: "\\mathcal{B}",
+            cD: "\\mathcal{D}",
             cM: "\\mathcal{M}",
             cC: "\\mathcal{C}",
             cO: "\\mathcal{O}",
