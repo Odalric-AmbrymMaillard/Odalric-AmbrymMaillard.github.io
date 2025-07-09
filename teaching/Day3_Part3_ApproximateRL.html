@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+	<script src="mathjax-shortcuts.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>Approximate Reinforcement Learning</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>June 16, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+<section class="slide intro">
+    <h1>Roadmap</h1>	
+	   <div>
+	<ul>
+	<li>Regression objective and fixed point</li>
+	<li>Explicit updates: LSTD/LSPI</li>
+	<li>Issues with Policy Iteration</li>
+	<li>Non-explicit updates: Gradient steps</li>
+	<li>Policy-gradient theorem</li>
+	</ul>
+	</div>
+</section>
+
+
+<section class="slide intro">
+<h1>Recap of Policy Iteration</h1>
+<div>
+
+	<img src="fig3/PIIssue.png" width="1200px">
+</div>
+</section>
+
+<section class="slide intro">
+    <h1>Policy Evaluation via Regression</h1>	
+	<div>
+	Consider linear representation of quality function \(Q^\pi\) of a policy \(\pi\) seen as \(f_\theta=\theta^\top\phi\),<br> learned
+	from observations \((s_i,a_i,r_i,s'_i)_{i\leq n}\).
+	</div>
+	<div>
+	<p class="highlight-box">
+	We want <l>fixed point</l> property: \(f_\theta(s_i,a_i)= r_i + \gamma f_\theta(s'_i,\pi(s'_i))\)<br>
+	so \(\theta^\top \big(\phi(s_i,a_i)-\gamma \phi(s'_i,\pi(s'_i))\big) = r_i\).
+	</p>
+	</div>	
+	<div>
+	Note: In standard regression, we want \(f_\theta(x_i)=y_i\) hence \(\theta^\top \phi(x_i)=y_i\) instead.
+	</div>
+	<div>
+	<p class="highlight-box">
+	The parameter \(\theta\) minimizing quadratic error loss on all samples is:<br>
+	\(\theta_n  = \Big[\sum\limits_{i=1}^n \phi(s_i,a_i)\big(\phi(s_i,a_i)-\gamma \phi(s'_i,\pi(s'_i))\big)^\top\Big]^{-1}\sum\limits_{i=1}^n\phi(s_i,a_i)r_i\)<br>
+	<l>Explicit</l> least-squares  solution
+	</p>
+	</div>
+	<div>
+	This Policy Evaluation is the basis of Least-squares Policy Iteration (LSPI) algorithm.
+	</div>
+
+</section>
+
+
+
+<section class="slide technical">
+<h1>Issues with Approximate Policy Iteration</h1>
+
+<div>
+Policy Estimation works, but Policy Iteration can fail !<br>
+
+	<img src="fig3/PInoconvergence.png" width="1200px">
+</div>
+
+</section>
+
+
+<section class="slide technical">
+<h1>Issues with Approximate Policy Iteration</h1>
+
+<div>
+
+	<img src="fig3/PIpatho.png" width="1200px">
+</div>
+
+</section>
+
+
+
+
+<section class="slide technical">
+<h1>Issues with Approximate Policy Iteration</h1>
+
+<div>
+
+	<img src="fig3/PIissueex.png" width="1200px">
+</div>
+
+</section>
+
+
+
+
+<section class="slide intro">
+<h1>From Policy Iteration to Policy Search</h1>
+<div>
+A different approach.
+</div>
+<div>
+Approximate a stochastic policy <l>directly</l> instead of its value:<br>
+
+	<p class="highlight-box">
+\(\pi_\theta: \cS\to\cP(\cA)\) with \(\theta\in\Real^d\)
+</p>
+</div>
+<div>
+Let \(J(\pi_\theta)\) denote the policy performance of \(\pi_\theta\).<br>
+The policy optimization problem is:<br>
+	<p class="highlight-box">
+\(\max\limits_{\theta} J(\pi_\theta)\)
+</p>
+</div>
+<div>
+<l>How?</l>
+</div>
+</section>
+
+
+
+<section class="slide technical">
+<h1>Gradient steps</h1>
+
+<div class="two-column">
+<div class="column">
+<p class="highlight-box">
+Approximate Policy Iteration<br>
+\( \pi_{k+1}= \argmax\limits_{\pi_\theta}\, Q^{\pi_\theta}(s,\pi_\theta(s))\)<br>
+<l>Unstable</l> (fast)
+</p>
+</div>
+<div class="column">
+<p class="highlight-box">
+Policy gradient<br>
+\( \theta_{k+1}=  \theta_k + \alpha_k \nabla J(\theta_k)\)<br><br>
+<l>Smooth, fine control</l> (slow)
+</p>
+</div>
+</div>
+<div>
+How to compute  \(\nabla J(\theta)\) ?
+</div>
+
+</section>
+
+
+
+
+<section class="slide technical">
+<h1>Policy gradient theorem</h1>
+
+<div>
+
+<p class="highlight-box">We recall that<br>
+\( J(\theta) =  \Esp_{\pi_\theta}[ V^\pi] = \sum\limits_{s\in\cS} d^{\pi_\theta}(s)V^\pi(s) = \sum\limits_{s\in\cS} d^{\pi_\theta}(s)\sum\limits_{a\in\cA}Q^{\pi_\theta}(s,a)\pi_\theta(a|s)\)
+</p>
+<p> with the occupancy measure<br>
+\(d^\pi(s) = (1-\gamma)\lim\limits_{T\to\infty}  \sum\limits_{t=1}^T \gamma^{t-1}P_\pi^t(s|s_1)\)
+</p>
+</div>
+<div>
+<p>Theorem: It can shown that \(\nabla J(\theta)\) is proportional to<br>
+\(  \sum\limits_{s\in\cS} d^{\pi_\theta}(s)\sum\limits_{a\in\cA}Q^{\pi_\theta}(s,a)\nabla_\theta \pi_\theta(a|s) =\sum\limits_{s\in\cS} d^{\pi_\theta}(s)\sum\limits_{a\in\cA}Q^{\pi_\theta}(s,a)\pi_\theta(a|s)\frac{\nabla_\theta \pi_\theta(a|s)}{\pi_\theta(a|s)}  \)<br>
+</p>
+
+<p class="highlight-box">
+That is, \(\nabla J(\theta)\) is proportional to \(\Esp_{s\sim d^{\pi_\theta}, a\sim \pi_\theta} \bigg[Q^{\pi_\theta}(s,a) \nabla_\theta \ln \pi_\theta(a|s)\bigg]\)
+</p>
+
+</div>
+
+</section>
+
+<section class="slide technical">
+<h1>REINFORCE algorithm</h1>
+
+<div>
+<p class="highlight-box">
+Update rule from empirical version of <l>Policy gradient</l> theorem:<br>
+\(\theta_{k+1} = \theta_k + \alpha \Bigg(\sum\limits_{t=1}^H (\sum\limits_{t'=t}^H r_t) \nabla \log \pi_{\theta_k}(s_t,a_t)\Bigg)\)
+</p>
+</div>
+<div>
+Q: stability?<br>
+Q: \(\nabla\log \pi_{\theta}\) exists?
+</div>
+</section>
+
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	
+	
+	<a href="Day3_Part1_PlanJourneeTeaser.html">Back</a>
+</section>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+    
+    <script src="slides.js"></script>
+</body>
+</html>

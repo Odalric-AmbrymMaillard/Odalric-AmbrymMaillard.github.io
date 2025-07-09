@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+	<script src="mathjax-shortcuts.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>Introduction: MDP and Representation</h1>
+	<img src="figures/20240923_104301846.png" width="40%">
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>July 09, 2025</strong></p>
+	<!-- <img src="logos/logo_INRIA.png" width="250px"> -->
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+<section class="slide intro">
+    <h1>Roadmap</h1>
+	
+    <div>
+	<ul>
+	<li>MDPs in <l>large</l> spaces</li>
+	<li>Tabular vs Parametric</li>
+	<li>Types of Approximate RL algorithms</li>
+	<li>Linear representations</li>
+	<li>Non-linear representations</li>
+	</ul>	
+	</div>
+</section>
+
+<section class="slide intro">
+    <h1>Markov Decision Process recap</h1>
+
+ <div>
+	   <p>	   
+	<img src="figures/Games.jpg"  width="2000px">
+	   </p>
+	</div> 
+</section> 
+	
+
+<section class="slide intro">
+    <h1>Markov Decision Process recap</h1>
+
+ <div>
+ <ul>
+ <li>\(\cS\) states, \(\cA\) actions</li>
+ <li>\(R: \cS\times\cA \to \cP(\Real)\) <l>Reward</l> function</li>
+ <li>\(P: \cS\times\cA \to \cP(\cS)\) <l>Transition</l> function</li>
+ <li>\(\pi: \cS\to\cP(\cA)\) <l>Policy</l></li>
+ <li>\(V_\pi: s \mapsto \Esp\bigg[\sum\limits_{t=0}^\infty \gamma^t r(s_t,a_t)|s_0=s\bigg]\) <l>Value</l> Function</li>
+ <li>\(Q_\pi: \cS\times\cA \to \Real\) <l>Quality</l> Function</li>
+ </ul>
+	</div> 
+	<div>	
+<p class="highlight-box">Challenge: How to <l>represent</l> \(R,P,\pi,V,Q\) functions when \(\cS,\cA\) are <l>huge</l>?</p>
+	</div>
+</section> 
+
+
+<section class="slide intro">
+    <h1>Large state space</h1>
+	
+<div>
+	   <p>	   
+	<img src="fig3/exampleslargeMDPs.png"  width="2000px">
+	   </p>
+	</div> 
+</section> 
+
+
+<section class="slide intro">
+    <h1>Large state space</h1>
+	
+<div>
+	   <p>	   
+	<img src="fig3/Capture_Atari2.png"  height="800px">
+	<img src="fig3/Goban.png"  height="800px">
+	   </p>
+	</div> 
+</section> 
+<section class="slide intro">
+    <h1>Tabular vs Parameter storage</h1>
+	
+<div>
+For <l>small</l> state-action space, we can store all functions (\(Q,\pi,V\)) in tables:
+	   <p>	   
+	<img src="fig3/tabularQ.png"  width="80%">
+	   </p>
+	   <p>Storage: \(S\times A\) parameter values.</p>
+	</div> 
+	
+<div>
+For <l>large</l> state-action space, we rather consider base functions of \(s,a\) and combine them: 
+	   <p class="highlight-box">   
+	   \(Q(s,a) = \theta_1 \phi_1(s,a) + \theta_2 \phi_2(s,a)+ \dots + \theta_d \phi_d(s,a)\)<br>
+	   </p>
+	   <p>Storage: \(d\) parameter values.</p>
+	</div> 
+	<div>
+	 <p class="highlight-box">  
+	Example of feature:<br>
+	\(\phi_1(s,a) = 1\) if (\(s<1.2\) and \(a<0.5\)) else 0 <br>
+	\(\phi_1(s,a) = \cos(2\pi s/5)\cos(2\pi a/3)\)
+	</p>
+	</div>
+</section> 
+
+
+
+
+<section class="slide intro">
+    <h1>Types of RL algorithms</h1>
+	<div>
+	We distinguish between:
+	<ul>
+	<li>
+	<l>Critic</l> algorithms:   Focus on <l>Value/Quality</l> function V/Q representation (Q-learning, Sarsa, TD(\(\lambda\)), etc.)</li><br>
+	<li>
+	<l>Actor</l> algorithms:   Focus on <l>Policy</l> function \pi representation (PPO, TRPO, etc)</li><br>
+	<li>
+	<l>Actor-Critic</l> algorithms:   Use <l>both</l> representarion (SAC, A3C, etc)</li>	
+</ul>
+	</div>
+	<div>
+		
+	<img src="fig3/PVnetwork.png"  width="80%">
+	</div>
+	
+</section> 
+
+
+
+<section class="slide technical">
+    <h1>Linear representations</h1>
+	
+<div>
+	   <p>Representation with <l>Linear</l> function space:<br>	   
+	<img src="fig3/Linear.png"  width="80%">
+	   </p>
+	   <p>
+	   Linear regression, Wavelet regression, Kernel regression, etc.
+	   </p>
+</div>
+<div>
+
+	 <p class="highlight-box"> 
+Minimize loss function:<br>
+\( \mathcal{L}(\theta) = \sum\limits_{i=1}^n (y_i - \theta^\top \phi(x_i))^2 + \lambda \|\theta\|^2_2\)<br>
+Find \(\theta\) such that  \(\nabla \mathcal{L}(\theta)=0\) 
+</p>
+</div>
+<div>
+Pros: Regression usually gives <l>Explicit</l> solution to optimization problem.<br>
+Cons: Requires \(O(D^3)\) computations to minimize the loss.
+</div>
+
+</section> 
+
+
+
+
+<section class="slide technical">  	
+    <h1>Non-Linear representations</h1>
+<div>
+	   <p>	   Representation with <l>Non-Linear</l> function space:<br>	
+	<img src="fig3/NonLinear.png"  width="80%">
+	   </p>
+	   <p>
+	   Linear layers combined  non-linear units:  Neural networks<br>
+	   Large number \( D= \sum\limits_{k=1}^KD_k\) of parameters but structured.
+	   </p>
+	  </div>
+	  <div>
+Cons: No explicit solution. Proceed with <l>Gradient</l> steps to approximate solution. <br>
+Pros: More expressive. Presence of automatic differenciation tools.<br>
+<!--<p class="highlight-box">
+	Deep Learning revolution =  Automated differenciation tools.
+	</p>	
+	<img src="fig3/autograd.png"  width="60%">-->
+</div>
+</section> 
+
+
+
+<section class="slide technical">  	
+    <h1>Autograd</h1>
+	<div>
+	<p class="highlight-box">
+	Deep Learning revolution =  Automated differenciation tools.
+	</p>	
+	<img src="fig3/autograd.png"  width="70%">
+</div>
+</section> 
+
+<section class="slide intro">
+    <h1>Two challenges</h1>
+	<div>
+	First challenge:<br>  Value and Quality functions are <l>not directly observed</l> but fixed point.<br>
+	 <p class="highlight-box">  
+	We don't directly observe \(V(s)\).
+	</p><br> How to tacke regression objective \((V(s)- \theta^\top \phi(s))^2\) ?
+
+	</div>	
+	<div>
+	Second challenge:<br> That <l>linear representation</l> with \(D\) dimension is enough is an assumption. <br>May not hold.
+	Move to Non-linear, or Huge Linear space?
+	</div>
+</section> 
+
+
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	<a href="Day3_Part1_PlanJourneeTeaser.html">Back</a>
+</section>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+
+    <script src="slides.js"></script>
+</body>
+</html>
