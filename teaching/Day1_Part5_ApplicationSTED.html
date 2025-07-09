@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+	<script src="mathjax-shortcuts.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>APPLICATION: automated optimization for microscopy</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>April 22, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+<section class="slide intro">
+    <h1>Roadmap</h1>	
+	
+	A study of the application article 
+	<p class="highlight-box">
+	<br><strong>"A Machine Learning Approach for Online Automated Optimization of Super-Resolution Optical Microscopy"</strong>, <br>
+	by Durand, A., Wiesner, T., Gardner, M.A., Robitaille, L.É., Bilodeau, A., Gagné, C., De Koninck, P. and Lavoie-Cardinal, F.<br>
+	in Nature communications, 2018.
+	</p>
+	   <div>
+	<ul>
+	<li>Super-resolution Microscopy</li>
+	<li>Optimization challenge</li>
+	<li>A first, controlled experiment: single parameter, single objective.</li>
+	<ul>
+		<li>Controlled experimental setup</li>
+		<li>Area of interest</li>
+		<li>Default grid-search strategy</li>
+		<li>Grid-search vs Kernel-TS</li>
+	</ul>
+	<li>Adaptation to custom expert assessment</li>
+	<li>From single to multiple objective and parameters</li>
+	<li>Optimization for novel treatments</li>
+	<li>From expert to automated annotation</li>
+	</ul>
+	</div>
+</section>
+
+<section class="slide intro">
+    <h2>Introduction – The Challenge of Super-Resolution Microscopy</h2>
+    <ul>
+        <li>✅ <strong>Super-resolution microscopy</strong> breaks the diffraction limit, allowing nanoscale imaging.</li>
+        <li>✅ <strong>STED</strong> and <strong>RESOLFT</strong> techniques are widely used for live-cell and multimodal imaging.</li>
+        <li>⚠️ However, <strong>increasing complexity</strong> in parameter tuning makes it hard to use efficiently.</li>
+    </ul>
+	<p>
+	<img src="figures/audrey_fig_1a.jpg">
+	</p>
+</section>
+
+		<section class="slide intro">
+    <h2>The Need for Automation</h2>
+    <!-- First Column: Tunable Parameters -->
+    <div>
+        <p>Super-resolution imaging involves many <l>tunable parameters</l>:</p>
+        <ul>
+            <li><strong>Laser power (<l>excitation</l> & depletion)</strong></li>
+            <li><strong>Pixel size & scanning speed</strong></li>
+            <li><strong>Detector gating & illumination scheme</strong></li>
+        </ul>
+    </div>
+
+    <!-- Second Column: Quality Metrics -->
+    <div>
+		 <p>Each setting affects multiple <l>conflicting objectives</l>:</p>
+    <ul>
+        <li>✅ Improve <strong>resolution & signal-to-noise ratio (SNR)</strong></li>
+        <li>❌ Reduce <strong>photobleaching, light exposure, & imaging time</strong></li>
+    </ul>        
+    </div>
+</section>
+
+
+		<section class="slide intro">
+    <h2>The Need for Automation</h2>
+    <div class="two-column-container">
+    <div>
+		 
+        <p><strong>Quality assessed with several measurements per image:</strong></p>
+        <ul>
+            <li>✅ <strong>Autocorrelation amplitude</strong> \( \phi_0 \)</li>
+            <li>📉 <strong>Photobleaching</strong> \( \phi_1 \)</li>
+            <li>🔊 <strong>Signal-to-Noise Ratio (SNR)</strong> \( \phi_2 \)</li>
+            <li>🔬 <strong>Fourier Ring Correlation (FRC)</strong> \( \phi_3 \)</li>
+        </ul>
+    </div>
+</div>
+
+
+	<p>
+	<img src="figures/audrey_fig_1a.jpg">
+	<img src="figures/audrey_fig_1b.jpg">
+	</p>
+	<p> Pb 1 : optimize Autocorrelation.<br> Pb 2: Optimize more elaborate Quality score</p>
+    <p>🔍 <strong>Challenge:</strong> How to find the best trade-off in few optimization shots?</p>
+</section>
+
+<section class="slide technical">
+    <h2>Problem Setup: Parameter Optimization in Imaging</h2>
+    <p>We consider an <strong>optimization problem</strong> where:</p>
+    <ul>
+        <li>🎛 <strong>Parameter values</strong> = Actions \(a_t \in \mathcal{A}\) of the bandit (laser power settings)</li>
+        <li>📈 <strong>Objective function</strong> = A real-valued score \(r_t\) to be maximized (autocorrelation score)</li>
+        <li>🎲 <strong>Uncertainty</strong>: The effect of the parameter on the objective is stochastic.</li>
+    </ul>
+
+    <p>Learn and improve imaging parameters <l>during</l> the experiment</p>
+    <p>💡 <strong>Goal:</strong> Find the best parameter values <strong>efficiently</strong> using online optimization.</p>
+</section>
+
+<section class="slide technical" id="slide10">
+    <h2>Bandit Formulation</h2>
+    <p>Each imaging attempt corresponds to a <strong>multi-armed bandit</strong> problem:</p>
+    <ul>
+        <li><strong>Actions:</strong> \( \mathcal{A} = \{ a_1, a_2, \dots, a_{12} \} \)</li>
+        <li><strong>Stochastic reward function:</strong> \( r_t = \phi_0(a_t) + \epsilon_t \)</li>
+        <li><strong>Goal:</strong> Maximize cumulative reward over \(T\) trials</li>
+    </ul>
+    <p><strong>Regret:</strong> Gap between chosen actions and optimal actions</p>
+    <p>\[ R_T = \sum_{t=1}^{T} (r^* - r_t) \]</p>
+	<p>
+	<img src="figures/audrey_fig_1c.jpg" width="500px">
+	</p>
+    <p>💡 <strong>Key insight:</strong> Instead of a single best action, multiple actions (4 of 12) are near-optimal.</p>
+</section>
+
+<section class="slide technical"  id="slide9">
+    <h2>🧪 Experimental methodology: Replay Method</h2>
+	<p>To test the benefit of the bandit method, we first build an <l>offline</l> testbed:</p>
+    <ul>
+        <li><strong>Fixed dataset:</strong> \( 39 \times 12 \) pre-acquired images \((s_i, a_j)\)</li>
+        <li><strong>12 actions:</strong> 12 excitation power values \( a_j \)</li>
+        <li><strong>39 samples per action:</strong> Mimicking biological variability</li>
+    </ul>
+    <p><strong>Evaluation by replay:</strong> We simulate new acquisitions by resampling from pre-acquired images</p>
+	<p>One run consists in a sequence of \(T=60\) images acquisitions, simulated one by one.</p>
+
+    <p>💡 <strong>In this first experiment, only autocorrelation is used to compute the reward.</strong></p>
+</section>
+
+
+
+<section class="slide technical" id="slide11">
+    <h2>🔍 Comparison: Kernel TS vs. Grid Search</h2>
+	<div class="two-column-container">
+		<div class="column">
+		<h3>Grid Search (GS) Approach</h3>
+		<ul>
+			<li><strong>Pure exploration:</strong> Exhaustively tests all 12 actions, one by one.</li>
+			<li><strong>No adaptation</strong> to previous results</li>
+			<li><strong>Inefficient</strong> for large parameter spaces</li>
+		</ul>
+		</div>
+		<div class="column">
+		<h3>Kernel Thompson Sampling (Kernel TS)</h3>
+		<ul>
+			<li><strong>Bayesian bandit approach:</strong> Learns from past actions</li>
+			<li><strong>Balances exploration vs. exploitation at each step</strong></li>
+			<li><strong>Efficiently converges to high-reward actions</strong></li>
+		</ul>
+		</div>
+	</div>
+	<p>
+	<img src="figures/audrey_fig_1d.jpg" width="500px">
+	</p>
+    <p>💡 <strong>Why use online optimization?</strong> Grid Search wastes samples, whereas <strong>Kernel TS adapts dynamically</strong>.</p>
+</section>
+
+
+<section class="slide math">
+    <h2>📊 Regret Definition in Imaging Optimization</h2>
+    <p><strong>Cumulative regret</strong> measures inefficiency:</p>
+    <p>\[ R_T = \sum_{t=1}^{T} \max_{a \in \mathcal{A}_{\text{opt}}} \phi_0(a) - \phi_0(a_t) \]</p>
+	<p>
+	<img src="figures/audrey_fig_1e.jpg" width="500px">
+	<img src="figures/audrey_fig_1f.jpg" width="500px">
+	</p>
+    <ul>
+        <li><strong>Here, \( \mathcal{A}_{\text{opt}} \) contains 4 optimal actions</strong> instead of a single one.</li>
+        <li><strong>Practical interpretation:</strong> How much image quality is lost by not choosing an optimal excitation power?</li>
+    </ul>
+    <p>💡 <strong>Online optimization minimizes regret over time, unlike naive exploration.</strong></p>
+</section>
+
+
+
+<section class="slide analysis">
+
+<h1>Adaptation to Custom Expert assessment</h1>
+
+ <div>
+ Replace Autocorrelation score with <l>Quality</l> score (given by human from \(\phi_0,\phi_1,\phi_2,\phi_3\)).
+ <p> 
+	<img src="figures/Fig1_SNR.png" height="300px">
+	<img src="figures/Fig1_Photob.png" height="300px">
+	<img src="figures/Fig1_FRC.png" height="300px">
+	<img src="figures/Fig1_Autocor.png" height="300px">
+ </p> 
+ </div>
+ <div>
+	<p>
+	<img src="figures/audrey_fig_1g.jpg" height="500px">
+	<img src="figures/audrey_fig_1h.jpg" height="500px">
+	<img src="figures/audrey_fig_1i.jpg" height="500px">
+	</p>
+	</div>
+</section>
+
+
+
+
+<section class="slide analysis">
+<h1>From single to multiple objective and parameters</h1>
+
+<div>
+<p>
+(i) <strong>independent</strong> instances of Kernel TS to model each objective
+function
+</p>
+<p>
+(ii) letting an expert provide <strong>feedback</strong> about its
+preference articulation among objectives
+</p>
+
+<img src="figures/Fig_MultipleObj.png" width="1200px">
+</div>
+
+</section>
+
+
+<section class="slide analysis">
+<h1>From single to multiple objective and parameters</h1>
+
+<div>
+Application with 3 parameters (excitation, depletion, pixel dwell time) and 2 objectives (quality, photobleaching).
+
+
+
+<img src="figures/Fig_MultiObj_result.png" width="1100px"><br>
+
+<img src="figures/Fig_MultiObj_regret.png" width="900px">
+</div>
+
+</section>
+
+
+
+<section class="slide analysis">
+<h1>Optimization for novel treatments</h1>
+
+
+	<p>
+	<img src="figures/audrey_fig_2a.jpg" height="500px">
+	</p>
+	<p>
+	<img src="figures/audrey_fig_2b.jpg" height="500px">
+	<img src="figures/audrey_fig_2c.jpg" height="500px"></p>
+</section>
+
+
+
+<section class="slide analysis">
+<h1>Optimization in a noisier context</h1>
+
+<p>
+	<img src="figures/audrey_fig_3a.jpg" height="500px">
+	<img src="figures/audrey_fig_3b.jpg" height="500px">
+	</p>
+<p>
+	<img src="figures/audrey_fig_3c.jpg" height="500px">
+	</p>
+
+
+</section>
+
+
+<section class="slide analysis">
+<h1>Automating annotation</h1>
+<div>
+Replacing human to assess quality:<br>
+
+<img src="figures/Fig_AutoScore.png" width="1600px">
+</div>
+<div>
+<img src="figures/Fig_AutoScore2.png" width="800px">
+</div>
+
+</section>
+
+
+
+<section class="slide analysis">
+<h1>Automating preference</h1>
+
+<div>
+Replacing human to choose tradeoff:<br>
+
+<img src="figures/Fig_AutoAll.png" width="1600px">
+
+</div>
+
+</section>
+
+<section class="slide intro">
+<h1>Resources</h1>
+
+
+<a href="https://github.com/FLClab/optim-sted">Optim Sted</a>
+
+<a href="https://github.com/FLClab/pySTED">Py-Sted</a>
+
+<a href="https://github.com/FLClab/gym-sted">Gym-Sted</a>
+
+
+
+
+
+</section>
+
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	
+	
+	<a href="Day1_Part1_PlanJourneeTeaser.html">So, what is Kernel TS?</a>
+</section>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+    
+    <script src="slides.js"></script>
+</body>
+</html>

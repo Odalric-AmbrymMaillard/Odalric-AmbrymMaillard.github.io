@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+	<script src="mathjax-shortcuts.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>THEORY: LINEAR, KERNEL BANDITS</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>April 22, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+
+<section class="slide intro">
+    <h1>Road map</h1>	
+	   <div>
+	<ul>
+	<li> Bandit optimization for continuous set of arms </li>
+	<li> <l>Linear regression</l> setup and estimate</li>
+	<ul>
+	<li> Confidence region around the estimate</li>
+	<li> Linear UCB strategy</li>
+	<li> Mathematics: the Martingale method</li>	
+	<li> Tightness: Other (sub-optimal) approaches</li>
+	</ul>
+	<li> <l>Kernel regression</l> </li>
+	<ul>
+	<li> From linear space to RKHS </li>
+	<li> Kernel regression, Kernel Bayesian regression </li>
+	<li> Kernel-UCB, Kernel-TS </li>
+	<li> Regarding variance estimation </li>
+	</ul>
+	<li> Regret properties</li>
+	</ul>
+	</div>	
+</section>
+
+
+
+<section class="slide intro">
+ <h1>Bandit optimization for continuous set of arms</h1>	
+ <img src="figures/meanfunction.png" width="650px">
+<div>
+ 
+ <p class="highlight-box">
+ \( y_t = f(x_t)+ \xi_t \)</p>
+ 
+ <p>
+ <ul>
+ <li> Action: \(x_t\in\mathcal{X}\)</li>
+ <li>Reward: \(y_t \in \Real\)</li> 
+ <li>Noise: \(x_t\sim\mathcal{N}(0,\sigma^2)\)</li>
+ <li><l>Mean function</l>: \(f:\mathcal{X} \to \Real\)</li>
+ </ul>
+ </p>
+ </div>
+ 
+ 
+</section>
+
+
+<section class="slide intro">
+ <h1>Linear model</h1>
+<div>
+ Parametric setting:
+ \( f(x) = \langle \theta, \phi(x) \rangle \)
+ </div>
+
+ 
+  <img src="figures/meanfunctionopt.png" width="650px">
+<div>
+
+ <ul>
+ <li> Parameter (Unknown): \(\theta\in\Real^d\)</li>
+ <li> Feature (Known):  \(\phi:  \mathcal{X} \to \Real^d\)</li>
+ </ul>
+ </div>
+</section>
+
+
+
+
+<section class="slide analysis">
+ <h1>Linear regression setup</h1>
+<div>
+
+Ordinary least-squares:<br>
+<p class="highlight-box">
+ From data points \( (x_n,y_n)_{n\leq N} \), compute <br>
+
+\( \min\limits_{\theta \in \Theta} \sum\limits_{n=1}^N(y_n - \langle \theta, \phi(x_n)\rangle)^2 \)
+</p>
+</div>
+<div>
+Solution: 
+  
+  <p class="highlight-box">
+  \( G_N \theta = \Phi_N^\top Y_N \)<br>
+  
+  \( Y_N = (y_1,\dots,y_N)^\top \) dimension: \(N\)<br>
+  \(\Phi_N = (\phi(x_1);\dots,\phi(x_N))\) dimension: \(N\times d\)<br>
+  \(G_N = \Phi_N^\top\Phi_N = \sum\limits_{n=1}^N \phi(x_n)^\top\phi(x_n)\) dimension: \(d\times d\)
+  </p>
+
+</div>
+</section>
+
+
+
+<section class="slide analysis">
+ <h1>Regularised</h1>
+<div>
+
+When \(G_N\) is not invertible, we introduced a regularization:
+
+<p class="highlight-box">
+Regularised solution:<br>
+
+ \( \theta_{N,\lambda} = (\Phi_N^\top\Phi_N+\lambda I_d)^{-1}\Phi_N^\top Y_N\)
+ </p>
+
+
+</div>
+<div>
+<strong>Bayesian interpretation</strong>:
+
+<p class="highlight-box">
+For <l>Prior</l> \(\theta \sim \mathcal{N}(0,\Sigma)\) and i.i.d. Gaussian noise \(\xi_n\sim \mathcal{N}(0,\sigma^2)\), then<br>
+<l>Posterior</l>: \(\tilde f_N(x) | (x_n,y_n)_{n\leq N}   \sim \mathcal{N}(f_N(x),\sigma^2_N(x))\) where<br>
+
+\( f_N(x) = \phi(x)^\top (\Phi_N^\top\Phi_N  +\sigma^2\Sigma^{-1})^{-1}\Phi_N^\top Y_N\)<br>	
+\( \sigma^2_N(x) = \sigma^2 \phi(x)^\top(\Phi_N^\top\Phi_N  +\sigma^2\Sigma^{-1})^{-1}\phi(x) \)
+</p>
+
+Hence, \(\lambda I_d\) interprets as prior on variance.
+</div>
+<div>
+<img src="figures/BayesRegression1.png" width="1200px">
+</div>
+</section>
+
+
+<section class="slide analysis">
+ <h1>A first linear bandit approach</h1>
+<div>
+
+<p class="highlight-box">
+At time \(t\),<br>  
+Compute
+ \( \theta_{t} = (\Phi_t^\top\Phi_t + \lambda I_d)^{-1}\Phi_t^\top Y_t\)</br>
+ Choose action \(x_{t+1} = \argmax_{x\in\mathcal{X}} \langle \theta_{t}, \phi(x)\rangle\)
+
+ </p>
+ 
+</div>
+<div>
+ <l>Warning !</l>
+</div>
+</section>
+
+
+
+<section class="slide analysis">
+ <h1>An optimistic linear bandit approach</h1>
+<div>
+
+
+Error control:  \(|f(x)-\hat f(x)| \leq \|\phi(x)\|_{M^-1} \|\theta-\hat \theta\|_{M}  \) 
+
+</div>
+<div>
+Confidence ellipsoid:
+<p>
+<img src="figures/Ellipse.png" width="400px">
+</p>
+</div>
+<div>
+
+Optimistic choice:
+
+
+<p class="highlight-box">
+At time \(t\),<br>  
+Compute
+ \( \Theta_{t} = \{ \theta :  \| \theta -\theta_t\|_{G_{t,\lambda}} \leq B_t(\delta)\}\)</br>
+ Choose action \(x_{t+1} = \argmax_{x\in\mathcal{X}} \max_{\theta\in\Theta_t}\langle \theta, \phi(x)\rangle\)
+
+ </p>
+</div>
+
+</section>
+
+
+
+<section class="slide technical">
+ <h1>How to obtain confidence bound?</h1>
+<div>
+
+Key decomposition: 
+<p class="highlight-box">
+\( \| \theta^\star -\theta_t\|_{G_{t,\lambda}}  \leq \sqrt{\lambda} \| \theta^\star\|_2 + \|\sum\limits_{n=1}^t\phi(x_n)\xi_n\|_{G_{t,\lambda}^{-1}}\)
+</p>
+</div>
+<div>
+Makes appear sum of centered vector-valued variables:<br>concentration of measure.
+
+</div>
+</section>
+
+
+
+<section class="slide technical">
+ <h1>Mathematics: the Martingale method</h1>
+<div>
+
+<p>
+ "Improved algorithms for linear stochastic bandits."  Abbasi-Yadkori, Pál, Szepesvári. Neurips 2011.
+</p>
+
+<p>
+"Bregman deviations of generic exponential families." Chowdhury, Saux, Maillard, Gopalan. COLT 2023.
+</p>
+<a href="linear-bandits-nips2011.pdf">(details)</a>
+</div>
+</section>
+
+
+
+
+<section class="slide analysis">
+ <h1>Linear Thompson sampling</h1>
+<div>
+Observations: 
+\( y_t = \langle \theta, \phi(x_t)\rangle +\epsilon_t, \quad \theta \sim\cN(0,\sigma_0^2I_d),\quad \epsilon_t \sim \cN(0,\sigma^2)\)<br>
+
+</div>
+
+<div>
+Posterior parameter:
+\( \tilde \theta_t \sim \cN(\hat \theta_t,\hat \Sigma_t) \), hence \(\tilde f_t(x) = \langle\tilde \theta_t, \phi(x)\rangle \)
+
+</div>
+
+<div>
+Choice of next point:
+\( x_{t+1} = \argmax\limits_{x\in\mathcal{X}} \, \tilde f_t(x)  \)
+
+
+</div>
+
+<div>
+<img src="figures/BayesPosterior.png" width="1200px">
+
+</div>
+</section>
+
+
+
+
+<section class="slide intro">
+ <h1>Kernel regression: From linear space to RKHS </h1>
+ <div>
+ From 
+ \( f(x) = \langle \theta, \phi(x) \rangle = \sum\limits_{j=1}^d \theta_j \phi_j(x)\) 
+
+</div>
+
+ <div>
+ To \( f(x) =\sum\limits_{j=1}^\infty \theta_j \phi_j(x)\) 
+</div>
+</section>
+
+
+
+<section class="slide intro">
+ <h1>Kernel regression, Bayesian kernel regression </h1>
+<div>
+
+ <l>Kernel function</l> \(k:\cX\times\cX\to\Real^+\) (continuous, symmetric, positive definitive)<br>
+ 
+</div>
+<div>
+ There exists an at most countable sequence \((\sigma_j,\psi_j)_j\),<br> with \(\lim_{j\to\infty} \sigma_j = 0\), and \((\psi_j)_j\) an orthonormal basis of \(L_2\)  such that<br>
+
+\( k(x,y) = \sum\limits_{j=1}^\infty \sigma_j \psi_j(x)\psi_j(y) \)
+
+</div>
+<div>
+
+<p class="highlight-box">
+If \(f(x)= \sum\limits_{j=1}^\infty \theta_j \phi_j(x)\) where \(\phi_j = \sqrt{\sigma_j}\psi_j\), then<br>
+
+\( \| f\|^2_\cK = \sum\limits_{j=1}^\infty \frac{1}{\sigma_j}\langle f, \psi_j\rangle^2_{L_2} = \sum\limits_{j=1}^\infty \theta_j^2 = \|\theta\|_{\ell_2}\)
+</p>
+
+</div>
+
+</section>
+
+
+<section class="slide intro">
+ <h1>Kernel regression: Estimation </h1>
+<div>
+Estimation of \(f\) at point \(x\):
+
+<p class="highlight-box">Regularised <l>kernel estimate</l>  from observations \((x_s,y_s)_{s\leq t}\):<br>
+\( f_{\lambda,t}(x) = k_t(x)^\top (K_t + \lambda I_t)^{-1}Y_t\)
+where<br><br>
+\( k_t(x) = (k(x,x_s))_{s\leq t} \) Dimension \(t\)<br>
+\( K_t(x) = (k(x_{s},x_{s'}))_{s,s'\leq t} \) Dimension \(t\times t\)
+</p>
+Recal Parametric case: \(f_{\lambda,t}(x)=\langle \theta_{\hat \lambda,t},\phi(x)\rangle\)
+</div>
+
+</section>
+
+
+<section class="slide intro">
+ <h1>Estimation error and regret</h1>
+<div>
+
+<p class="highlight-box">
+For all \(\delta\in(0,1)\),  with probability higher than \(1-\delta\),<br> it holds <l>simultaneously</l> for all \(x\in\cX, t\in\Nat\),<br>
+
+\( \|f_\star(x)-f_{\lambda,t}(x)\|\leq \sqrt{k_{\lambda,t}(x,x)}\big[\|f_\star\|_k + \sqrt{\frac{2\sigma^2}{\lambda}(\ln(1/\delta)+\gamma_t(\lambda)}\big] \)
+</p>
+<p>
+where <br>
+\( k_{\lambda,t}(x,x)\): Posterior variance.<br>
+\(\gamma_t(\lambda)\): Information gain.
+</p>
+</div>
+<div>
+Streaming linear regression, Durand, Maillard, Pineau, JMLR, 2016.
+</div>
+</section>
+
+<section class="slide intro">
+ <h1>Kernel UCB, Kernel TS</h1>
+<div>
+<l>Kernel-UCB</l>
+\( x_t \in \argmax\limits_{x\in\cX}\,f^+_t(x)\) where \(f^+_t(x) = f_{\lambda,t-1}(x) + \sqrt{k_{\lambda,t-1}(x,x)}B_{\lambda,t-1}(\delta)\)
+</div>
+
+<div>
+<l>Kernel-TS</l> on a discrete \(\mathbb{X}\subset\mathcal{X}\)
+
+\( x_t \in \argmax\limits_{x\in\mathbb{X}} \,\tilde f_t(x)\) where \(\tilde f_t(x) \sim \cN(\hat f_{t-1},\hat \Sigma_{t-1})\)
+</div>
+
+<div>
+<img src="figures/BayesPosterior.png" width="1400px">
+
+</div>
+</section>
+
+
+
+
+
+<section class="slide technical">
+ <h1>Regarding noise estimation</h1>
+<div>
+Note that here variance of noise \(\sigma^2\) is assumed known. 
+</div>
+<div>
+It is possible to remove this assumption and estimate variance as well (more complex):
+<p>
+"Streaming kernel regression with provably adaptive mean, variance, and regularization", Durand, Maillard, Pineau, JMLR, 2018.<br>
+
+"Bregman deviations of generic exponential families." Chowdhury, Saux, Maillard, Gopalan. COLT 2023.
+</p>
+</div>
+</section>
+
+
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	
+	
+	<a href="Day1_Part1_PlanJourneeTeaser.html">Back</a>
+</section>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+  
+    <script src="slides.js"></script>
+</body>
+</html>

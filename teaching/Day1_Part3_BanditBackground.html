@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+	<script src="mathjax-shortcuts.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>MULTI-ARMED BANDIT SETUP</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>April 22, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+<section class="slide intro">
+    <h1>Roadmap</h1>	
+	   <div>
+	<ul>
+	<li>Why bandits? Sequential decision making tasks</li>
+	<li>Formal definition of Multi-armed Bandits</li>
+	<li>A short history of multi-armed bandits</li>
+	<li>Challenge: <l>Uncertainty</l></li>
+	<li><l>Exploration</l> - <l>Exploitation</l></li>
+	<li>Performance measure: Regret minimization</li>
+	<li>Why sampling best observed action is <l>unreliable</l></li>
+	<li>Classical Bandit algorithms</li>
+	</ul>
+	</div>
+</section>
+
+
+<section class="slide intro">
+<h1> Multi-armed bandit framework</h1>
+<div>
+<p>
+	Model \(\mdp=(\mathcal{A},{\bf r})\) where \(\cA=\{1,\dots,5\}\), \({\bf r}:\cA\to\cP([0,1])\). 
+	</p>
+	<br>
+		<strong>Unknown distributions</strong><br>
+	<img src="figures/Bandit_distributions.png">
+	
+</div>
+<div>	
+	<p>
+	At each decision time \(t\in\Nat\)
+	<ul>
+	<li>agent <l>chooses</l> \(a_t\in\cA\)</li>
+	<li>	then <l>receives</l> sample (reward) \(r_t\sim {\bf r}(a_t)\)</li>
+	</ul>
+<br>	
+	producing history of interactions \((a_1,r_1,\dots,a_{t-1},r_{t-1})\).
+	</p>
+	</div>
+<div>
+<p>
+  A learner produces an adaptive policy: \({ \pi}=(\pi_t)_t\) s.t. \(a_t\sim \pi_t\)
+  </p>
+	<p class="highlight-box">
+	Typical goal is to accumulate rewards over time: \(\Esp\left[\sum\limits_{t=1}^T r_t\right]\)
+	</p>
+	
+	</div>
+
+</section>
+
+
+<section class="slide intro">
+<h1> Multi-armed bandit examples</h1>
+
+<div>
+<p>Clinical trials:</p>
+	<img src="figures/bandittreatments.jpg">
+</div>
+
+<div>
+<p>Agroecological trials:</p>
+	<img src="figures/bandits_plants.jpg">
+</div>
+</section>
+
+<section class="slide intro">
+<h1> Multi-armed bandit: uncertainty</h1>
+
+<div>
+<p>Aleatoric Uncertainty</p>
+
+<img src="figures/Aleatoric.png" width="1400px">
+</div>
+</section>
+
+<section class="slide intro">
+<h1> Regret performance criterion</h1>
+<div>
+<p> Denote the <l>mean</l> function: \({\bf m}:\cA\to[0,1]\), then
+<br> 
+	\({\bf m}_\star = \max\limits_{a\in\cA} \,{\bf m}(a)\) and 
+	\(\cO(\mdp)= \Argmax\limits_{a\in\cA} \,{\bf m}(a)\)
+	</p>
+	</div>
+
+  <div>
+<p>
+	The <l>Regret</l> of \({ \pi}\), accumulated <l>while learning</l> is
+	
+	<p class="highlight-box">
+	\(\kR_T({ \pi},\mdp)=\Esp_{\star}\bigg[\sum\limits_{t=1}^Tr_t\bigg]-  \Esp_{ \pi}\bigg[\sum\limits_{t=1}^Tr_t\bigg]
+	\)
+	</p>
+	<br>
+	where \({ \star}=(\star_t)_t\) denotes stationary optimal policy s.t.  \(\forall t,\, \star_t\in\cO(\mdp)\). 
+	</p>
+	</div>
+</section>
+
+
+
+<section class="slide intro">
+<h1> A short history of Multi-armed bandits</h1>
+
+<div>
+<ul>
+<li>1933:  Bayesian strategy: Thompson sampling</li>
+ 
+ <li>1952: H. Robbins</li>
+ 
+ <li>1985: T.L Lai </li>
+ 
+ <li>2002: Optimistic strategy: Upper Confidence Bound (UCB)</li>
+ 
+ <li>2010-2025: Optimality of KL-UCB, TS, IMED, SDA, etc.</li>
+ 
+ <li>2010-2025: Extensions to contextual, linear, structured arms.</li>
+ </ul>
+</div> 
+ 
+
+</section>
+
+
+<section class="slide intro">
+
+<h1>Uncertainty and optimization </h1>
+Two strategies: blue or red.
+
+<img src="figures/xpbandit.png">
+
+</section>
+
+
+
+
+<section class="slide intro">
+
+<h1>Uncertainty and optimization </h1> 
+
+<img src="figures/banditxp2.png">
+
+<p>
+For action \(a\in\{\pi_1,\pi_2\}\), empirical mean \(\hat{m}_t(a)\) different from true mean \(\textbf{m}(a)\).
+</p>
+
+</section>
+
+
+<section class="slide intro">
+
+<h1> The Exploration-Exploitation Dilemma</h1>
+
+<div>
+<strong>Problem 1</strong>: Whenever the learner pulls a bad arm, it accumulates some regret
+<br>
+⇒ the learner should avoid mistakes by pulling  <l>only</l> the best arm: <l>Exploitation</l>
+</div><div>
+<strong>Problem 2</strong>: The environment only reveals rewards of the arms pulled by the
+learner<br>
+⇒ the learner should gain information by repeatedly pulling <l>all</l> the arms: <l>Exploration</l>
+</div>
+<div>
+<span style="display: flex; align-items: center;"> 
+ \(\Argmax\limits_{a\in\cA}\,\hat{m}_t(a)\)
+<img id="toggleImage" src="figures/visualexplo.png" height="600px" 
+     onclick="toggleImage(this, 'figures/ExplorExploit.png')" style="margin-right: 20px;margin-left: 20px;">	
+	  \(\Argmin\limits_{a\in\cA}\,N_t(a)\)
+	  </span>
+</div>
+<div>
+<p class="highlight-box">
+Challenge: The learner should balance two conflicting objectives!
+</p>
+</div>
+
+</section>
+
+
+
+<section class="slide intro">
+<h1> Pure Exploitation is <l>risky</l></h1>
+<div>
+<p>
+It is tempting to always pull \(\Argmax\limits_{a\in\cA}\,\hat{m}_t(a)\) </p>
+<p>
+</div>
+<div>
+Experiment: Three bernoulli arms with <strong>means 0.2, 0.4, 0.6</strong><br>
+Histogram of cumulative regrets over 200 runs each with horizon \(T = 1000\)
+</p>
+<img src="figures/FTLnotreliable.png">
+</div>
+</section>
+
+
+
+
+
+<section class="slide intro">
+<h1> <l>Balancing</l> exploration and exploitation</h1>
+<div>
+<p>
+The UCB strategy pulls \(\Argmax\limits_{a\in\cA}\,m_t^+(a)\) instead, where \(m_t^+(a)\geq \textbf{m}(a)\) w.h.p.</p>
+<p>
+</div>
+<div>
+Experiment: Three bernoulli arms with <strong>means 0.2, 0.4, 0.6</strong><br>
+Histogram of cumulative regrets over 200 runs each with horizon \(T = 1000\)
+</p>
+<img src="figures/UCB_histogram.png">
+</div>
+</section>
+
+
+
+
+
+
+<section class="slide intro">
+<h1> Confidence bounds</h1>
+<div>
+<l>Error</l> between mean and empirical mean estimate:
+
+<p class="highlight-box">
+For \(n\) i.i.d. random variables \(X_i\in[0,1]\) with mean \(m\)<br>
+
+\(\Pr\left( |\frac{1}{n}\sum_{i=1}^n X_i - m| \geq \sqrt{\frac{\ln(2/\delta)}{2n}}\right) \leq \delta\,.\)
+</p>
+</div>
+<div>
+Error due to finite (small) number of observations.
+</div>
+<div>
+For an arm \(a\), its mean rewrites <br>
+\(m_a = \hat m_{t,a} + (m_a-\hat m_{t,a}) =\) <l>estimate</l> + <l>error</l>
+</div>
+</section>
+
+<section class="slide intro">
+<h1> UCB in action</h1>
+<div class="video-container">
+        <iframe src="figures/KLUCB.mp4"  type="video/mp4"
+                title="KL-UCB in action"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                ></iframe>				
+    </div>
+
+</section>
+
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	
+	
+	<a href="Day1_Part1_PlanJourneeTeaser.html">Back</a>
+</section>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+    
+    <script src="slides.js"></script>
+</body>
+</html>
