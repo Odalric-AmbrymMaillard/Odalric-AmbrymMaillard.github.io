@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+	<script src="mathjax-shortcuts.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>MARKOV DECISION PROCESSES</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>June 16, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+<section class="slide intro">
+    <h1>Roadmap</h1>	
+	   <div>
+	<ul>
+	<li>Why MDPs? Dynamical systems decision making tasks</li>
+	<li>Formal definition of Markov Decision Processes</li>
+	<li>A short history of MDPs</li>
+	<li>Challenge: learning a <l>Policy</l></li>
+	<li>Performance measure: <l>Value function</l></li>
+	<li>Bellman equations</li>
+	<li>Dynamic Programming</li>
+	<li>Value Iteration</li>
+	</ul>
+	</div>
+</section>
+
+
+
+
+
+<section class="slide technical">
+    <h1>Learning by trial and error, repeatedly</h1>
+	
+	   <div>
+	   <p>	   
+	<img src="fig2/RL.jpg" width="1400px">
+	   </p>
+	</div>  
+</section>
+
+<section class="slide intro">
+<h1>  Formal definition of Markov Decision Processes </h1>
+
+
+<p class="highlight-box">
+\(\cM = (\cS,\cA,p,r)\)
+</p>
+<div>
+<ul>
+<li>State space \(\cS\):  Discrete \(\{S_1,\dots,S_J\}\), Continuous \([0,1]^d, etc.</li>
+<li>Action set \(\cA\): Discrete:\(\{a_1,a_2,a_3,a_4\}\), Continous \([0,1]^d\), etc.</li><br>
+<li>Reward distribution function :  \(r(s,a)\) with mean \(m(s,a)\)</li>
+<li><l>Stochastic transition</l>: \(p(s'|s,a)\)</li>
+</ul>
+</div>
+<div>
+<h2>
+Dynamical systems</h2><br>
+<l>Markov</l>:  \(s_{t+1}\sim p(\cdot|s_t,a_t)=p(\cdot|s_t,a_t,\dots,s_1,a_1)\)
+</div>
+</section>
+
+
+
+
+<section class="slide technical">
+<h1> Example of MDP: Mazes </h1>
+<div>
+	<img src="fig2/maze_umaze.png" width="600px">
+	<img src="fig2/maze_medium.png" width="600px">
+	<img src="fig2/maze.png" width="600px">
+	</div>
+</section>
+
+
+<section class="slide technical">
+<h1> Example of Discrete MDP </h1>
+
+	<img src="fig2/Four-Room.png" width="800px">
+</section>
+
+
+<section class="slide technical">
+<h1> State approximation</h1>
+<div>
+	<img src="fig2/state_ego.png" height="300px" align="middle">
+	<img src="fig2/state_MotionPlanning.png" height="300px" align="middle">
+	</div>
+	<img src="fig2/RLcar.jpg" height="500px" align="middle">
+</section>
+
+
+<section class="slide technical">
+<h1> Example of MDP </h1>
+
+	<img src="fig2/Capture_Atari2.png" width="800px">
+</section>
+
+<section class="slide technical">
+<h1> MDP counter-example</h1>
+
+<div class="two-column-container">
+		<div class="column">		
+	<img src="fig2/Pong.jpg" width="1200px"><br>
+	\(s=\) Position
+	</div>
+		<div class="column">		
+	<img src="fig2/Pong_noMDP.png" width="1200px"><br>
+	\(s=\) (Position, Velocity)
+	</div>
+	</div>
+</section>
+
+
+
+<section class="slide intro">
+<h1>  Value of a state & Quality of an action</h1>
+
+<div>
+Cumulative reward when following policy \(\pi:\cS\to\cA\) starting from \(s_0\):<br>
+
+<p class="highlight-box">
+\(
+\begin{eqnarray}
+\Esp\bigg[   R({\color{red}s_0},\pi(s_0)) + R(s_1,\pi(s_1)) +\dots + R(s_T,\pi(a_T) \bigg]\\
+\qquad =
+\Esp\bigg[   R({\color{red}s_0},\pi(s_0)) + \sum\limits_{s_1}R(s_1,\pi(s_1))P(s_1|s_0,\pi(s_0)) +\dots \bigg]
+\end{eqnarray}
+\)<br>
+Function of \(s_0\) only !<br>
+<l> Value </l> of state \(s_0\) when following \(\pi\): \(V^\pi(s_0)\)
+</p>
+</div>
+
+
+<div>
+Cumulative reward when following policy \(\pi:\cS\to\cA\) starting from \(s_0,a_0\):<br>
+
+<p class="highlight-box">
+\(
+\Esp\bigg[   R({\color{red}s_0},{\color{red}a_0}) + R(s_1,\pi(s_1)) +\dots + R(s_T,\pi(a_T) \bigg]<br>
+\)<br>
+
+Function of \(s_0,a_0\) only!<br> 
+<l> Quality </l> of action \(a_0\) in state \(s_0\) when following \(\pi\): \(Q^\pi(s_0,a_0)\)
+</p>
+</div>
+<div>
+We can define <l>best Value</l> and <l>best Quality</l>, optimizing over all policies \(\pi).
+</div>
+</section>
+
+<section class="slide intro">
+<h1>  Performance measure: <l>Value function</l></h1>
+
+<div>
+	<img src="fig2/ValueFunction.png" width="1200px">
+</div>
+<div>
+<p>
+Challenge: Computing value \(V^\pi\), Computing <l>Optimal value</l> \(\max\limits_{\pi}V^\pi\)<br>
+Challenge: Computing an <l>Optimal Policy</l>.</p>
+</div>
+</section>
+
+
+
+<section class="slide technical">
+<h1> Solving a small MDP </h1>
+<div>
+	<img src="fig2/StudentMDP.jpeg" width="1200px"><br>
+	Two actions: a=Rest, b=Work
+</div>
+</section>
+
+<section class="slide technical">
+<h1> Computing the value for a given policy </h1>
+<div class="two-column-container">
+		<div class="column">		
+		<img src="fig2/StudentMDP.jpeg" width="600px">
+		</div>
+		<div class="column">
+		Value of a state under \(\pi = (a,b,b,a)\) ?
+		<img src="fig2/systemeeq1.png" width="1200px">
+		</div>
+		<div class="column">
+		<div>
+		<p>
+		\(V^\pi = m + P^\pi V^\pi\)</p>
+		</div>
+		<br><br>
+		<div>
+		<p><l>Solution:</l>
+		\(V^\pi = ({I-P^\pi)}^{-1}m\)
+		</p>
+		</div>
+		</div>
+	</div>
+</section>
+
+<section class="slide technical">
+<h1> Computing an optimal value </h1>
+
+	
+	<div class="two-column-container">
+		<div class="column">		
+		<img src="fig2/StudentMDP.jpeg" width="600px">
+		</div>
+		<div class="column">		
+			<p class="highlight-box">
+			\( V^\star_T(x) = \sum\limits_{t=1}^T (P_\star^{t-1}m_\star)(s) \)
+			</p>
+		<img src="fig2/systemeeq.png" width="1200px"><br>
+		Non-linear system:  complicated to solve directly!
+		</div>
+	</div>
+
+</section>
+
+
+<section class="slide intro">
+<h1> Dynamic Programming  and Value Iteration </h1>
+
+<div>
+<p class="highlight-box">
+<l>Dynamic Programming</l> yields an efficient solution for <l>finite</l> horizon value.
+</p>
+</div>
+<div>
+<p class="highlight-box">
+<l>Value Iteration</l> yields an efficient solution for <l>infinite</l> horizon value
+</p>
+</div>
+</section>
+
+
+<section class="slide intro">
+<h1>  Dynamic programming</h1>
+
+<div>
+<p class="highlight-box">
+\( 
+\begin{eqnarray}
+V^\star_{1:T}(s)  &=& \max\limits_\pi\Esp\left[\sum\limits_{t=1}^T r_t |s_1=s\right]\\
+&=&\max\limits_{a}m_a(s) + \sum\limits_{s'} P(s'|s,a)\max\limits_{\pi}\Esp\left[\sum\limits_{t=2}^T r_t |s_1=s'\right]\\
+&=&\max\limits_{a}m_a(s) + \sum\limits_{s'} P(s'|s,a)V^\star_{2:T}(s')
+\end{eqnarray}\)<br>
+</p>
+</div>
+<div>
+More generally, 
+<p class="highlight-box">
+\(\begin{cases}
+V^\star_{t:T}(s)  = \max\limits_{a}m_a(s) + \sum\limits_{s'} P(s'|s,a)V^\star_{t+1:T}(s')&\forall t < T  \\
+ V^\star_{T:T}(s)  = \max\limits_{a}m_a(s).
+ \end{cases}
+ \)
+</p>
+</div>
+<div>
+Requires \(O(AS^2T)\) computations, instead of  \(O(S^2A^T)\) with naive approach.
+</diV>
+</section>
+<section class="slide technical">
+<h1>  Value with infinite horizon</h1>
+
+<div>
+<p class="highlight-box">
+\( V^\pi(s)  = \Esp\left[\sum\limits_{t=1}^\infty \gamma^t r_t |s_1=s\right]\)</p>
+</div>
+<div>
+<p class="highlight-box">
+ \( 
+ \begin{eqnarray}V^\pi(s)  &=&  m_\pi(s_1) + \gamma \sum\limits_{s'} P_\pi(s'|s_1) [m_\pi(s') + \gamma \sum\limits_{s''} P_\pi(s''|s')[\dots\\
+ &=& \sum\limits_{t=1}^\infty \gamma^{t-1}(P_\pi^{t-1}m_\pi)(s)
+\end{eqnarray} \)
+</p>
+</div>
+</section>
+
+
+<section class="slide intro">
+<h1> Bellman and Optimal Bellman equations </h1>
+
+<div>
+Value for a <l>single policy</l> \(\pi\):
+<p class="highlight-box">
+\( V^\pi(s)  = m_\pi(s) + \gamma \sum\limits_{s'} P_\pi(s'|s) V^\pi(s')\)
+</p>
+</div>
+<div>
+Optimal value for an <l>optimal policy</l> \(\star\):
+<p class="highlight-box">
+\( V^\star(s)  = \max\limits_{a\in\cA}m_a(s) + \gamma \sum\limits_{s'} P_\pi(s'|s) V^\star(s')\)
+</p>
+</p>
+Optimal quality for an <l>optimal policy</l> \(\star\):
+<p class="highlight-box">
+\( Q^\star(s,a)  = m_a(s) + \gamma \sum\limits_{s'} P(s'|s,a) V^\star(s')\)
+</p>
+</div>
+<div>
+Optimal value and optimal policy
+<p class="highlight-box">
+\( V^\star(s) = \max\limits_{a\in\cA} Q^\star(s,a) \) and  \(\star(s) = \argmax\limits_{a\in\cA}\, Q^\star(s,a)\)
+</p>
+</div>
+</section>
+
+
+
+<section class="slide intro">
+<h1> Bellman Operators and Value Iteration</h1>
+
+<div>
+		<img src="fig2/BellmanOp.png" width="1000px">
+</div>
+
+<div>
+		Key <l>contraction</l> property:<br>
+		<img src="fig2/Contraction.png" width="1000px">
+
+</div>
+
+
+<div>
+		<l>Value Iteration</l> algorithm:<br>
+		
+	From any \(v_0\) compute:
+	<p class="highlight-box">\(\pi_{n+1} \in \mathcal{G}[v_n]\) and \(v_{n+1} = \mathcal{T}[v_n]=\mathcal{T}_{\pi_n}[v_n]\)</p>
+	until \(\|v_{n+1}-v_n\|\) is small enough.
+
+</div>
+</section>
+
+
+
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	
+	
+	<a href="Day2_Part1_PlanJourneeTeaser.html">Back</a>
+</section>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+    
+    <script src="slides.js"></script>
+</body>
+</html>

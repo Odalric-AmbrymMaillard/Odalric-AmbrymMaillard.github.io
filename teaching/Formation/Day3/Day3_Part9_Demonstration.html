@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>Approximate RL: PRACTICAL SESSION</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>July 09, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+<section class="slide intro">
+    <h1>Road map</h1>	
+	   <div>
+	<ul>
+	<li> LSPI </li>
+	<li> Choice of features </li>
+	</ul>
+	</div>	
+</section>
+
+<section class="slide">
+<h1>LSPI</h1>
+<div>
+<p class="highlight-box">
+	The parameter \(\theta\) minimizing quadratic error loss on all samples is:<br>
+	\(\theta_n  = \Big[\sum\limits_{i=1}^n \phi(s_i,a_i)\big(\phi(s_i,a_i)-\gamma \phi(s'_i,\pi(s'_i))\big)^\top\Big]^{-1}\sum\limits_{i=1}^n\phi(s_i,a_i)r_i\)<br>
+	<l>Explicit</l> least-squares  solution
+	</p>
+
+<p class="highlight-box">
+\(\theta_n = A^{-1}b\) where<br>
+\(A = \sum\limits_{i=1}^n \phi(s_i,a_i)\big(\phi(s_i,a_i)-\gamma \phi(s'_i,\pi(s'_i))\big)^\top\)<br>
+\(b=\sum\limits_{i=1}^n\phi(s_i,a_i)r_i\)
+</p>
+</div>
+</section>
+
+
+<section class="slide">
+<h1>Practical session</h1>
+
+<div>
+<a href="https://colab.research.google.com/drive/14O64yieCWtVaL9BMd1NFpT34_BtTP0MA#scrollTo=Fx2liV8d8czX">COLAB: 
+https://colab.research.google.com/drive/14O64yieCWtVaL9BMd1NFpT34_BtTP0MA#scrollTo=Fx2liV8d8czX
+</a>
+</div>
+
+
+<div>Corrigé:<br>
+<a href="https://colab.research.google.com/drive/1_g4Y7UJp6cp242YS9KEq_D9U9XdrWGSp?usp=sharing">COLAB: 
+https://colab.research.google.com/drive/1_g4Y7UJp6cp242YS9KEq_D9U9XdrWGSp?usp=sharing
+</a>
+
+</div>
+</section>
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	
+	<a href="Day3_Part1_PlanJourneeTeaser.html">Back</a>
+</section>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+  
+    <script src="slides.js"></script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+
+## Mini-quizz
+
+
+
+**1. Parmi les propositions suivantes, laquelle correspond à une définition correcte d’un processus de décision de Markov (MDP) ?**
+
+- A. Un système où la récompense dépend uniquement de l'action choisie.
+- B. Un modèle stochastique où la décision actuelle dépend de toutes les décisions passées.
+- C. Un modèle de décision où l'état suivant dépend uniquement de l'état courant et de l'action prise.
+- D. Un algorithme qui maximise la récompense immédiate.
+	
+Réponse: C)
+
+
+	
+**2. Quelle est la différence principale entre la fonction de valeur $V(s)$ et la fonction de qualité $Q(s, a)$ ?**
+
+- A. \(V(s)\) mesure la qualité d'une action dans un état, tandis que \(Q(s,a)\) mesure la qualité d’un état.
+- B. \(V(s)\) mesure la récompense immédiate, alors que \(Q(s,a)\) mesure la récompense future.
+- C. \(V(s)\) est la valeur d’un état sous une politique donnée, \(Q(s,a)\) est la valeur d’un couple état-action sous cette même politique.
+- D. \(V(s)\) est utilisée uniquement en planification déterministe, \(Q(s,a)\) uniquement en apprentissage.
+
+Réponse: C)
+
+
+**3. Dans l’approche de planning optimiste déterministe, quelle hypothèse clé est faite sur le modèle ?**
+
+- A. Le modèle des transitions est inconnu et doit être appris.
+- B. Le modèle est stochastique, mais l’algorithme ignore l’aléa.
+- C. Le modèle est connu et supposé déterministe ; on planifie sur la meilleure hypothèse possible.
+- D. Le modèle est approximé en ligne par Monte Carlo.
+
+Réponse: C)
+
+
+
+## Quizz final
+
+**1. La propriété de Markov stipule que :**
+- A) Les récompenses futures dépendent de tout l'historique
+- B) L'état suivant dépend uniquement de l'état actuel et de l'action prise
+- C) Toutes les transitions ont la même probabilité
+- D) L'agent doit connaître tous les états possibles
+Réponse: B)
+
+**2. Dans un MDP, que représente la fonction de valeur d'état V^π(s) ?**
+- A) La récompense immédiate dans l'état s
+- B) La probabilité d'atteindre l'état s
+- C) L'espérance des récompenses actualisées futures en suivant la politique π depuis l'état s
+- D) Le nombre d'actions possibles depuis l'état s
+
+Réponse: C)
+
+**3. L'équation de Bellman pour la fonction de valeur optimale s'écrit :**
+- A) V*(s) = R(s) + γ Σ P(s'|s) V*(s')
+- B) V*(s) = max_a [R(s,- A) + γ Σ P(s'|s,- A) V*(s')]
+- C) V*(s) = Σ π(a|s) [R(s,- A) + γ V*(s')]
+- D) V*(s) = R(s,- A) + V*(s')
+
+Réponse: B)
+
+**4. Un système dynamique linéaire en temps discret s'écrit sous la forme :**
+- A) x(t+1) = Ax(t) + Bu(t)
+- B) x(t+1) = x(t) + u(t)
+- C) x(t+1) = Ax(t) * Bu(t)
+- D) x(t+1) = A + Bx(t)u(t)
+
+Réponse: A)
+
+**5.Quel est l'objectif principal de l'algorithme présenté dans "Optimistic planning of deterministic systems"  ?**
+- A) Minimiser le temps de calcul à tout prix.
+- B) Proposer une action (ou séquence d'actions) dont la performance est aussi proche que possible de l'optimalité, avec des ressources de calcul finies, même non connues à l'avance.
+- C) Maximiser la complexité algorithmique pour des systèmes stochastiques.
+- D) Effectuer une exploration uniforme du domaine de l'état.
+
+Réponse: B)
+
+
+
+**6. Dans le contexte du planning optimiste, que représente le "regret" R(n) d'un algorithme ?**
+- A) Le temps CPU total utilisé par l'algorithme.
+- B) La perte de performance (par rapport à l'optimalité) de la décision rendue par l'algorithme après avoir exploré l'arbre avec n unités de ressources de calcul.
+- C) Le nombre de nœuds explorés dans l'arbre de recherche.
+- D) La différence entre la valeur maximale et minimale des récompenses possibles.
+
+Réponse: B)
+
+
+
+
+**7. Quelle est la différence principale entre l'exploration uniforme et l'exploration optimiste dans les arbres de recherche ?**
+- A) L'exploration uniforme est plus rapide
+- B) L'exploration optimiste sélectionne les nœuds avec les bornes supérieures les plus élevées
+- C) L'exploration uniforme garantit toujours la solution optimale
+- D) L'exploration optimiste nécessite moins de mémoire
+
+Réponse: B)
+
+
+
+**8. Dans l'algorithme OPD (Optimistic Planning of Deterministic systems), que représente la valeur b_i d'un nœud ?**
+- A) La valeur exacte du nœud
+- B) Une borne inférieure sur la valeur du nœud
+- C) Une borne supérieure sur la valeur du nœud
+- D) La profondeur du nœud dans l'arbre
+
+Réponse: C)
+
+
+**9. Que signifie le terme "anytime algorithms" dans le contexte du  planning optimiste ?**
+- A) Des algorithmes qui peuvent fonctionner à tout moment de la journée.
+- B) Des algorithmes qui retournent des solutions de plus grande précision (plus grande exactitude) chaque fois que des ressources supplémentaires sont fournies.
+- C) Des algorithmes qui n'ont pas besoin de ressources de calcul.
+- D) Des algorithmes qui sont optimaux quel que soit le temps de planification.
+
+Réponse: B)
+
+
+**10. Selon l'article "Optimistic planning of deterministic systems", quelle est la dépendance du regret R(n) pour la planification uniforme dans le pire des cas ?**
+- A) R(n) = Θ(n^(log K / log(1/γ)))
+- B) R(n) = Θ(n^-(log(1/γ) / log K))
+- C) R(n) = O(log n)
+- D) R(n) = Θ(1/n)
+
+Réponse: B)
+
+
+
+**11. Dans l'optimistic planning, qu'est-ce que κ représente et comment est-il lié à K (le nombre d'actions ou le facteur de branchement de l'arbre complet) ?**
+- A) κ est le facteur de branchement de l'arbre complet et κ est toujours égal à K.
+- B) κ est le facteur de branchement d'un sous-arbre (composé des actions quasi-optimales) et κ appartient à l'intervalle (1, K].
+- C) κ est une constante arbitraire sans signification physique.◦
+- D) κ représente le nombre de chemins optimaux et κ est toujours inférieur à 1.
+
+Réponse: B)
+
+
+**12. Quand la planification optimiste est-elle significativement meilleure que la planification uniforme ?**
+- A) Toujours, pour tous les problèmes.
+- B) Quand κ est beaucoup plus grand que K.
+- C) Quand κ est plus petit que K et proche de 1.◦
+- D) Quand le facteur de remise γ est très petit.
+
+Réponse: C)
+
+
+
+**13. Quel est le problème central abordé dans l'article "Robust-Adaptive Control of Linear Systems: beyond Quadratic Costs" ?**
+- A) L'apprentissage par renforcement pour des jeux vidéo.
+- B) Le contrôle prédictif de modèle (MP- C) robuste et adaptatif pour des systèmes linéaires avec des paramètres inconnus et des fonctions de coût génériques (non quadratiques), en prévenant les défaillances.
+- C) La stabilisation de systèmes non linéaires.
+- D) La simulation de systèmes physiques complexes sans intervention de contrôle.
+
+Réponse: B)
+
+
+
+**14. Comment l'article "Robust-Adaptive Control..." gère-t-il l'incertitude du modèle pour prendre des décisions robustes ?**
+- A) Il utilise une seule estimation ponctuelle du modèle.
+- B) Il construit une région de confiance (CN,δ) qui contient le vrai paramètre de la dynamique avec une forte probabilité, et maximise le résultat dans le pire des cas par rapport à cette région.
+- C) Il ignore complètement l'incertitude du modèle.
+- D) Il n'est applicable qu'aux systèmes sans bruit de mesure.
+
+Réponse: B)
+
+
+
+**15. Dans le contexte du contrôle robuste adaptatif, que représente la région de confiance C_{N,δ} ?**
+- A) L'ensemble des états atteignables
+- B) L'ensemble des paramètres θ contenant les vrais paramètres avec probabilité ≥ 1-δ
+- C) L'ensemble des actions possibles
+- D) L'ensemble des récompenses optimales
+
+Réponse: B)
+
+
+
+**16. Dans quels cas le contrôle robuste est-il particulièrement recommandé ?**
+- A) Quand les ressources computationnelles sont limitées
+- B) Dans les applications critiques où les échecs doivent être évités
+- C) Uniquement pour les systèmes linéaires
+- D) Quand la précision n'est pas importante
+
+Réponse: B)
+
+
+
+**17. Pourquoi l'algorithme OPD ("Optimistic planning of deterministic systems") est-il utilisé dans le cadre du contrôle robuste ("Robust-Adaptive Control...") ?**
+- A) Parce que les récompenses sont toujours markoviennes.
+- B) Parce que la stochasticité des perturbations et des mesures est encapsulée dans un objectif de substitution déterministe V̂r, permettant ainsi d'appliquer OPD.
+- C) Pour gérer spécifiquement les états discrets du système.
+- D) Pour réduire la complexité de l'estimation du modèle.
+
+Réponse: B)
+
+
+
+**18. Qu'est-ce que l'objectif de contrôle robuste V_r vise à maximiser ?**
+- A) La meilleure performance possible du système dans des conditions idéales.
+- B) Le résultat le plus favorable avec l'action choisie.
+- C) Le résultat dans le pire des cas (approche maximin) par rapport à la région de confiance du modèle et aux perturbations.
+- D) Le nombre d'itérations de planification effectuées.
+
+Réponse: C)
+
+
+
+**18. Quel est le rôle de la prédiction d'intervalle dans l'approche de contrôle robuste ?**
+- A) À déterminer la valeur exacte et unique de l'état futur.
+- B) À définir une plage [x^-(t), x^+(t)] qui inclut l'état réel avec un certain niveau de confiance (propriété d'inclusion).
+- C) À réduire le nombre de nœuds dans l'arbre de recherche en éliminant les branches non pertinentes.
+- D) À modéliser la non-linéarité du système de manière déterministe.
+
+Réponse: B)
+
+
+
+**20. Le Théorème de "Robust-Adaptive Control..." décompose la sous-optimalité en plusieurs termes. Quels sont ces termes principaux ?**
+- A) Erreur de temps de calcul et erreur de mémoire.
+- B) Robustesse aux perturbations (irréductible), erreur d'estimation du modèle, et erreur de planification (due au budget de calcul K).
+- C) Erreur de dimension et erreur de réinitialisation.
+- D) Erreur de mesure et erreur de discrétisation de l'espace d'état.
+
+Réponse: B)
+
+
+
+**21. Quels types d'expériences numériques sont utilisées pour illustrer l'applicabilité de l'algorithme dans "Robust-Adaptive Control..." ?**
+- A) Des jeux de stratégie classiques (ex: échecs, Go).
+- B) Le contrôle de robots industriels en usine.
+- C) L'évitement d'obstacles avec frottement inconnu et la planification de mouvement pour un véhicule autonome dans un environnement simulé.
+- D) L'optimisation de chaînes d'approvisionnement logistiques.
+
+Réponse: C)
+

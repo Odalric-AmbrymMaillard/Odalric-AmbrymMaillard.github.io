@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+	<script src="mathjax-shortcuts.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>PLANNING with OPTIMISM</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>June 16, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+<section class="slide intro">
+    <h1>Roadmap</h1>	
+	   <div>
+	<ul>
+	<li>Planning problem</li>
+	<li>Deterministic case</li>
+	<li>Open loop</li>
+	<li>Optimism</li>
+	<li>Uniform planning</li>
+	<li>Optimistic planning</li>
+	<li>Guarantees</li>
+	</ul>
+	</div>
+</section>
+
+
+
+<section class="slide intro">
+<h1>The Planning Challenge</h1>
+<h2>Real-World Scenario</h2>
+<div>
+<ul>
+<li>You have a <strong>deterministic system</strong> (robotics, game AI, resource allocation)</li>
+<li>You need to make decisions <strong>quickly</strong> (limited CPU time/memory)</li>
+<li>You want the <strong>best possible performance</strong> given your constraints</li>
+</ul>
+</div>
+<div>
+	<img src="fig2/Planning.png" width="800px">
+	</div>
+</section>
+
+<section class="slide intro">
+<h1>  Planning problem</h1>
+<div>
+<p class="highlight-box">
+If at time \(t\in\Nat\), the system is in state \(x_t\in\cX\), and action \(a\in\cA\) is choosen,<br>
+it jumps to the state  \(x_{t+1} = f(x_t,a_t) \) and reward \(r(x_t,a_t)\in[0,1]\) is received.
+</p>
+</div>
+<div>
+<p> Assume everything is <l>deterministic</l> for now</p>
+<p> You can <l>evaluate</l> f and r at any point.</p>
+</div>
+<div>
+<p>
+The value of a policy \(\pi:\cX\to\cA\) starting from \(x_0\) is </p>
+<p class="highlight-box">\(V^\pi(x_0)= \sum\limits_{t\geq0}\gamma^t r(x_t,\pi(x_t))\).</p>
+<p>
+The Q-value of a policy \(\pi:\cX\to\cA\) starting from \(x_0,a_0\) is</p>
+<p class="highlight-box"> \(Q^\pi(x_0,a_0)= r(x_0,a_0)+\sum\limits_{t\geq1}\gamma^t r(x_t,\pi(x_t))\).
+</p>
+<p> Given any \(x_0\), we want to find an action \(a_0\) <l>maximizing</l> \(\sup\limits_\pi Q^\pi(x_0,a_0)\)<br>  using as <l>few evaluations</l> as possible.</p>
+</div>
+
+</section>
+<section class="slide intro">
+<h1>  Example</h1>
+<div>
+
+	<img src="fig2/smallsystem.png" width="600px">
+</div>
+<div>
+<p>
+\(x = (y,v)\in\Real^2\): represents position and velocity of a ball. </p>
+<p>
+\(a\in\{-1,1\}\): acceleration, two values here.</p>
+<p>
+\(f(x,a)=(y+0.1v,v+0.1a)\):  moves to novel position and velocity</p>
+<p>
+\(r(x,a)=\max(1-y^2,0)\): goal is to reach position 1.
+</p>
+</div>
+</section>
+
+
+
+<section class="slide intro">
+<h1>  Look-ahead tree construction</h1>
+<div>
+
+	<img src="fig2/treesearch1.png" width="1000px">
+	<ul>
+<li><strong>Root:</strong> Current state</li>
+<li><strong>Branches:</strong> Possible actions (K branches per node)</li>
+<li><strong>Structure:</strong> \(\mathcal{S}_n\) set of leaf nodes, \(\cC_i\) set of children of node \(i\), </li>
+<li><strong>Depth:</strong> Planning horizon</li>
+<li><strong>Size:</strong> Exponential growth (K^d nodes at depth d)</li>
+</ul>
+</div>
+<div>
+For a <l>Unexpanded node</l>  \(i\in\mathcal{S}_n\) of depth \(d\)<br> corresponding to a path \((x_0,a_0,x_1,a_1,\dots,x_{d-1},a_{d-1})\) from the root,<br>
+<p class="highlight-box">
+we let \(u_i = \sum\limits_{t=0}^{d-1}\gamma^t r(x_t,a_t) \) and \(b_i = u_i + \frac{\gamma^d}{1-\gamma}R_{\text{max}}\)</p>
+For an <l>Expanded node</l> \(i\in\mathcal{T}_n\),<br> 
+<p class="highlight-box">we let \(u_i= \max\limits_{j\in\cC_i}u_j\) and \(b_i = \max\limits_{j\in\cC_i}b_j\)</p>
+</div>
+</section>
+
+
+
+
+<section class="slide intro">
+<h1> First approach: Uniform planning</h1>
+<div>
+	<img src="fig2/algoUplanning.png" width="1000px">
+</div>
+</section>
+<section class="slide intro">
+<h1>Optimism in the Face of Uncertainty</h1>
+<div>
+Uncertainty due to <l>unexplored path</l>: \(u_i=\sum\limits_{t=0}^{d-1}\gamma^t r(x_t,a_t)\) instead of \(\sum\limits_{t=0}^{\infty}\gamma^t r(x_t,a_t)\)
+</div>
+<div>Bounds are <l>optimistic</l> but never underestimate:<br>
+Let \(v_i\) denote maximal value of all paths going through node i, then:
+<p class="highlight-box">
+\(u_i \leq v_i \leq b_i\)
+</p>
+</div>
+<div>
+<h3>Strategy</h3>
+<ul>
+<li>Maintain <strong>upper confidence bounds</strong></li>
+<li>Always explore the most <strong>optimistic</strong> node</li>
+<li>Focus resources on potentially optimal paths</li>
+</ul>
+</div>
+<div class="mathematical-insight">
+<p>Upper bounds tighten as we explore, naturally eliminating suboptimal regions.</p>
+</div>
+</section>
+
+
+
+
+
+<section class="slide intro">
+<h1> Improved approach: Optimistic planning</h1>
+<div class="two-column-container">
+<div class="column">
+	<img src="fig2/algoOplanning.png" width="1000px">
+</div>
+<div class="column">
+<h3>Step 1: Initialize</h3>
+<p>Create root node with current state, compute initial upper bounds</p>
+
+<h3>Step 2: Select</h3>
+<p>Choose unexpanded node with highest upper bound</p>
+
+<h3>Step 3: Expand</h3>
+<p>Generate all K children, compute rewards and transitions</p>
+
+<h3>Step 4: Update</h3>
+<p>Propagate bounds upward from expanded node to root</p>
+
+<h3>Step 5: Repeat</h3>
+<p>Continue until computational budget \(n\) is exhausted</p>
+
+<h3>Step 6: Decide</h3>
+<p>Select action corresponding to best root child</p>
+</div>
+</div>
+</section>
+
+<section class="slide technical">
+<h1>  Guarantees of planning algorihms \(\mathtt{A}\)</h1>
+<div>
+The recommendation loss after \(n\) planning steps:
+<p class="highlight-box">
+ \(\mathcal{L}(\mathtt{A},n) = \max\limits_{a\in\cA} Q(x_0,a) - Q(x_0,\mathtt{A}(n))\) 
+ </p>
+</div>
+<div>
+<p>
+<l>Uniform Planning</l> ensures  \(\mathcal{L}(\mathtt{A}^U,n)=O(n^\frac{-\log(1/γ)}{\log(K)})\)<br>where \(K\) is Branching factor (nb actions).
+</p>
+<p>
+<l>Optimistic Planning</l> ensures  \(\mathcal{L}(\mathtt{A}^O,n)=O(n^\frac{-\log(1/γ)}{\log(\kappa)})\)<br> where \(\kappa=K\gamma^\beta ≤ K\) when proportion of \(\epsilon\)-optimal paths is \(O(\epsilon^\beta)\)
+</p>
+</div>
+<div class="key-insight">
+<p><strong>Key Result:</strong> \(\kappa\) represents the <l>effective branching factor</l> of near-optimal paths. <br>When \(\kappa << K\), optimistic planning dramatically outperforms uniform planning.</p>
+</div>
+</section>
+
+
+<section class="slide intro">
+<h1>  Experimental comparison</h1>
+<div>
+<p>\(x = (y,v)\in\Real^2\), \(a\in\{-1,1\}\)</p>
+	<img src="fig2/UvsOplanning.png" width="1000px">
+	<p>
+	 \(f(x,a)=(y,v)+0.1(v,a)\), \(r(x,a)=\max(1-y^2,0)\)
+	</p>
+</div>
+</section>
+
+
+
+
+
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	
+	
+	<a href="Day2_Part1_PlanJourneeTeaser.html">Back</a>
+</section>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+    
+    <script src="slides.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+	<script src="mathjax-shortcuts.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>RECAP & PERSPECTIVE: Planning for dynamical systems</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>June 16, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+
+<section class="slide intro">
+    <h1>Road map</h1>	
+	   <div>
+	<ul>
+	<li> Optimistic Planning methodology</li>
+	<li> A cousin of OPD: MCTS</li>	
+	<li> OPD Extension to stochastic systems</li>
+	</ul>
+	</div>
+	
+</section>
+
+
+
+
+
+
+	
+<section class="slide intro">
+    <h1>MCTS</h1>	
+	   <div>
+	   <p class="highlight-box">
+	<br><strong>"Efficient selectivity and backup operators in Monte-Carlo tree search"</strong>, <br>
+	by Coulom, R. In Ann.
+		International conference on computers and games, Berlin, 72-83, 2006.
+	</p>
+	</div>
+	<div>
+	<img src="fig2/MCTS_1.png" width="1000px">
+	</div>	
+</section>
+
+
+	
+<section class="slide intro">
+    <h1>MCTS</h1>	
+	<div>
+	<img src="fig2/MCTS_2.png" width="1000px">
+	</div>	
+</section>
+
+
+	
+<section class="slide intro">
+    <h1>MCTS</h1>	
+	<div>
+	<img src="fig2/MCTS_3.png" width="1000px">
+	</div>	
+</section>
+
+
+	
+<section class="slide intro">
+    <h1>MCTS for Games</h1>	
+	<div>
+	<p>
+	 Application: Tree with Max nodes (agent) and Min nodes (opponent).<br>	 
+	<img src="fig2/MinMaxGame.png" width="1000px">
+	</p>
+	</div>	
+	<div>
+	Game of Go, Tic-Tac-Toe, etc.
+	</div>
+</section>
+
+
+
+<section class="slide intro">
+    <h1>Min and max nodes</h1>	
+	<div>
+	<p> 
+	<img src="fig2/TreeMax.png" width="1000px">
+	<img src="fig2/TreeMin.png" width="1000px">
+	</p>
+	</div>	
+</section>
+
+
+
+<section class="slide intro">
+    <h1>Propagating the values</h1>	
+	<div>
+	<a href="LectureIV_Planning-167-171.pdf">Propagation</a>
+	</div>	
+</section>
+
+	
+
+<section class="slide technical">
+<h1>OPD vs Other Planning Approaches</h1>
+<table class="comparison">
+<tr>
+<th>Method</th>
+<th>Pros</th>
+<th>Cons</th>
+<th>Best For</th>
+</tr>
+<tr>
+<td><strong>Dynamic Programming</strong></td>
+<td>Optimal solutions</td>
+<td>Curse of dimensionality</td>
+<td>Small state spaces</td>
+</tr>
+<tr>
+<td><strong>Optimistic Planning Deterministic</strong></td>
+<td>Theoretical guarantees, anytime</td>
+<td>Deterministic domains only</td>
+<td>Big \(\cS\), small \(\cA\)</td>
+</tr>
+<tr>
+<td><strong>Monte Carlo Tree Search</strong></td>
+<td>Handles stochasticity</td>
+<td>Requires many samples</td>
+<td>Stochastic domains</td>
+</tr>
+</table>
+</section>
+	
+	
+	
+
+
+<section class="slide intro">
+    <h1>OPD extension to stochastoc systems</h1>	
+	   <div>
+	   
+	   <a href="LectureIV_Planning-39-50.pdf">OLOP</a>
+	</div>
+	
+</section>
+
+
+<section class="slide intro">
+    <h1>OLOP expansion tree</h1>	
+	   <div>
+	     
+	<img src="fig2/olop.png" width="1000px">
+	</div>
+	
+</section>
+
+
+
+<section class="slide intro">
+    <h1>KL-OLOP expansion tree</h1>	
+	   <div>
+	     
+	<img src="fig2/klolop.png" width="1000px">
+	</div>
+	
+</section>
+
+
+<section class="slide intro">
+    <h1>Result on Deterministic and Stochastis maze</h1>	
+	   <div>
+	     
+	<img src="fig2/OLOPgridworld.png" width="800px">
+	<img src="fig2/KLolopgridworld.png" width="800px">
+	</div>
+	
+</section>
+
+
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	<a href="Day2_Part1_PlanJourneeTeaser.html">Back</a>
+</section>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+   
+    <script src="slides.js"></script>
+</body>
+</html>

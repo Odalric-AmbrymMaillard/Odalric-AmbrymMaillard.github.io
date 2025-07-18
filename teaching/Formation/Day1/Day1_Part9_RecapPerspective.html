@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>RECAP & PERSPECTIVE</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>April 22, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+<section class="slide intro">
+    <h1>Road map</h1>	
+	   <div>
+	<ul>
+	<li> What we have seen </li>
+	<li> The Sim-to-Real Gap </li>
+	<li> Other challenges: Risk-aversion, Structure, Reward model.</li><!-- When to act ? Costly observation ? Context, Robustness-->	
+	<li> Take home messages </li>
+	</ul>
+	</div>	
+</section>
+
+
+
+
+
+<section class="slide intro">
+    <h1>What we have seen</h1>	
+	   <div>
+	   <ul>
+	<li>Stochastic bandits</li>
+	<li>Regret minimization</li>
+	<li>Bandit for sequential optimization</li>
+	<li>Kernel bandits</li>
+	<li>Applicative context: microscopy</li>
+	</ul>
+	</div>	
+</section>
+
+
+
+<section class="slide intro">
+    <h1>The Sim-to-Real Gap</h1>	
+	   <div>	   
+	<img src="fig1/CV_RLfirstattempts.png" width="1200px">
+	</div>
+	
+	<div><span style="display: flex; align-items: center;">  	
+	<img src="fig1/beans.jpg" height="300px"> \(\Rightarrow\)
+	<img src="fig1/farm-day-151_4.png" height="300px"> \(\Rightarrow\)
+	<img src="fig1/the-green-britain-centre.jpg" height="300px">
+	</span>
+	</div>	
+</section>
+
+
+<section class="slide intro">
+    <h1>Other challenges: Risk-aversion.</h1>
+	
+	   <div> Maximizing expectation is not always desirable.<br>
+	   
+	   <span style="display: flex; align-items: center;"> 
+	<img src="fig1/CVAR.png" width="1200px" style="margin-right: 20px;">
+	<img src="fig1/DSSATXp.png" width="800px">
+	</span>
+	   
+	</div>	
+</section>
+
+	
+	
+<section class="slide intro">
+    <h1>Other challenges: Structure.</h1>
+	
+	   <div> 
+	   Lipschitz structure <br>
+	<img src="fig1/Lipschitz.png" width="800px" style="margin-right: 20px;">
+	   
+	</div>	
+	<div>
+	<ul>
+	<li>Linear</li>
+	<li>Unimodal</li>
+	<li>Ranked</li>
+	<li>Contextual</li>
+	<li>Linearly constrained</li>
+	<li>...</li>
+	</ul>
+	</div>
+</section>
+
+	
+	
+<section class="slide intro">
+    <h1>Reward models From preferences</h1>
+	
+<div>
+<img src="fig1/preferencelearning.png" width="1200px"><br>
+Bradley-Terry model: \( \mathcal{P}(y \succ y') = \sigma(r(y|x)-r(y'|x))\) <l>Warning</l>
+
+</div>
+
+</section>
+
+
+<section class="slide intro">
+    <h1>Beyond</h1>	
+	   <div>
+	   <ul>
+	<li>Non-stationary bandits</li>
+	<li>	   
+	   Non-parametric bandits</li>
+	<li>	   	   
+	   Instrinsic reward model</li>
+	</ul>	   
+	</div>	
+</section>
+
+
+
+<section class="slide intro">
+    <h1>Take-home messages ?</h1>	
+	   <div>
+	</div>	
+</section>
+    
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+</section>
+    </div>
+	
+	
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+    
+    <script src="slides.js"></script>
+</body>
+</html>

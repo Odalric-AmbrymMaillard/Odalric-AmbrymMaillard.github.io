@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+	<script src="mathjax-shortcuts.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>RECAP & PERSPECTIVE: Multi-armed bandits for sequential optimization</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>April 22, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+
+<section class="slide intro">
+    <h1>Road map</h1>	
+	   <div>
+	<ul>
+	<li> Optimization pipeline	</li>
+	<li> A generic methodology & formalism</li>
+	<li> TS and related bandit strategies</li>	
+	<li> Four bandit strategies</li>
+	<li> Optimal regret bounds</li>
+	</ul>
+	</div>
+	
+</section>
+
+
+
+<section class="slide analysis">
+    <h1>Optimization pipeline</h1>	
+	<div>	
+	</div>
+</section>
+
+
+<section class="slide analysis">
+    <h1>A generic methodology & formalism</h1>	
+	<div>	
+	<p>
+	1.a) Generate offline data testbed</p>
+	<p>	
+	1.b) First consider a setup with known optimal solution, simplest case: compare ability of bandit vs baseline.</p>
+	
+	<p>
+	1.c) Move from simplest to realistic, still with known case: compare to baseline.</p>
+	
+	<p>
+	2) Only then, move to first online setup. </p>
+	</div>
+</section>
+
+
+
+<section class="slide analysis">
+    <h1>Thompson sampling and related bandit strategies</h1>	
+	
+	<div>	
+	<ul>
+	<li>The first bandit strategy (1933!)</li>
+	<li>Provably regret efficient (2010)</li>
+	<li>Interpretable Bayesian approach</li>	
+	</div>
+</section>
+
+
+
+
+<section class="slide analysis">
+    <h1>Optimal regret bounds</h1>	
+	<div>	
+	We can prove that all <l>consistent</l> strategy \(\pi\) on a set \(\mathcal{M}\) of bandit instances <br>(that is, asymptotically good for all instances,)<br>
+	must incur at least some regret on each bandit instance
+	<p class="highlight-box">
+	\(\forall {\bf M}\in\mathcal{M},\quad \liminf\limits_{T\to\infty} \frac{\mathfrak{R}_T(\pi,{\bf M})}{\log(T)} \geq \sum\limits_{a\in\mathcal{A}} \frac{\Delta_a}{K({\bf r}_a,{\bf m}_\star)}\)
+	</p>
+	where \(K\) denotes an information term <br>(KL divergence between first argument and projection on set of mean higher than second argument) 
+	</div>
+</section>
+
+
+<section class="slide analysis">
+    <h1>Four bandit strategies</h1>	
+	<div>	
+	<img src="fig1/BanditStrategies.png" width="1800px">
+	</div>
+</section>
+
+<section class="slide analysis">
+    <h1>Leveraging lower bounds</h1>	
+	<div>	
+	KL-UCB:  \(U_a(t) = \max \{q :  N_a(t) d( \hat m_a(t), q) \leq \ln(t)\} \)
+	<p>
+	\(d(p,q)=KL(\cB(p),\cB(q)) = p\ln\frac{p}{q} + (1-p)\ln\frac{1-p}{1-q}\)
+	</p>
+	<p>	
+	<img src="fig1/KLUCB.png" width="1600px">
+	</p>
+	</div>
+</section>
+	
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	<a href="Day1_Part1_PlanJourneeTeaser.html">Back</a>
+</section>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+   
+    <script src="slides.js"></script>
+</body>
+</html>

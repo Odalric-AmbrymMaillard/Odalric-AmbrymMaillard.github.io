@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+	<script src="mathjax-shortcuts.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>APPLICATION: Robotic guidewire navigation in Coronary arteries</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>April 22, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+ 
+<section class="slide intro">
+    <h1>Small Recap</h1>	
+	
+
+<ul>
+<li>Markov Decision Process: definition</li>
+<li>Computing the value of a state: Dynamic Programmin, Value Iteration</li>
+<li>Planning to recommend a good action: OPD.</li>
+</ul>
+</section>
+
+<section class="slide intro">
+    <h1>Robotic guidewire navigation  in Coronary arteries</h1>	
+	
+	A study of the application article 
+		<p class="highlight-box">
+	<br><strong>"Automated planning for robotic guidewire navigation in the coronary arteries"</strong>, <br>
+	by Schegg, P., Dequidt, J., Coevoet, E., Leurent, E., Sabatier, R., Preux, P. and Duriez, C. In IEEE 5th International Conference on Soft Robotics (RoboSoft), 2022.
+	</p>
+</section>
+
+
+<section class="slide">
+
+    <h1>Robotic guidewire navigation  in Coronary arteries</h1>	
+	
+	<div class="video-container">
+        <iframe src="fig2/SoftRobot.mp4" 
+                title="Navigation in Coronary arteries"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>				
+    </div>
+	
+	
+</section>
+
+
+
+<section class="slide">
+
+    <h1>Quadratic programming & Optimistic planning</h1>	
+	<div>
+	Quadratic programming:  search solution in \(\Real^d\) but non-convex pb yields local minima.
+	</div>	
+	<div>
+	Optimistic planning:  convergence guarantee, but search solution in  discrete \(\cA\).
+	</div>
+	
+	
+</section>
+
+
+<section class="slide">
+
+    <h1>Question 1 — Définition d’un MDP</h1>	
+	<div>
+	<p class="highlight-box">
+	Parmi les propositions suivantes, laquelle correspond à une définition correcte d’un processus de décision de Markov (MDP) ?</p>
+	<ul>
+	<li>
+A. Un système où la récompense dépend uniquement de l'action choisie.</li>
+<li>
+B. Un modèle stochastique où la décision actuelle dépend de toutes les décisions passées.</li>
+<li>
+C. Un modèle de décision où l'état suivant dépend uniquement de l'état courant et de l'action prise.</li>
+<li>
+D. Un algorithme qui maximise la récompense immédiate.</li>
+</ul>
+	</div>
+	
+	
+</section>
+
+<section class="slide">
+
+    <h1>Question 2 — Valeur vs Qualité.</h1>	
+<div>
+	<p class="highlight-box">Quelle est la différence principale entre la fonction de valeur $V(s)$ et la fonction de qualité $Q(s, a)$ ?</p>
+	<ul>
+	<li>
+A. \(V(s)\) mesure la qualité d'une action dans un état, tandis que \(Q(s,a)\) mesure la qualité d’un état.</li><li>
+B. \(V(s)\) mesure la récompense immédiate, alors que \(Q(s,a)\) mesure la récompense future.</li><li>
+C. \(V(s)\) est la valeur d’un état sous une politique donnée, \(Q(s,a)\) est la valeur d’un couple état-action sous cette même politique.</li><li>
+D. \(V(s)\) est utilisée uniquement en planification déterministe, \(Q(s,a)\) uniquement en apprentissage.</li>
+</ul>
+
+</div>
+	
+</section>
+
+<section class="slide">
+
+    <h1>Question 3 — Planning optimiste déterministe</h1>	
+<div>
+	<p class="highlight-box">Dans l’approche de planning optimiste déterministe, quelle hypothèse clé est faite sur le modèle ?</p>
+	<ul>
+	<li>
+A. Le modèle des transitions est inconnu et doit être appris.</li><li>
+B. Le modèle est stochastique, mais l’algorithme ignore l’aléa.</li><li>
+C. Le modèle est connu et supposé déterministe ; on planifie sur la meilleure hypothèse possible.</li><li>
+D. Le modèle est approximé en ligne par Monte Carlo.</li>
+</ul>
+
+</div>
+	
+</section>
+
+
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	
+	
+	<a href="Day2_Part1_PlanJourneeTeaser.html">Back</a>
+</section>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+    
+    <script src="slides.js"></script>
+</body>
+</html>

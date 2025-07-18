@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+	<script src="mathjax-shortcuts.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>PLANNING IN UNCERTAIN MDPs: Robust-adaptive control of linear systems</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>April 22, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+<section class="slide intro">
+    <h1>Roadmap</h1>	
+	
+	A study of the application article 
+	<p class="highlight-box">
+	<br><strong>"Robust-Adaptive Control of Linear Systems:
+beyond Quadratic Costs"</strong>, <br>
+	by Leurent, E., Efimov, D. and Maillard, O-A.<br>
+	in Neural Information Processing Systems, 2020.
+	</p>
+	   <div>
+	<ul>
+	<li>Robust control</li>
+	<li>Linear systems</li>
+	<li>Parameter estimation</li>
+	<li>State prediction</li>
+	<li>Robust planning</li>
+	<li>Examples</li>
+	</ul>
+	</div>
+</section>
+
+
+
+<section class="slide">
+
+    <h1>Robust-Adaptive Control of Linear Systems: beyond Quadratic Costs</h1>	
+	
+	<div class="video-container">
+        <iframe src="fig2/robustadaptiveautonomousdriving.mp4" 
+                title="Robust Control Uncertain"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>				
+    </div>
+	
+	
+</section>
+
+
+
+
+
+<section class="slide">
+<h2>High level overview</h2>
+<div>
+Problem: Safe control with unknown dynamics and non-convex rewards.
+</div>
+<p>Three main procedures:</p>
+<ul>
+<li><l>Model Estimation:</l> Using observed data to build a <l>confidence region</l> for the unknown parameters of the dynamics.</li>
+<li><l>Interval Prediction:</l> Using this confidence region to predict the <l>range</l> of possible future states.</li>
+<li><l>Robust Control:</l> Using <l>tree-based planning</l> with a </l>pessimistic reward</l> to find control actions that maximize the worst-case outcome.</li>
+</ul>
+<div>
+Advantage: Formal safety guarantees for critical systems.
+</div>
+</section>
+
+<section class="slide"> <h1>Robust Adaptive Control Framework</h1>
+ <div> <ul> <li><strong>Core Challenge:</strong> Safe control with \(\theta \in \Theta\) unknown</li> 
+ <li>
+ <strong>Solution Pillars:</strong> 
+ <ul>
+ <li>1. Confidence regions for dynamics</li>
+<li> 2. Stable interval predictions</li>
+<li> 3. Minimax planning</li>
+</ul>
+</li> </ul> </div> 
+</section>
+
+
+
+<section class="slide intro">  
+<h1>Linear System Dynamics</h1>
+<div>
+<p class="highlight-box">
+    The continuous-time linear system dynamics are defined as:
+    $$\dot{x}(t)=A({\color{red}\theta})x(t)+Bu(t)+D{\color{red}\omega(t)},\quad t\ge0$$
+	</p>
+	<p>
+    Where:
+	<ul>
+    <li>\(x(t) \in \mathbb{R}^p\) is the system state vector.</li>
+    <li>\(u(t) \in \mathbb{R}^q\) is the control input.</li>
+    <li>\(\omega(t) \in \mathbb{R}^r\) is the disturbance, assumed to be <l>bounded</l>  \(\omega(t) \in [\underline{\omega}, \overline{\omega}]\)</li><br>
+    <li>\(A(\theta) \in \mathbb{R}^{p \times p}\) is the state matrix, dependent on <l>unknown parameters</l> \(\theta \in \Theta \subset \mathbb{R}^d\).</li>
+	</ul>
+	<p class="highlight-box">We consider \(A(\theta) = A + \sum \theta_i\Phi_i\) for known \((\Phi_i)_i\) matrices.</p>
+	<ul>
+    <li>\(B \in \mathbb{R}^{p \times q}\) and \(D \in \mathbb{R}^{p \times r}\) are known matrices.</li>
+	</ul>
+</p>
+<p>The reward in state \(x\) is given by \(R(x)\), assumed known.</p>
+</div>
+</section>
+
+
+
+
+ <section class="slide"> 
+ <h1>Generic overview of robust planning</h1>
+ 
+ 
+ <div>
+ 1. For a control control \(u(t)\), we observe \(x(t)\) and a noisy version \(y(t)\) of \(\dot{x}(t)\) along a <strong>trajectory</strong>.
+ </div>
+ 
+ 
+ <div>
+ 2. After \(N\) transitions \((x_n,u_n,y_n)\) \(n=1,\dots,N\) we can <l>estimate</l> \(\theta\):<br>
+ <p class="highlight-box"> 
+ say we build \(\cC_{N,\delta}\) such that 
+ \(\Pr(\theta \in \cC_{N,\delta}) \geq 1-\delta\)
+ </p>
+ </div>
+ <div>
+ 3. We now want to <strong>maximize the future</strong> value \(\mathbb{E}\left[\sum\limits_{n=N+1}^\infty \gamma^n R(x_n)\right]\) over the control \(u\) in a safe way.<br>
+ 
+ </div>
+ <div>
+ <l>Worst case approach</l>: take infimum over all future disturbances \(\omega(t)\) and possible parameter \(\theta\):
+ 
+ <p class="highlight-box"> 
+ Maximizing the Worst-Case Outcome<br>
+ \( V^\text{robust}(u) = \inf\limits_{\omega(t) \in [\underline{\omega}, \overline{\omega}]} \inf\limits_{\theta \in \cC_{N,\delta}} \mathbb{E}\left[\sum\limits_{n=N+1}^\infty \gamma^n R(x_n)\right]\)
+ </p>
+ </div>
+ <div>
+ How to solve this?
+ </div>
+ 
+ </section>
+ 
+ 
+ <section class="slide"> <h1>System Dynamics & Value of the Game</h1>
+ <div class="two-column"> <div class="column"> <h3>Linear Parameterized Model</h3> 
+ <p>\(\dot{x}(t) = \underbrace{Ax(t)}_{\text{Nominal}} + \underbrace{\sum_{i=1}^d \theta_i\phi_i x(t)}_{\text{Uncertainty}} + Bu(t) + D\omega(t) \)</p>  </div> 
+ <div class="column"> <h3>Maximin Objective</h3> <p>\( \sup\limits_{u} \inf\limits_{\omega,\theta \in \mathcal{C}_N} \underbrace{\mathbb{E}\left[\sum \gamma^t R(x_t)\right]}_{\text{Value function}} \)</p> <div> <p><strong>Nature's Play:</strong> Chooses worst-case \(\theta\) within confidence region \(\mathcal{C}_N\)</p> <p><strong>Our Strategy:</strong> Optimize controls assuming adversarial parameters</p> </div> </div> </div> 
+ </section> 
+ 
+
+<section  class="slide technical">
+<h1>1] Uncertain state evolution</h1>
+<div>
+Future evolution of \(x\) depends on unknown \(\theta\) and disturbances \(\omega_t\) and control \(u(t)\)<br>
+Idea: build  an <l>interval predictor</l> \([\underline{x}(t),\overline{x}(t)]\) guarantee to contain \(x(t)\):<br>
+
+<img src="fig2/trajectory.png" width="600px">
+
+
+</div>
+
+</section> 
+
+<section  class="slide technical">
+<h1>2] Robust planning </h1>
+<div>
+<p class="highlight-box">
+Define  <l>Robust predicted reward</l> <br>
+\(\underline{R}_n(u) = \min\limits_{x\in [\underline{x}_n(u),\overline{x}_n(u)]}R(x)\)</p>
+<p class="highlight-box">
+Then define <l>Robust predicted value</l><br>
+\(\hat V^{\text{robust}}(u) =  \sum\limits_{n=N+1}^\infty \gamma^n \underline{R}_n(u)\) 
+</p>
+</div>
+<div>
+<p>
+The Robust predicted value  is a pessimistic version of the Robust value, itself a pessimistic version of the Value:<br>
+\(\hat V^{\text{robust}}(u) \leq V^{\text{robust}}(u) \leq V(u)\) 
+</p>
+<p class="highlight-box"> There is <l>no longer uncertainty</l> in \(\hat V^{\text{robust}}(u)\):<br>  We can use OPD strategy !</p>
+</div>
+</section> 
+
+
+<section  class="slide technical">
+<h1>Complete robust algorithm </h1>
+<div>
+
+<img src="fig2/robustalgo.png" width="1600px">
+</div>
+</section>
+
+<section class="slide"> <h1>Discrete actions for Continuous system</h1> <div class="architecture"> <h3>Hierarchical Control Structure</h3> <pre> High-Level Actions (Discrete) ↓ Low-Level Controllers (Affine) ↓ System Dynamics </pre> </div> <div class="key-components"> <ul> <li><strong>Action Space:</strong> Finite set \( \mathcal{A} \)</li> <li><strong>Controllers:</strong> \(u(t) = -K_ax(t) + u_a \)</li> <li><strong>Planning:</strong> Tree search over action sequences</li> </ul> </div> <div class="presenter-notes"> <p>This structure balances <l>discrete decision-making </l>with continuous control.</p> </div> 
+<div>
+Now for  a node \(i\) in the OPD tree, we define the upper value <br>
+\(B_a(i)=\sum\limits_{n=0}^{h(i)-1}\gamma^n \underline{R}_n(u_a)+\frac{\gamma^{h(i)}}{1-\gamma}R_{\max}\)
+</div>
+<div>
+$$a_{i}=\arg\max_{a\in\mathcal{L}_{i}}B_{a}(i),$$
+</div>
+</section> 
+
+<section class="slide">
+<h1>Summary</h1>
+<div>
+<l>Robust optimistic planning</l>
+$$\hat{V}^{r}(u)\stackrel{\text{def}}{=}\sum_{n=N+1}^{\infty}\gamma^{n}\underline{R}_{n}(u),\quad\text{where}\quad\underline{R}_{n}(u)\stackrel{\text{def}}{=}\min_{x\in[\underline{x}_{n}(u),\overline{x}_{n}(u)]}R(x).$$
+
+$$B_{a}(k)=\sum_{n=0}^{h(a)-1}\gamma^{n}\underline{R}_{n}(u_a)+\frac{\gamma^{h(a)}}{1-\gamma}.$$
+</div>
+</section>
+
+<section class="slide analysis"> <h1>Theoretical Guarantees</h1> 
+<div class="performance-bound"> 
+Using the Robust optimiistic planning, we can show  the following
+<h3>Suboptimality Decomposition</h3> 
+<p class="highlight-box">
+\(\underbrace{V^* - V^{\text{alg}}}_{\text{Total loss}} \leq \underbrace{\mathcal{O}(\gamma^K)}_{\text{Planning horizon}} + \underbrace{\mathcal{O}(e^{-\lambda N})}_{\text{Estimation error}} + \underbrace{\mathcal{O}(\sqrt{\ln(1/\delta)/N})}_{\text{Prediction error}} \)
+</p> </div> <div class="interpretation"> <h3>Key Insights</h3> 
+<ul>  <li>Geometric reduction with planning depth</li> <li>Exponential convergence in model estimation</li> <li>Statistical error decreases with samples</li> </ul> </div> </section> 
+ 
+
+
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	
+	
+	<a href="Day2_Part1_PlanJourneeTeaser.html">Back</a>
+</section>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+    
+    <script src="slides.js"></script>
+</body>
+</html>

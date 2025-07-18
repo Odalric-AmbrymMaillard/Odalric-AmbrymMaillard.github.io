@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INRIA Academy</title>
+	<script src="mathjax-shortcuts.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+    <link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <div class="slide-container">
+<!-- Slide 1: Title Slide -->
+<section class="slide intro">
+    <h1>THEORY: Upper confidence bound and Thompson Smapling strategies</h1>
+	
+    <div>
+		<p><strong>Odalric-Ambrym Maillard</strong></p>
+		<p><strong>HORIBA</strong></p>
+		<p><strong>April 22, 2025</strong></p>
+	<img src="logos/Inria Academy.png" width="250px">
+	</div>
+</section>
+
+
+<section class="slide intro">
+    <h1>Roadmap</h1>
+	
+	   <div>
+	<ul>
+	<li>Uncertainty of the mean estimate</li>
+	<li>Balancing exploration and exploitation</li>
+	<li>The <l>Upper Confidence Bound</l> (UCB) stragegy</li>
+	<li>Stability and regret</li>
+	<li>A Bayesian view on uncertainty</li>
+	<li>The <l>Thompson Sampling</l> (TS) strategy</li>
+	<li>Stability and regret</li>
+	</ul>
+	</div>
+</section>
+
+
+
+<section class="slide intro">
+    <h1>The <l>Upper Confidence Bound</l> (UCB) stragegy</h1>
+	
+	   <div>
+	   <p>
+	  Replace \( \hat m_t(a)\) with \( m^+_t(a) \) where</p>
+	   
+	   <p>
+	   
+	   \(m^+_t(a) = \hat m_t(a)  + \sqrt{\frac{\ln(t^2(t+1))}{2N_t(a)}}\)	</p>
+	  
+<p>	  
+	is  Upper value of the Confidence Interval. </p>
+	</div>
+	
+	<div><img src="fig1/UCB.png" width="800px">
+	</div>
+	<div>
+	Play \( a_t = \Argmax\limits_{a\in \cA}\,m^+_t(a) \)
+	</div>
+</section>
+
+
+
+<section class="slide intro">
+    <h1>The <l>Upper Confidence Bound</l> (UCB) stragegy</h1>
+	
+	<div>
+	<p>
+	<strong>Theorem</strong>: Consider a bandit \(\mdp=(m_1,\dots,m_A)\) with rewards all bounded in \([0,1]\).</p>
+	<p>Denote \(\Delta_a= m^\star-m_a\) the mean gap of an arm \(a\in\cA\)</p>
+	<p class="highlight-box">
+	Then, the <l>regret</l> of the \(\texttt{UCB}\) pulling strategy after \(T\) steps satisfies:<br>
+	\( \kR_T(\mdp,\texttt{UCB}) \leq \sum\limits_{a\in\cA} \frac{6\ln(T)}{\Delta_a} + 3\Delta_a\)
+	</p>
+	</div>
+	<div>
+	Provably <l>logarithmic</l> scaling in \(T\) <l>without knowing</l> \(T, \Delta_a\) !
+	</div>
+</section>
+
+
+<section class="slide technical">
+<h1>Proof sketch</h1>
+				
+				<div>
+				<p>				If \(A_{t+1}=a\) is sub-optimal, by definition of the chosen arm </p>
+				<p>
+				\(
+				{\color{yellow}
+					\hat \mu_{a}(t) +  \sqrt{  \frac{\ln(1/\delta_t)}{2N_t(a)}}} \geq {\color{cyan}  \hat \mu_{\star}(t) + \sqrt{  \frac{\ln(1/\delta_t)}{2N_t(\star)}}}\,.
+				\) 
+				</p>
+				</div>
+				<div>				
+				<p>
+				Now, on an event of probability higher than \(1-\delta_t\),</p>
+				
+				<p>
+				\(
+				{\color{cyan} 
+					\hat \mu_{\star}(t) + \sqrt{  \frac{\ln(1/\delta_t)}{2N_t(\star)}}}
+				\geq \mu_{\star}\,.
+				\)
+</p>				
+				
+				</div>
+<div>
+				Likewise, on an event of probability higher than \(1-\delta_t\), 
+				
+				
+				<p>
+				\(
+				\mu_{a} + 2 \sqrt{  \frac{\ln(1/\delta_t)}{2N_t(a)}} \geq 
+				{\color{yellow}
+					\hat \mu_{a}(t) +  \sqrt{  \frac{\ln(1/\delta_t)}{2N_t(a)}} }\,.
+			\)
+</p>			 
+				
+				</div>
+				<div>
+				<p>
+				By a union bound argument, we deduce:</p>
+				<p>For each sub-optimal \(a\in\cA\), with probability higher than \(1-2\delta_t\), 				if \(A_{t+1}=a\), then 				
+				
+				<p>
+				\(
+				\mu_{a} + 2 \sqrt{  \frac{\ln(1/\delta_t)}{2N_t(a)}} \geq \mu_\star \quad \text{	that is}\
+				\)
+				</p>
+				</div>
+				<div>
+				<p class="highlight-box">
+				\(
+				N_t(a) \leq   \frac{2\ln(1/\delta_t)}{\Delta_a^2}
+				\)
+				</p>
+				</div>
+</section>
+
+
+<section class="slide analysis">
+<h1>A Bayesian strategy</h1>
+<div>
+Consider a bernoulli bandit model \(\mdp = (\cB(m_1),\dots,\cB(m_A))\).<br>
+<ul>
+<li>
+<strong>Frequentist</strong> view: \(m_1,\dots,m_A\) are <l>parameters</l> to be estimated.<br></li>
+<li>
+<strong>Bayesian</strong> view: \(m_1,\dots,m_A\) are <l>random variables</l> to be sampled.<br></li>
+</ul>
+</div>
+<div>
+Bayesian approach: 
+<ul>
+<li>Put a prior on \(m_a\sim \pi_a(0)\),</li>
+<li>Compute a posterior distribution \(\pi_a(t)\) from observations</li>
+</ul><br>
+<p class="highlight-box">
+For Bernoulli, and uniform prior \(\pi_a(0)=U([0,1])\), posteriors are Beta-distribution:</br><br>
+\( \pi_a(t) = \text{Beta}(S_a(t)+1, N_a(t)-S_a(t)+1) \)<br>
+where \(S_a(t) =\sum\limits_{s=1}^t \mathbb{1}[a_s=a,r_s=1]\) counts number of 1 received.
+</p>
+</div>
+</section>
+
+<section class="slide analysis">
+<h1>Posterior updates  and bandit strategy</h1>
+<div>
+<p>
+A Bayesian bandit algorithm exploits the posterior distributions of the means to
+decide which arm to select.</p>
+<p>
+	<img src="fig1/Prior_posterior.png" width="1200px">
+	</p>
+</div>
+<div>
+<p>
+<strong>Thompson sampling strategy:</strong><br>
+At time \(t\), <l>sample  posterior </l> mean \( \tilde m_a(t) \sim \pi_a(t) \) for each arm,
+</p>
+<p>
+then pull arm \( a_t=\Argmax\limits_{a\in\cA} \, \tilde m_a(t) \)
+</p></div>
+</section>
+
+
+
+<section class="slide intro">
+    <h1>Optimality of TS</h1>
+	
+	<div>	
+	<p class="highlight-box">
+	Then, the <l>regret</l> of the \(\texttt{TS}\) pulling strategy after \(T\) steps satisfies:<br>
+	\( \limsup\limits_{T\to\infty} \frac{\kR_T(\mdp,\texttt{TS})}{\ln(T)} \leq \sum\limits_{a\in\cA} \frac{\Delta_a}{\KL(\cB(m_a),\cB(m_\star))}\)
+	</p>
+	</div>
+	<div>
+	Provably optimal scaling (matching lower bound) !
+	</div>
+</section>
+
+
+<section class="slide intro">
+    <h1>Stability and regret</h1>
+	
+	<div>
+	<p>
+	<img src="fig1/1744893815Means_20_40_60-FTL.png" width="1000px">
+	<img src="fig1/1744893815Means_20_40_60-UCB.png" width="1000px">
+	<img src="fig1/1744893815Means_20_40_60-TS-Bern.png" width="1000px">
+	</p>
+	</div>
+</section>
+
+<section class="slide conclusion">
+    <h2>Thank you</h2>
+	
+	
+	<a href="Day1_Part1_PlanJourneeTeaser.html">Back</a>
+</section>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="prev">⬅ Previous</button>
+        <button class="btn" id="next">Next ➡</button>
+    </div>
+   
+    <script src="slides.js"></script>
+</body>
+</html>
