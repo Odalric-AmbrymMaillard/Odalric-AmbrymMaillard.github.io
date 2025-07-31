@@ -136,7 +136,38 @@
 	</div>		
 
 </section>
+<section id="projects" class="researcher-section">
+	<h2>Other projects</h2>	
+	<div class="researcher-section-content">
+        <div class="position-type">
+<h3>Festival "Pour l'amour des maths"</h3>
+		<table>
+			<tr>
+				<td>
+				 <section class="pam-sec">
+				        <div class="centered">
+				            <div class="pam">
+						<a href="festival/index.html">
+							<h2>Pour l'Amour des Maths </h2>
+							<p class="quote">"Le festival qui va vous faire <span id="changing-word-container"><span id="changing-word">Aimer</span></span> les maths."</p>
+						</a>
+				            </div>
+				        </div>		
+    				</section>
+				</td>
+				<td>
+					<ul>
+						<li>More information here <a href="https://notes.inria.fr/fDOOFD6aR4yewaGkybuuUw">Link</a></li>
+					</ul>	
+				</td>
+			</tr>
+		</table>
+	
 
+		</div>
+	</div>		
+
+</section>
 <section id="past-projects" class="researcher-section">
 	<h2>Past research projects</h2>
 	<div class="researcher-section-content">
@@ -263,6 +294,19 @@ Feel free to be hooked by some. If this gives you inspiration, please go ahead a
     </div>
 </footer>
 
+<script>
+	const words = ['Aimer', 'Kiffer', 'Adorer', 'Apprécier', 'Affectionner', 'Chérir', 'Idolâtrer', 'Apprivoiser', 'Vénérer', 'Priser']; // Array of alternative words
+	const changingWordElement = document.getElementById('changing-word');
+	let currentIndex = 0;
 
+	function changeWord() {
+	changingWordElement.textContent = words[currentIndex];
+	changingWordElement.style.color = 'red'; // Set color to red
+	currentIndex = (currentIndex + 1) % words.length;
+	}
+
+	// Call changeWord every 3 seconds
+	setInterval(changeWord, 1000);
+	</script>
 </body>
 </html>
