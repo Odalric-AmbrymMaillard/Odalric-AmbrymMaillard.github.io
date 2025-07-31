@@ -684,7 +684,7 @@ display: inline-block;
 	font-size: 26px;
 }
 #changing-word-container {
-    width: 150px; /* Adjust this value as needed */
+    width: 160px; /* Adjust this value as needed */
     text-align: center; /* Center the text within the container */
     display: inline-block; /* Ensures that the container only takes up the necessary width */
     border: 0px solid black; /* Optional: Add a border for visual clarity */
