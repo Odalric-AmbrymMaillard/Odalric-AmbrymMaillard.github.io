@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MARLES – Mathematics of Reinforcement Learning and Experimental Life Sciences</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Leaflet CSS & JS -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+	<!-- MarkerCluster plugin -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+	<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+	
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+
+  <style>
+    body {
+      font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #1a1a1a;
+      background: #f7f8fa;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    header {
+  background: linear-gradient(135deg, #2a9df4, #0077b6); 
+	  /*background: linear-gradient(135deg, #003459, #0096c7);*/
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+	
+	.marlel-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    letter-spacing: 2px;
+    color: white; /* base letters */
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0.2em 0;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.highlight-rl {
+    animation: redPulse 10s infinite ease-in-out;
+}
+
+@keyframes redPulse {
+  0%, 100% {
+    color: white;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
+  }
+  50% {
+    color: #ffadad; /* warmer, softer red */
+    text-shadow:
+      0 0 8px rgba(255,150,150,0.9),
+      0 0 16px rgba(255,150,150,0.6),
+      0 0 20px rgba(255,150,150,0.3);
+  }
+}
+
+
+
+
+
+
+    header h2 {
+      font-weight: 300;
+      font-size: 1.6rem;
+      margin-top: 0.5rem;
+    }
+	
+
+    main {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    main h3 {
+      font-size: 1.4rem;
+      color: #004a7c;
+      margin-top: 2rem;
+    }
+	
+	
+	.tagline {
+    /*font-family: "Lora", "Times New Roman", serif;  or try "Lora" or "Merriweather" for modern serif */
+    font-size: 1.1rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #ffffff; 
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    text-shadow:
+      0 0 8px rgba(255,150,150,0.9),
+      0 0 16px rgba(255,150,150,0.6),
+      0 0 20px rgba(255,150,150,0.3);
+  }
+}
+
+    p {
+      text-align: justify;
+    }
+
+    .highlight {
+      color: #0077b6;
+      font-weight: 600;
+    }
+
+    #map { width: 100%; height: 100vh; }
+	.leaflet-popup-content {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.4;
+	}
+	.map-container {
+	width: 800px;          /* desired box width */
+	height: 500px;         /* desired box height */
+	margin: 50px auto;     /* centers horizontally and adds vertical spacing */
+	border: 2px solid #ccc; /* optional border */
+	border-radius: 10px;    /* rounded corners */
+	box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* optional shadow */
+	overflow: hidden;       /* ensures map stays inside box */
+	}
+	.popup-title {
+	font-weight: bold;
+	color: #003366;
+	}
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      main { margin: 1rem; padding: 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1 class="marlel-title">
+  MA<span class="highlight-rl">RL</span>EL
+</h1>
+    <h2>Mathematics of Reinforcement Learning and Experimental Life Sciences</h2>
+	<h3 class="tagline">Exploring the mathematics of adaptive experimentation.</h3>
+  </header>
+
+  <main>
+    <section>
+      <p>
+        The <span class="highlight">Mathematics of Reinforcement Learning and Experimental Life Sciences (MARLEL)</span> group is an international and interdisciplinary research network that has grown organically from long-term collaborations with my co-authors and close colleagues. While not formally affiliated with a specific institution, the group brings together researchers who share a <span class="highlight">common vision and scientific affinity</span>, and who have been working together over the years on advancing both <span class="highlight">the theory and the practice</span> of reinforcement learning.
+      </p>
+
+      <p>
+        As its name suggests, the group’s central focus is to advance the core <span class="highlight">mathematical foundations</span> of Reinforcement Learning, with particular attention to the interplay between sequential decision theory, optimization, and statistical learning.
+      </p>
+
+      <p>
+        Beyond its theoretical dimension, the group also promotes <span class="highlight">cross-disciplinary</span> dialogue between reinforcement learning and the experimental sciences, in particular life sciences—such as agriculture, biology, and medicine—where <span class="highlight">learning-by-interaction</span> paradigms naturally align with the experimental process itself. Through these connections, the group aims to develop methods that are both mathematically rigorous and scientifically impactful.
+      </p>
+
+      <p>
+        From a broader philosophical standpoint, the group views Reinforcement Learning as the <span class="highlight">mathematics of interaction and decision-making</span>, a fundamental complement to the generative side of Artificial Intelligence. Whereas Generative AI focuses on modeling and creating data from existing knowledge, <span class="highlight">Decisional AI</span>, embodied by reinforcement learning, addresses the active process of <span class="highlight">exploring</span>, <span class="highlight">experimenting</span>, and <span class="highlight">optimizing</span> in <span class="highlight">uncertain environments</span>. This makes it a natural theoretical counterpart to experimental science itself, where knowledge emerges from iterative cycles of hypothesis, intervention, and observation.
+      </p>
+
+      <p>
+        By deepening the mathematical understanding of these adaptive processes, the group seeks to build bridges between <span class="highlight">formal theory</span> and <span class="highlight">empirical inquiry</span>, fostering a view of intelligence not only as a capacity to infer from data, but as an ability to <span class="highlight">learn through action</span>: to decide, test, and evolve knowledge through experimentation.
+      </p>
+    </section>
+
+    <!-- Map -->
+    <div class="map-container">
+      <div id="map"></div>
+    </div>
+
+    <section>
+	  <h3>Collaborators</h3>
+      <ul>
+        <li><strong>Odalric-Ambrym Maillard</strong> (PI) — Inria, Université de Lille, France</li>
+		<!--
+        <li>Mohammad Sadegh Talebi — University of Copenhagen, Denmark</li>
+        <li>Ronald Ortner — University of Leoben, Austria</li>
+        <li>Audrey Durand — Université Laval, Québec, Canada</li>
+        <li>Anders Jonsson — Universitat Pompeu Fabra, Barcelona, Spain</li>
+        <li>Aditya Gopalan — Indian Institute of Science, Bangalore, India</li>
+        <li>Shubhada Agrawal — Indian Institute of Science, Bangalore, India</li>
+		-->
+      </ul>
+    </section>
+  </main>
+  
+  
+<section id="publications" style="max-width: 800px; margin: 0 auto; padding: 2em;">
+  <h2 style="font-size: 2em; margin-bottom: 1em;">Publications</h2>
+  <div id="pub-list" style="font-family: 'Roboto', sans-serif; line-height: 1.6;"></div>
+</section>
+
+  <footer>
+    © 2025 MARLEL Group — Mathematics of Reinforcement Learning and Experimental Life Sciences
+  </footer>
+
+  <script>
+								// Initialize map
+								var map = L.map('map', {
+								center: [0, 10],
+								zoom: 2
+								});
+								
+								// Add OpenStreetMap tiles
+								L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+								attribution: '&copy; OpenStreetMap contributors'
+								}).addTo(map);
+								
+								// Create a marker cluster group
+								var markers = L.markerClusterGroup();
+								
+								// Define Lille (coordinator location)
+								var lille = {
+								name: "Jean (Coordinator)",
+								affiliation: "University of Lille, France",
+								coords: [50.6292, 3.0573],
+								color: "orange"
+								};
+								
+								// Define collaborators
+								var collaborators = [
+								{
+								name: "Mohammad Sadegh Talebi",
+								affiliation: "University of Copenhagen, Denmark",
+								coords: [55.6761, 12.5683],
+								color: "gold"
+								},
+								{
+								name: "Ronald Ortner",
+								affiliation: "University of Leoben, Austria",
+								coords: [47.3796, 14.3526],
+								color: "teal"
+								},
+								{
+								name: "Audrey Durand",
+								affiliation: "Université Laval, Québec, Canada",
+								coords: [46.8139, -71.2080],
+								color: "royalblue"
+								},
+								{
+								name: "Anders Jonsson",
+								affiliation: "Universitat Pompeu Fabra, Barcelona, Spain",
+								coords: [41.3851, 2.1734],
+								color: "crimson"
+								},
+								{
+								name: "Aditya Gopalan",
+								affiliation: "Indian Institute of Science, Bangalore, India",
+								coords: [12.9716, 77.5946],
+								color: "violet"
+								},
+								{
+								name: "Shubhada Agrawal",
+								affiliation: "Indian Institute of Science, Bangalore, India",
+								coords: [12.963, 77.61],
+								color: "limegreen"
+								}
+								];
+								
+								// Add Lille marker separately (as origin)
+								var lilleMarker = L.circleMarker(lille.coords, {
+								color: lille.color,
+								fillColor: lille.color,
+								fillOpacity: 1.0,
+								radius: 10
+								}).bindPopup(
+								`<div class="popup-title">${lille.name}</div>${lille.affiliation}`
+								).addTo(map);
+								
+								// Add collaborators and lines to Lille
+								collaborators.forEach(person => {
+								// Marker
+								var marker = L.circleMarker(person.coords, {
+								color: person.color,
+								fillColor: person.color,
+								fillOpacity: 0.8,
+								radius: 8
+								}).bindPopup(
+								`<div class="popup-title">${person.name}</div>${person.affiliation}`
+								);
+								
+								markers.addLayer(marker);
+								
+								// Line (connection from Lille)
+								/*L.polyline([lille.coords, person.coords], {
+								color: "#eee",
+								weight: 1.5,
+								opacity: 0.6,
+								dashArray: "4, 6"
+								}).addTo(map);*/
+								});
+								
+								// Add cluster group to the map
+								map.addLayer(markers);
+								
+								
+					
+							</script>
+							
+						<script>
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("publications.json")
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      const container = document.getElementById("pub-list");
+      if (!Array.isArray(data)) {
+        container.innerHTML = "<p>⚠️ Invalid JSON format.</p>";
+        return;
+      }
+
+      let currentYear = null;
+      data.forEach(pub => {
+        const year = pub.pub_year || "Unknown year";
+
+        // Create new year header
+        if (year !== currentYear) {
+          currentYear = year;
+          const yearHeader = document.createElement("h3");
+          yearHeader.textContent = currentYear;
+          yearHeader.style.marginTop = "1.5em";
+          yearHeader.style.color = "#0077b6";
+          yearHeader.style.fontSize = "1.4em";
+          container.appendChild(yearHeader);
+        }
+
+        // Create publication item
+        const item = document.createElement("p");
+        const authors = pub.author ? `<strong>${pub.author}</strong>` : "";
+        const venue = pub.venue ? `<em>${pub.venue}</em>` : "";
+        const title = pub.title ? `${pub.title}` : "Untitled";
+
+        item.innerHTML = `${authors} — ${title}${venue ? ", " + venue : ""}${pub.pub_year ? " (" + pub.pub_year + ")" : ""}`;
+        container.appendChild(item);
+      });
+    })
+    .catch(error => {
+      console.error("Error loading publications:", error);
+      document.getElementById("pub-list").innerHTML = `<p>❌ Could not load publications: ${error.message}</p>`;
+    });
+});
+</script>
+</body>
+</html>
