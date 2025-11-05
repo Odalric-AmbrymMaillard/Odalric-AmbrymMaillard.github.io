@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>MARLEL – Mathematics of Reinforcement Learning and Experimental Life Sciences</title>
+  <title>MARLES – Mathematics of Reinforcement Learning and Experimental Life Sciences</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Leaflet CSS & JS -->
@@ -156,6 +156,24 @@
       header h1 { font-size: 1.8rem; }
       main { margin: 1rem; padding: 1rem; }
     }
+	
+	.pub-item {
+    margin: 0.5em 0;
+    padding: 0.5em;
+    background: #ffffff;
+    border-left: 4px solid #0077b6;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    border-radius: 6px;
+  }
+  .pub-title { font-weight: bold; font-size: 1.1em; color: #023047; }
+  .pub-authors { font-style: italic; color: #555; }
+  .pub-venue { color: #555; }
+  .pub-links a {
+    margin-right: 0.5em;
+    text-decoration: none;
+    color: #0077b6;
+  }
+  .pub-links a:hover { text-decoration: underline; }
   </style>
 </head>
 
@@ -199,15 +217,13 @@
     <section>
 	  <h3>Collaborators</h3>
       <ul>
-        <li><strong>Odalric-Ambrym Maillard</strong> (PI) — Inria, Université de Lille, France</li>
-		<!--
-        <li>Mohammad Sadegh Talebi — University of Copenhagen, Denmark</li>
-        <li>Ronald Ortner — University of Leoben, Austria</li>
-        <li>Audrey Durand — Université Laval, Québec, Canada</li>
-        <li>Anders Jonsson — Universitat Pompeu Fabra, Barcelona, Spain</li>
-        <li>Aditya Gopalan — Indian Institute of Science, Bangalore, India</li>
+        <li><strong>Odalric-Ambrym Maillard</strong> (PI) — Inria, Université de Lille, France</li>	
         <li>Shubhada Agrawal — Indian Institute of Science, Bangalore, India</li>
-		-->
+        <li>Audrey Durand — Université Laval, Québec, Canada</li>
+        <li>Aditya Gopalan — Indian Institute of Science, Bangalore, India</li>
+        <li>Anders Jonsson — Universitat Pompeu Fabra, Barcelona, Spain</li>
+        <li>Ronald Ortner — University of Leoben, Austria</li>	
+        <li>Mohammad Sadegh Talebi — University of Copenhagen, Denmark</li>
       </ul>
     </section>
   </main>
@@ -325,9 +341,10 @@
 					
 							</script>
 							
-						<script>
+						
+<script>
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("publications.json")
+  fetch("biblio.json")
     .then(response => {
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       return response.json();
@@ -339,28 +356,36 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      // Sort by year descending
+      data.sort((a, b) => (b.year || 0) - (a.year || 0));
+
       let currentYear = null;
       data.forEach(pub => {
-        const year = pub.pub_year || "Unknown year";
+        const year = pub.year || "Unknown year";
 
-        // Create new year header
+        // Year header
         if (year !== currentYear) {
           currentYear = year;
           const yearHeader = document.createElement("h3");
           yearHeader.textContent = currentYear;
-          yearHeader.style.marginTop = "1.5em";
-          yearHeader.style.color = "#0077b6";
-          yearHeader.style.fontSize = "1.4em";
           container.appendChild(yearHeader);
         }
 
         // Create publication item
-        const item = document.createElement("p");
-        const authors = pub.author ? `<strong>${pub.author}</strong>` : "";
-        const venue = pub.venue ? `<em>${pub.venue}</em>` : "";
-        const title = pub.title ? `${pub.title}` : "Untitled";
+        const item = document.createElement("div");
+        item.className = "pub-item";
 
-        item.innerHTML = `${authors} — ${title}${venue ? ", " + venue : ""}${pub.pub_year ? " (" + pub.pub_year + ")" : ""}`;
+        const authors = pub.author ? `<span class="pub-authors">${pub.author.replace(/\n/g, ', ')}</span>` : "";
+        const title = pub.title ? `<span class="pub-title">${pub.title}</span>` : "Untitled";
+        const venue = pub.journal ? `<span class="pub-venue">${pub.journal}</span>` :
+                      pub.booktitle ? `<span class="pub-venue">${pub.booktitle}</span>` : "";
+
+        const links = [];
+        if(pub.url) links.push(`<a href="${pub.url}" target="_blank">🔗 PDF</a>`);
+        if(pub.biburl) links.push(`<a href="${pub.biburl}" target="_blank">📄 BibTeX</a>`);
+
+        item.innerHTML = `${authors} — ${title}${venue ? ", " + venue : ""} <div class="pub-links">${links.join('')}</div>`;
+
         container.appendChild(item);
       });
     })
