@@ -356,6 +356,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+		
+	 // ✅ Filter to only include publications from 2023 and later
+	  const minYear = 2023;
+	  data = data.filter(pub => parseInt(pub.year) >= minYear);
+		
       // Sort by year descending
       data.sort((a, b) => (b.year || 0) - (a.year || 0));
 
