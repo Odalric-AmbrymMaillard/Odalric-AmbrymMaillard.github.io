@@ -33,6 +33,31 @@ img {
     margin-top: 20px;
 }
 
+
+.content a {
+    position: relative;
+    color: #005f73;               /* refined blue matching your palette */
+    text-decoration: none;
+    font-weight: 600;
+    padding-bottom: 2px;
+}
+
+.content a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #0a9396;    /* accent color */
+    transition: width 0.25s ease;
+}
+
+.content a:hover::after {
+    width: 100%;
+}
+
+
 .categories {
     background-color: #000;
     color: #fff;
