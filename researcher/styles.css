@@ -692,3 +692,129 @@ display: inline-block;
 }
 
 
+
+
+:root {
+      /* Thème chromatique cohérent (vert profond / bleu-vert / gris) */
+      --color-bg: #f7f8f7;
+      --color-card: #ffffff;
+      --color-border: #dfe3df;
+      --color-primary: #174f43; /* vert profond */
+      --color-secondary: #2d6d62; /* bleu-vert */
+      --color-accent: #c9d8d2; /* accent pâle */
+
+      --color-badge-pi: #d4a017; /* or discret */
+      --color-badge-copi: #2d6d62;
+      --color-badge-membre: #999999;
+
+      --color-anr: #174f43;
+      --color-international: #5a3d8a;
+      --color-chair: #b8860b;
+      --color-interdisciplinary: #4c8e7d;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .banner {
+      height: 6px;
+    }
+
+    .banner.anr { background: var(--color-anr); }
+    .banner.international { background: var(--color-international); }
+    .banner.chair { background: var(--color-chair); }
+    .banner.interdisciplinary { background: var(--color-interdisciplinary); }
+
+    .content {
+      padding: 1.2rem 1.3rem 1.5rem 1.3rem;
+      flex: 1;
+    }
+
+    .role-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+	
+	
+
+    .pi { background: var(--color-badge-pi); }
+    .copi { background: var(--color-badge-copi); }
+    .membre { background: var(--color-badge-membre); }
+	
+	
+	.theme-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+/* Tag général bleu ciel */
+.theme-badge.interdisciplinary {
+    background-color: #4FC3F7; /* bleu ciel */
+}
+
+/* Variante si tu veux un tag "International" différent */
+.theme-badge.international {
+    background-color: #29B6F6; /* bleu ciel un peu plus prononcé */
+}
+
+
+    .title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin: 0 0 0.8rem 0;
+    }
+
+    .meta {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+.placeholder-image {
+    width: 100%;
+    height: 180px;               /* Ajustable selon tes cartes */
+    background: var(--color-accent);
+    background-size: cover;      /* Remplit sans déformer */
+    background-position: center; /* Centré proprement */
+    background-repeat: no-repeat;
+    overflow: hidden;            /* Empêche tout débordement */
+}
