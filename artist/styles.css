@@ -196,12 +196,14 @@ h2 {
 }
 
 .large-image {
+    display: block;           /* you already have this */
+    margin: 0 auto;          /* <— centers the block horizontally */
     max-width: 800px;
+    width: 100%;             /* makes it responsive; optional */
     height: auto;
     border-radius: 8px;
-    display: block;
-    margin: 0 auto; /* This actually centers it */
 }
+
 
 .image-credit {
     position: absolute;
@@ -393,6 +395,7 @@ h2 {
     width: 100%;
     height: 100%;
 }
+
 
 
 
