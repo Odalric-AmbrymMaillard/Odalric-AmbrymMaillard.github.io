@@ -424,7 +424,6 @@ th, td {
     right: 80px; /* Adjust the distance from the right */
      /* transform: translate(-50%, -50%); */
     text-align: center;
-	color: rgba(255, 255, 255, 0.4);
     background-color: rgba(32, 32, 32, 0.4);
     padding: 20px;
     border-radius: 8px;
@@ -433,13 +432,13 @@ th, td {
 .carousel-caption h3 {
     font-size: 28px;
     margin-bottom: 10px;
-	color: #EEE;
+	color:rgba(255, 255, 255, 0.6);
 }
 
 .carousel-caption p {
     font-size: 20px;
     margin: 0;
-	color: #EEE;
+	color: rgba(255, 255, 255, 0.4);
 }
 
 
@@ -844,6 +843,7 @@ display: inline-block;
     background-repeat: no-repeat;
     overflow: hidden;            /* Empêche tout débordement */
 }
+
 
 
 
