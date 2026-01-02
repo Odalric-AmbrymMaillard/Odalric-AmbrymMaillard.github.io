@@ -424,6 +424,7 @@ th, td {
     right: 80px; /* Adjust the distance from the right */
      /* transform: translate(-50%, -50%); */
     text-align: center;
+	text-color: rgba(255, 255, 255, 0.4);
     background-color: rgba(32, 32, 32, 0.4);
     padding: 20px;
     border-radius: 8px;
@@ -843,4 +844,5 @@ display: inline-block;
     background-repeat: no-repeat;
     overflow: hidden;            /* Empêche tout débordement */
 }
+
 
