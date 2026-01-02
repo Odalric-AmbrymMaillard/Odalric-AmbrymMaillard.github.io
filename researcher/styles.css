@@ -404,7 +404,7 @@ th, td {
 
 /* Customize the styles as needed */
 .carousel {
-    width: 75%;
+    width: 85%;
     margin: 0 auto;
 }
 
@@ -843,3 +843,4 @@ display: inline-block;
     background-repeat: no-repeat;
     overflow: hidden;            /* Empêche tout débordement */
 }
+
