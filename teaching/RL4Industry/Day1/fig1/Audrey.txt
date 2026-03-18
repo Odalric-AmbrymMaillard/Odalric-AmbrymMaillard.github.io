@@ -1,0 +1,427 @@
+In the document, in section Results, 
+there are three parts: 1] Single-objective optimization of imaging parameters,
+then 2] Multi-objective optimization of super-resolution images,
+then 3] Fully autmated optimization of STED imaging parameters.
+I want to focus on the first two sections only. 
+Section 1] details in each paragraph, a different idea:
+first it explain the basic xps, then the result on optimizing a single parameter with basic grid-search approach, then with Kernel TS, then turning to different score defined by an expert from multiple indicators.
+Likewise, Section 2] is organized in different paragraph.
+
+------
+
+
+Intro:
+
+Super-resolution techniques have revolutionized the field of
+optical microscopy by overcoming the diffraction limit and
+allowing the observation of protein dynamics at the
+nanoscale1,2. Among these techniques, point scanning methods
+such as STimulated Emission Depletion (STED)3 and REversible
+Saturable Optical Linear Fluorescence Transition (RESOLFT)4
+are particularly well suited for the study of dynamical processes in
+living cells or multicolor imaging5–7. However, as they are further
+developed, along with the continuous evolution of bio-imaging
+tools and experimental paradigms, these super-resolution methods
+come with several layers of complexity in their implementation
+in the laboratory8–10. Such complexity calls for the
+development of automation strategies to increase accessibility of
+super-resolution microscopy for live-cell, multicolor, and multimodal
+imaging.
+The success of the imaging process depends on the tuning of
+many parameters, such as laser excitation and depletion power,
+pixel size, scanning speed, detector gating, and illumination
+scheme. Concretely, this success is characterized by the evaluation
+of different, possibly conflicting, objectives (e.g. improving resolution
+and signal to noise ratio (SNR), while reducing photobleaching,
+light exposure, and imaging time). Furthermore, the
+range of relevant imaging parameters may be greatly influenced
+by the biological structure, the fluorophores, the experimental
+conditions, and the biological variability. Gaining experience with
+these experimental settings requires considerable time and
+resources, discouraging many from using super-resolution
+microscopy for complex tasks, such as live-cell imaging.
+We propose here an online machine learning approach to
+improve the performance of optical nanoscopy by addressing an
+online optimization problem, where the aim is to maximize the
+outcome (here the objectives) during the real imaging phase. We
+formulate this problem under the multi-armed bandits framework11
+and tackle it using the Kernel TS12 approach, which
+combines posterior sampling with kernel regression to efficiently
+model each objective. We achieve multi-objective (MO) optimization
+by first including an expert into the optimization routine
+that is providing feedback on the quality of acquired images and
+on the trade-offs that can be made among the different objectives.
+Next, we propose to remove the user from the loop using artificial
+neural networks to automate the overall image quality evaluation13
+and to articulate the expert preference among optimization
+objectives. This combined approach results in a fully automated
+system for optimizing imaging parameters online. We show that
+complex techniques such as STED, multimodal microscopy, or
+live-cell optical nanoscopy strongly benefit from a fully automated
+parameter optimization. This strategy could be implemented
+on a wide range of microscopes, without restriction to
+super-resolution, to conduct the optimization simultaneously
+with the imaging task. This strategy should increase the efficiency
+of the imaging process and standardize the results.
+
+=> Applicative context:  Bandit for optimization. 
+
+
+Single-objective optimization of imaging parameters. 
+
+Traditional,
+offline optimization techniques search for good parameters
+in a prior exploration phase (also known as pure exploration),
+followed by the phase of imaging (also known as exploitation).
+Online optimization algorithm, on the other hand, acquires
+images with different parameters, as it explores the parameter
+space, and is learning which regions in the parameter space result
+in better or worse images while simultaneously attempting to
+produce suitable images. This results in the so-called explorationexploitation
+trade-off14, which is the main scope of the wellknown
+multi-armed bandits framework11. Here, we consider a
+bandits algorithm combining kernel regression and Thompson
+Sampling (TS)15, namely Kernel TS12, to capture the underlying
+structure of the parameter space and efficiently model each
+objective.
+
+=>  Offline optimization (no data acquisition) vs online optimization with bandits (sampling by trial an error, sequentially).
+
+In order to illustrate the potential gains of conducting an
+online optimization compared with a conventional pure exploration
+approach, we first considered optimizing one imaging
+parameter toward one objective (Supplementary Figure 1). More
+specifically, we designed a replay experiment (see Methods) to
+compare the proposed Kernel TS-based approach with a basic
+grid search (GS, a commonly used approach in biology) on the
+same set of images, removing the effect of variability throughout
+biological samples. To this end, we generated a dataset of 468
+STED images of the axonal periodical actin lattice, a biological
+structure only detectable with optical nanoscopy, as the
+periodicity of actin rings is approximately 180 nm16 (Fig. 1a).
+The images were acquired at 12 evenly distributed laser excitation
+power values. Briefly, the replay experiment consisted in
+simulating the imaging at a given parameter by sampling, from
+the dataset, images that had been acquired previously using this
+parameter. To quantify the success of the imaging process, we
+evaluated different measurements that were compatible with
+online analysis on a standard computer: the autocorrelation
+amplitude of the actin periodical pattern17, the SNR, the
+photobleaching, and the Fourier Ring Correlation (FRC)18,19
+(Fig. 1b and Supplementary Figures 2 & 3). With the excitation
+power as the parameter to optimize, we considered the
+autocorrelation as the objective to maximize (Fig. 1c). More
+specifically, we defined the relevant parameter region as four
+powers between 4.0 and 9.7 μW, corresponding to maximal
+values of the resulting autocorrelation target function (Fig. 1c).
+
+=> First single paratmer toward one objective:  parameter values = actions of the bandit,
+single bjective= real-value = reward to be maximized.
+
+Experiment with replay method: fixed data set of 39*12 images, representing 39 possible samples for 12 possible actions.
+We compare sampling strategies by simulating the imaging at a given parameter by samplin amongst the 39 images that had been acquired previously using this parameter.
+Four measurements are made to build a score. In this first experiment, only the autocorrelation is used to defined the score. In later experiment, we will mix the four values.
+For the autocorrelation score, it appears that four actions are considered optimal amongst the 12 (not just one). This enables to define a regret: cumulative score gap with respect to these actions. 
+
+
+Each replay trial consisted in 60 images, i.e. 5 images per laser
+power for GS. In the case of Kernel TS, the number of images per
+laser power varied depending on the exploitation-exploration
+trade-off and the resulting confidence on the different regions of
+the parameter space. This resulted in more selections of excitation
+power values associated with a higher autocorrelation amplitude
+(4.0−9.7 μW) (Fig. 1d and Supplementary Figure 4). We
+characterized the performance of our optimization algorithm by
+counting the number of imaging failures, the success being the
+ability to distinguish clearly the axonal periodical lattice on an
+image (Fig. 1e). This is related to the regret measure used to
+characterize bandits optimization algorithms, which must be
+minimized (in opposition to success) (Supplementary Figure 5).
+While an oblivious algorithm would lead to a linear (tendency)
+regret along time, learning algorithms are known to achieve
+sublinear (e.g. square root or logarithmic) regret20. Results
+showed a clear sublinear trend in the average regret curve for
+Kernel TS in comparison to the linear trend obtained with GS. In
+each of the 100 replay trials, we compared the absolute deviation
+between the estimated and targeted autocorrelation for the most
+often selected parameter by Kernel TS (Fig. 1f). As expected, by
+allocating more samples to potentially better parameters,
+especially for a measure varying strongly with the chosen
+biological region (Fig. 1c), Kernel TS was able to provide a better
+estimate of the autocorrelation objective function compared with
+GS (Fig. 1f). These results support the benefits of online
+parameter optimization and the applicability of Kernel TS for
+the task and, more importantly, highlight the benefits of online
+optimization.
+
+
+We compare two strategies: a grid-search, that samples evenly 5 images for each 12 actions, resulting in 60 trials, 12 of which are on the best action, and the others on sub-optimal ones.
+then, a bandit strategy, more preisely kernel-TS, that samples adaptively, the ations, for a total of 60 trials. Progressively, thanks to the feedback it receives after each proposed action,
+the bandit strategy adapts to sample better arms more often. 
+We measure the success by number of imaging failures (to be minimized), and by cumualtive regret.
+
+
+
+Diverse studies have shown that factors, such as resolution,
+detected signal, imaging speed, and even the type of imaged
+structures strongly influence the resulting imaging quality21–24.
+Quality assessment of super-resolution images has been performed
+in an offline fashion using dedicated software21. Here, we
+rely on a scoring system of the overall image quality rated by an
+expert user based on the signal, the noise level, and the observed
+resolution, allowing several objectives to be jointly considered.
+With our neuronal samples, this quality rating was found to be
+less dependent on biological variability than autocorrelation and
+could better characterize images with very low signal levels.
+Indeed, in comparison to flat, rounded cells, neurons provide less
+uniform signals, due to the complex and highly variable shapes of
+neuronal processes, which may explain why classical approaches,
+such as SNR evaluation or FRC, sometimes fail to evaluate the
+image quality (Supplementary Figures 2 & 3). We updated our
+dataset by manually rating the 468 super-resolution images
+(Fig. 1g). The relevant parameter region for the quality remains
+the same as for the autocorrelation. As described above for the
+autocorrelation objective, we performed replay experiments,
+using image quality as feedback to Kernel TS. The cumulative
+regret curve (Fig. 1i) still displayed a sublinear trend. By
+allocating more samples to relevant parameters (Fig. 1h), an
+online optimization approach (hereby Kernel TS) is able to
+provide a better estimate of the objective function at the most
+often sampled parameter (Fig. 1j), compared to an offline strategy
+(hereby GS). These results indicate that a quality score provides a
+fast and reliable measurement for online optimization of superresolution
+images.
+
+
+Multi-objective optimization of super-resolution images. 
+
+To obtain optimal super-resolution images, multiple objectives must
+be considered, many of which having potential conflicts. Thus,
+several imaging parameters have to be optimized by making
+trade-offs. This calls for an efficient MO and multi-parameter
+optimization strategy. We tackle this task by (i) relying on
+independent instances of Kernel TS to model each objective
+function and (ii) letting an expert provide feedback about its
+preference articulation among objectives, thereby guiding the MO
+optimization process (Methods and Supplementary Figure 6). In
+the proposed MO optimization setting, the benefits of online
+optimization are highlighted by comparing the Kernel TS-based
+approach with offline optimization using the Non-dominated
+Sorting Genetic Algorithm (NSGA-II) (that is better suited than
+GS for MO optimization)25. NSGA-II searches the parameters
+space in order to identify the parameter configurations lying
+anywhere on the Pareto front, that is the ensemble of all nondominated
+trade-offs between objectives (i.e. solutions for which
+there are no other better solutions over all objectives)26. Simulation
+and experimental results comparing the performance of
+NSGA-II and Kernel TS optimization are shown in Supplementary
+Figures 7, 8 and 9. As expected from an offline approach,
+NSGA-II is able to identify multiple trade-offs, but requires a
+large number of poor images to achieve this result. Though other
+online optimization approaches (e.g. GP-UCB27, Kernel UCB28)
+could be considered in the single-objective optimization setting,
+Kernel TS is especially well-suited for the described MO optimization
+setting as it can generate options that are informative
+about the underlying objective function (see Methods), rather
+than maintaining upper confidence bounds or other similar
+indices.
+
+One frequently faced challenge in super-resolution microscopy,
+when addressing a new biological question, is to adapt the
+imaging parameters to a new fluorophore. We investigated if
+Kernel TS could be used in such a case by comparing the
+optimization routine when using three far-red emitting dyes
+(ATTO647, STAR RED, and Alexa633) for STED imaging of the
+protein α-tubulin in fixed neurons. ATTO 647 and STAR RED
+are known to be good fluorophores for STED nanoscopy due to
+their high quantum yield and photostability29. To our knowledge,
+due to its low photostability30, no work featuring Alexa633 with
+this technique has been published, even if it is a very common
+fluorophore for confocal microscopy. An optimization sequence
+consisted of searching within 768 possible parameter configurations
+(pixel dwelltime, excitation and depletion laser power) using
+only 100 images, while pursuing two conflicting objectives:
+maximizing the image quality and minimizing photobleaching.
+The parameter hyper-volume was kept constant, and we
+evaluated the most frequently selected parameter combination
+for each fluorophore (Fig. 2b). For all fluorophores, the
+optimization process allowed to achieve high image quality
+(Fig. 2a). Even if the results obtained for photobleaching and
+image quality were comparable for ATTO647 and STAR RED
+(Fig. 2a, c), the parameter combination leading to these results
+were different (regions featuring blue and orange circles in
+Fig. 2b). We also observed that high-quality images could be
+obtained with Alexa633, but at a lower rate than with the other
+two dyes (Fig. 2c). In contrast to the other dyes, very low
+excitation powers (15-fold lower than for ATTO647) were
+required for Alexa633 in order to control the photobleaching
+and therefore achieve the targeted trade-offs (Fig. 2b). These
+results show that our MO optimization routine can effectively
+provide optimal parameters to select with different fluorophores
+in order to obtain better images. Additional results for
+characterizing the reproducibility and comparison with manual
+optimization by a human expert are provided in Supplementary
+Figures 10 and 11.
+
+Next, we assessed the performance of the proposed MO
+optimization approach in the context of high biological variability
+and limited number of measurements (images) per sample. We
+performed live imaging of an intracellular protein involved in
+synaptic signaling, α Ca2+/calmodulin-dependent protein kinase
+II (αCaMKII)31,32, in dendrites and spines of cultured neurons.
+With super-resolution microscopy, αCaMKII should appear as a
+dense array of discrete puncta33. One major challenge in superresolution
+imaging of living cells is to reduce the photobleaching
+and phototoxicity associated with repeated imaging and high
+intensity illumination, while preserving high resolution and
+signal34. The optimization was conducted by simultaneously
+varying the laser excitation power, the laser depletion power, and
+the pixel dwelltime. An optimization trial consisted of searching
+among 343 possible parameter configurations, using only 80
+images due to the limited imaging time per live sample (Fig. 2d).
+Three objectives were considered: (i) the quality of the first STED
+image, (ii) the quality of the second STED image, and (iii) the
+photobleaching. We observed that the available trade-offs
+between the objectives and the optimal parameter space were
+highly variable between the samples, either day to day or across
+coverslips, even though each contained the same protein of
+interest (αCaMKII-SNAP-SiR) (Fig. 2f and Supplementary
+Figures 12 and 13). We observed an improvement of the image
+quality along the optimization process (Fig. 2e and Supplementary
+Figure 14), while the photobleaching could be kept below
+50% after two STED images. These results indicate that despite
+the high biological variability of the preparation under study,
+online optimization could help in improving the robustness of the
+imaging process.
+
+We also assessed the suitability of our method to other
+commonly used cell types and probes by evaluating the
+performance of online Kernel TS-based optimization on: (1)
+various GFP-tagged structures in live neurons, Human Embryonic
+Kidney (HEK293) and pheochromocytoma (PC12) cells and
+(2) variable staining intensities of the actin cytoskeleton in fixed
+neurons. Using fluorescent proteins for STED imaging poses an
+additional challenge for time-lapse live imaging due to photobleaching.
+Although the label was the same (GFP) for many
+targeted structures, we observed that the (i) day-to-day biological
+variability, (ii) cell type, (iii) level of expression, and (iv) density
+of the target protein strongly influenced the imaging parameters
+and the outcomes (image quality, photobleaching, imaging speed)
+(Fig. 3a and Supplementary Figures 15–31). The most frequently
+sampled parameters to obtain good trade-offs between the
+objectives varied greatly across cell types expressing LifeAct
+(Fig. 3a, Supplementary Figures 15–31). For the three presented
+optimization sequences, good trade-offs between objectives were
+achieved (Supplementary Figures 21, 22, 24–27, 29, 30), which
+resulted in a sublinear accumulation of low-quality and high
+photobleaching images (Fig. 3b). Detailed results showing
+multiple optimization sequences for each presented structure
+and cell types as well as for other GFP-tagged proteins are
+presented in Supplementary Figures 15–31. In all cases, online
+optimization improved the quality of STED images acquired from
+living cells.
+
+
+One might expect that previous knowledge from an optimization
+sequence acquired on a different sample could accelerate the
+optimization process. We tested for this possibility with live-cell
+imaging and quantified the proportion of good quality images
+with low photobleaching and imaging time. We analyzed the
+results obtained with previous knowledge generated from
+optimization sequences (100 images) (i) of a standard reference
+sample for super-resolution microscopy (GATTAQUANT Nanobeads),
+and (ii) of a transfected postsynaptic marker (PSD95-
+FingR-GFP) (Supplementary Figures 15–17)35. We observed that
+previous knowledge could not reliably improve and accelerate the
+optimization process depending on cell types, structures, and dayto-
+day variability. For example, using the previous knowledge
+from GATTAQUANT Nanobeads OG488 negatively impacted
+the performance when imaging proteins in neurons and HEKcells
+(Supplementary Figures 18, 19, 21–24, 26, 27), while
+positively impacting when imaging LifeAct-GFP in PC12 cells
+(Supplementary Figures 29 and 30). We also tested if previous
+knowledge would accelerate the optimization process by reducing
+the hyper-volume of optimization parameters. For this experiment,
+we applied MO optimization to a common problem in cell
+imaging, the variability in labeling density. We performed Kernel
+TS optimization (100 images) on two fixed neuronal samples in
+which the actin cytoskeleton was stained with (1) low (1:1000)
+and (2) high (1:100) concentration of phalloidin-STAR635
+(Supplementary Figures 32, 33). We reduced the hyper-volume of
+imaging parameters using the regions that were sampled more
+often during the full optimization sequence to perform two new
+optimization experiments on the low dye concentration sample.
+When using the reduced hyper-volume from the high dye
+concentration, high-quality images with low photobleaching were
+obtained for only 38% of the images (19 out of 50 images with
+Quality > 60% and Photobleaching < 60%) and the actin rings
+were detected in only 22 of the 50 images (Supplementary
+Figure 32e). In contrast when using the reduced hyper-volume
+resulting from optimization on the same sample, the trade-off
+between objectives resulted in better trade-offs (39 out of 50
+images with Quality > 60% and Photobleaching < 60%) and actin
+rings were clearly visible on 48 out of 50 images (Supplementary
+Figure 32e). These results emphasize that prior knowledge to
+reduce the hyper-volume of parameters is not always reliable for
+optimizing super-resolution microscopy and depends on the
+difference between the chosen biological samples. By adapting to
+the staining quality, online optimization can help to detect
+structures that could otherwise have been missed with nonoptimal
+imaging parameters.
+
+As a last illustration of the benefits of the proposed online MO
+optimization approach based on Kernel TS, we complexified the task
+by combining optimization of local glutamate uncaging in living
+neurons with parameter optimization of STED microscopy
+(Fig. 4a–c). Multimodal approaches combining optical stimulation
+and fluorescence microscopy have been widely used to correlate
+morphological changes and neuronal activity. The goals of this
+experiment were to acquire STED images of the NMDA receptor
+subunit GluN2B36 (Fig. 3c) and to elicit a local synaptic response,
+restricted inside an identified dendritic spine, using focal MNIGlutamate
+photo-uncaging near the spine head. To monitor the
+synaptic response, we measured Ca2+ fluctuations revealed by the
+genetically encoded Ca2+ indicator GCaMP6s37 (Fig. 4a, b). We
+aimed to optimize the laser power and distance from the spine of the
+uncaging spot, with the objectives of minimizing the local spread of
+the response (response size ratio) and maximizing the intensity of
+GCaMP6s response (ΔF/F peak intensity). The response size ratio
+was calculated as a ratio of the region where a Ca2+ transient was
+detected and the whole dendritic area (seeMethods). A response was
+considered to be local if the response size ratio was non-zero and
+below a threshold, referred later as the response size threshold. A
+random sampling (RS) of parameters was conducted as a baseline of
+comparison with Kernel TS (Fig. 4e). Due to high biological
+variability between samples regarding the parameters and the
+responsiveness of the neurons (Supplementary Figures 34 and 35),
+images obtained during several trials were considered together in a
+bootstrapping analysis (see Methods). While local responses were
+observed using RS, their relative frequency compared to widespread
+responses was significantly lower than with Kernel TS (Fig. 4f,
+Supplementary Figure 36, and Methods). According to the posterior
+regression model, only a very tight range of parameter configurations
+led to local responses (Fig. 4d). Kernel TS increased the success
+rate of obtaining a localized Ca2+ response (Fig. 4f) and found wellperforming
+parameters to be very variable between the samples
+(Supplementary Figure 34). As a trend, we observed that local
+stimulation could be performed with moderate power (20–30 μW)
+at 500 nm from the spine head, which corresponds to distances
+regularly used in such experiments38 or alternatively with distances
+up to 2 μm by increasing the uncaging laser power (35–40 μW)
+(Fig. 4d, e). Likewise, a high variability in the nanoscale
+reorganization of GluN2B in spines following the photostimulation
+was observed and will be the subject of future investigation.
+
+
+
+As expected, when considering multimodal imaging, the
+success probability of achieving all objectives without optimization
+is very low (Fig. 4f, g). Indeed, a threefold increase was
+observed in the frequency of success (simultaneous local uncaging
+response and high STED image quality) between the beginning
+(mostly random exploration) and the end of the imaging process
+driven by optimization (10.7−29.4%) (Fig. 4g). These results
+show the benefits of using online parameter optimization when
+tackling multifaceted task that would require considerable and
+advanced experience, or extremely long sequences of attempts to
+identify the right parameters to use.
