@@ -1,0 +1,155 @@
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; overflow-y: scroll; scroll-snap-type: y mandatory; }
+        .slide-container {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+        }
+		img {
+    max-width: 80%;  /* Adjust size within the slide */
+    border-radius: 15px;  /* Rounded corners */
+    background: white;  /* White background for the frame */
+    padding: 10px;  /* Space inside the frame */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* 3D shadow effect */
+    margin: 20px auto; /* Center the image */
+}
+		l {
+    font-weight: bold;
+    color: #ffffff; /* White text */
+    background: #FF7043; /* Warm, visible orange */
+    padding: 0px 7px 0px 7px; /* Some padding for aesthetics */
+    border-radius: 6px; /* Rounded corners */
+    display: inline-block; /* Makes it fit nicely */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+}
+        .slide { 
+            width: 100vw;
+            height: 100vh;
+            padding: 5vw;
+            display: flex;
+			flex-direction: column;  /* Stack elements vertically */
+            align-items: center;
+			justify-content: space-evenly;  /* Distribute items vertically; alternativley: justify-content: space-between; */
+            text-align: center;
+            background: linear-gradient(135deg, #1E88E5, #42A5F5);
+            color: white;
+            font-size: 2rem;
+            scroll-snap-align: start;
+			height: 100vh;  /* Ensure it fills the full viewport height */
+			padding: 5vh;   /* Add some padding */
+        }
+		.slide ul {
+    list-style-type: disc; /* Ensures bullets appear */
+    text-align: left; /* Left-aligns text */
+    margin-left: 2rem; /* Adds some indentation */
+    padding-left: 2rem; /* Ensures proper spacing */
+		}
+		p {
+			width: 100%;
+			margin-bottom: 1rem; /* Ensure spacing between paragraphs */
+		}
+a {
+    text-decoration: none;  /* No underline */
+    color: inherit;  /* Same color as the surrounding text */
+    font-weight: normal;
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    font-weight: bold;
+    font-size: 1.1em;  /* Make it bigger */
+    color: #BBEEFF;  /* Change color on hover (aesthetic blue) */
+}
+.highlight-box {
+    background-color: white;
+    color: #003366; /* Dark blue text for contrast */
+    padding: 10px 15px;
+    border-radius: 10px; /* Rounded corners */
+    border: 2px solid #003366; /* Dark border */
+    font-weight: bold;
+    display: inline-block;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3); /* 3D shadow effect */
+}
+.two-column-container {
+    display: flex;
+    justify-content: space-between;  /* Space evenly */
+    gap: 40px;  /* Space between columns */
+}
+
+.column {
+    flex: 1;  /* Each column takes equal space */
+    min-width: 400px;  /* Prevents columns from getting too narrow */
+}
+.two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } 
+.math { margin: 15px 0; padding: 10px; background: #f8f9fa; } 
+.theorem { border-left: 3px solid #2b8cbe; padding-left: 10px; } 
+.algorithm { background: #f8f9fa; padding: 15px; } 
+        .controls { 
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .btn {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: white;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+        .btn:hover { background: rgba(255, 255, 255, 0.5); }
+		/* Introduction */
+		.intro {
+			background: linear-gradient(135deg, #1E88E5, #42A5F5); /* Blue */
+		}
+
+		/* Technical section */
+		.technical {
+			background: linear-gradient(135deg, #00897B, #26A69A); /* Teal */
+		}
+
+		/* Analysis */
+		.math {
+			background: linear-gradient(135deg, #F4A261, #E76F51); /* Orange */
+		}
+
+		/* Discussion */
+		.results {
+			background: linear-gradient(135deg, #8E6DB0, #A084CA);  /* Purple */
+		}
+		
+		
+		/* Warning */
+		.warning {
+			background: linear-gradient(135deg, #D46A6A, #E2725B); /* Red */
+		}
+
+		/* Conclusion */
+		.conclusion {
+			background: linear-gradient(135deg, #1E88E5, #42A5F5); /* Blue */
+		}
+		
+		.video-container {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+    padding-top: 45%; /* Aspect ratio 16:9 */
+    border-radius: 15px; /* Rounded corners */
+    overflow: hidden;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3); /* 3D shadow effect */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
