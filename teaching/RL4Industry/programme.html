@@ -45,6 +45,29 @@
       padding: 40px 20px;
     }
 
+    a {
+    position: relative;
+    color: #005f73;               /* refined blue matching your palette */
+    text-decoration: none;
+    font-weight: 600;
+    padding-bottom: 2px;
+}
+
+a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #0a9396;    /* accent color */
+    transition: width 0.25s ease;
+}
+
+a:hover::after {
+    width: 100%;
+}
+
   
     h2 {
       margin-top: 60px;
@@ -219,6 +242,7 @@
 
 <header>
   <h1>Formation  "Apprentissage par Renforcement pour l'Industrie"</h1>
+  <h3>par <a href="https://odalric-ambrymmaillard.github.io/researcher/contact.html">Odalric-Ambrym Maillard</a></h3>
 </header>
 
 <div class="hero-image">
