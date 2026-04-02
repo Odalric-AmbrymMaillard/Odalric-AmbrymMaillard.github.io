@@ -125,6 +125,94 @@
       padding: 30px;
       color: #94a3b8;
     }
+
+    .testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.testimonial-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.quote {
+  font-style: italic;
+  color: #374151;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.author {
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 2px;
+}
+
+.role {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+
+  
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      margin-top: 30px;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+
+    .testimonial-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      padding: 30px;
+      background: white;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .carousel-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .prev { left: -10px; }
+    .next { right: -10px; }
+
+
   </style>
 </head>
 <body>
@@ -189,7 +277,8 @@
       <li>Variables aléatoires</li>
       <li>Espérance et variance</li>
       <li>Bases de la régression linéaire</li>
-    </ul>
+    </ul> 
+    <p>Un questionnaire de "on-boarding" préparé en amont permet d'affiner la formation aux connaissances des participants.</p>
   </div>
 
   <h2>Programme</h2>
@@ -242,6 +331,42 @@
 
   </div>
 
+  <h2>Témoignages</h2>
+
+  <div class="carousel">
+    <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+    <div class="carousel-track" id="carouselTrack">
+
+
+    <div class="testimonial-slide">
+      <p class="quote">
+        « J’ai trouvé très instructive la mise en évidence des concepts et des mécanismes sous-jacents à certains outils, qui peuvent parfois être perçus comme des « boîtes noires ». J’ai également apprécié la mise en garde concernant une utilisation consciente, en tenant compte des potentialités et des limites de ces outils.
+        Nous avons eu une description claire des concepts d’un point de vue technique, mettant en évidence leur applicabilité à des cas concrets et la transmission d’une méthodologie de travail » 
+      </p>
+      <p class="author">Antonio Iazzolino</p>
+      <p class="role">Directeur R&D Poetis</p>
+    </div>
+
+    <div class="testimonial-slide">
+      <p class="quote">
+        « Un panorama complet, structuré et détaillé des différentes méthodes et enjeux de l’apprentissage par renforcement, dispensé par un formateur maîtrisant totalement le sujet. Formation idéale pour une introduction académique de la matière.» 
+      </p>
+      <p class="author">Hervé Mignot</p>
+      <p class="role">Chief AI Officer @EDG & Partner Head of AI @Equancy</p>
+    </div>
+
+    <div class="testimonial-slide">
+      <p class="quote">
+        « La formation en « Apprentissage par renforcement pour l’industrie » animée par Odalric-Ambrym Maillard a été très enrichissante. En trois jours, elle a combiné efficacement apports théoriques, quiz, démonstrations et travail pratique sur le code. Cette approche équilibrée nous a permis de consolider notre culture générale en IA tout en acquérant des bases directement utiles pour nos projets futurs.» 
+      </p>
+      <p class="author">Alexandre Grigoriev</p>
+      <p class="role">HORIBA Scientific, Responsable de l’IA DEV/DATA, Expert senior IA</p>
+    </div>
+
+    </div>
+    <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+  </div>
+
 </div>
 
 <footer>
@@ -254,6 +379,26 @@
     content.classList.toggle('hidden');
     button.textContent = content.classList.contains('hidden') ? 'Voir détails' : 'Masquer';
   }
+
+  function toggle(button) {
+    const content = button.nextElementSibling;
+    content.classList.toggle('hidden');
+    button.textContent = content.classList.contains('hidden') ? 'Voir détails' : 'Masquer';
+  }
+  let currentIndex = 0;
+  const track = document.getElementById('carouselTrack');
+  const slides = document.querySelectorAll('.testimonial-slide');
+
+  function moveSlide(direction) {
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = slides.length - 1;
+    if (currentIndex >= slides.length) currentIndex = 0;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+
+  // auto-play (optional)
+  setInterval(() => moveSlide(1), 6000);
+
 </script>
 
 </body>
