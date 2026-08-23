@@ -882,7 +882,7 @@ display: inline-block;
     display: grid;
     grid-template-columns:
         80px
-        150px
+        140px
         80px
         minmax(180px, 1fr)
         100px
