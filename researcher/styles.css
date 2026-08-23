@@ -850,274 +850,182 @@ display: inline-block;
 /* =========================================================
    RESEARCH PROJECTS
    ========================================================= */
-
-#Projects .events {
-    margin-top: 2rem;
-}
+/* =========================================================
+   RESEARCH PROJECTS
+   ========================================================= */
 
 #Projects .events > ul {
     list-style: none;
     padding: 0;
+    margin: 1.5rem 0 0;
+}
+
+#Projects .events > ul > li {
     margin: 0;
+    padding: 1.1rem 0 1.2rem;
+    border-bottom: 1px solid #ddd;
 }
 
-/* -
-/* ---------------------------------------------------------
-   Date
-   --------------------------------------------------------- */
+#Projects .events > ul > li:first-child {
+    border-top: 1px solid #ddd;
+}
 
-.project-date {
+
+/* Main project header: date / call / shortname */
+
+#Projects .project-date,
+#Projects .project-call,
+#Projects .project-shortname {
     display: inline-block;
+    vertical-align: baseline;
+}
 
-    margin-bottom: 0.35rem;
-
+#Projects .project-date {
+    width: 90px;
     font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-
-    color: #6b7280;
-}
-
-
-/* ---------------------------------------------------------
-   Funding call / programme
-   --------------------------------------------------------- */
-
-.project-call {
-    display: inline-block;
-
-    margin-left: 0.7rem;
-    margin-bottom: 0.35rem;
-
-    padding: 0.18rem 0.55rem;
-
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-
-    color: #4b5563;
-    background: #f3f4f6;
-
-    border-radius: 4px;
-}
-
-
-/* ---------------------------------------------------------
-   Short project name
-   --------------------------------------------------------- */
-
-.project-shortname {
-    margin-top: 0.25rem;
-
-    font-size: 1.45rem;
-    line-height: 1.25;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-
-    color: #1f2937;
-}
-
-
-/* ---------------------------------------------------------
-   Full project title
-   --------------------------------------------------------- */
-
-.project-fullname {
-    margin-top: 0.25rem;
-    margin-bottom: 1rem;
-
-    font-size: 1rem;
-    line-height: 1.5;
-    font-weight: 400;
-
-    color: #4b5563;
-}
-
-
-/* ---------------------------------------------------------
-   General project metadata
-   --------------------------------------------------------- */
-
- .project-funding,
-.project-PI,
-.project-institutes {
-    margin-top: 0.35rem;
-
-    font-size: 0.88rem;
-    line-height: 1.45;
-
-    color: #374151;
-}
-
-
-/* Labels before metadata fields */
-
-.project-funding::before {
-    content: "Funding: ";
-    font-weight: 600;
-    color: #6b7280;
-}
-
-.project-PI::before {
-    content: "PI: ";
-    font-weight: 600;
-    color: #6b7280;
-}
-
-.project-institutes::before {
-    content: "Institutions: ";
-    font-weight: 600;
-    color: #6b7280;
-}
-
-
-/* ---------------------------------------------------------
-   Participants
-   --------------------------------------------------------- */
-
-.project-participants {
-    margin-top: 0.75rem;
-    padding-top: 0.7rem;
-
-    border-top: 1px solid #edf0f2;
-
-    font-size: 0.8rem;
-    line-height: 1.55;
-
-    color: #6b7280;
-}
-
-.project-participants::before {
-    content: "Participants: ";
-    font-weight: 600;
-    color: #4b5563;
-}
-
-
-/* ---------------------------------------------------------
-   Project links
-   --------------------------------------------------------- */
-
-.project-pdf,
-.project-reports,
-.project-site {
-    display: inline-block;
-
-    margin-top: 0.9rem;
-    margin-right: 1rem;
-
-    font-size: 0.82rem;
+    color: #666;
     font-weight: 500;
 }
 
+#Projects .project-call {
+    width: 190px;
+    font-size: 0.8rem;
+    color: #777;
+}
 
-/* Separator between links */
-
-.project-pdf + .project-reports::before,
-.project-reports + .project-site::before {
-    content: "·";
-    margin-right: 1rem;
-    color: #d1d5db;
+#Projects .project-shortname {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #222;
 }
 
 
-/* Links themselves */
+/* Project title */
 
-.project-pdf a,
-.project-reports a,
-.project-site a {
-    color: #2563eb;
+#Projects .project-fullname {
+    margin: 0.25rem 0 0.55rem 280px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #444;
+}
+
+
+/* Secondary information */
+
+#Projects .project-funding,
+#Projects .project-PI,
+#Projects .project-institutes {
+    margin: 0.15rem 0 0 280px;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: #666;
+}
+
+#Projects .project-funding::before {
+    content: "Funding: ";
+    font-weight: 600;
+}
+
+#Projects .project-PI::before {
+    content: "PI: ";
+    font-weight: 600;
+}
+
+#Projects .project-institutes::before {
+    content: "Institutions: ";
+    font-weight: 600;
+}
+
+
+/* Long participant list */
+
+#Projects .project-participants {
+    margin: 0.45rem 0 0 280px;
+    max-width: 900px;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: #888;
+}
+
+#Projects .project-participants::before {
+    content: "Participants: ";
+    font-weight: 600;
+    color: #777;
+}
+
+
+/* Links */
+
+#Projects .project-pdf,
+#Projects .project-reports,
+#Projects .project-site {
+    display: inline-block;
+    margin: 0.55rem 1.2rem 0 0;
+    font-size: 0.78rem;
+}
+
+#Projects .project-pdf a,
+#Projects .project-reports a,
+#Projects .project-site a {
+    color: #286090;
     text-decoration: none;
-
-    transition: color 0.15s ease;
 }
 
-.project-pdf a:hover,
-.project-reports a:hover,
-.project-site a:hover {
-    color: #1d4ed8;
+#Projects .project-pdf a:hover,
+#Projects .project-reports a:hover,
+#Projects .project-site a:hover {
     text-decoration: underline;
 }
 
 
-/* ---------------------------------------------------------
-   Status badges
-   --------------------------------------------------------- */
+/* Status */
 
-.project-status {
+#Projects .project-status {
     display: inline-block;
-    float: right;
-    margin-top: 0.7rem;
-    padding: 0.3rem 0.7rem;
-
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.035em;
-
-    border-radius: 999px;
+    margin-left: 1rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: 600;
 }
 
-.project-status.ongoing {
-    color: #166534;
-    background: #dcfce7;
-    border: 1px solid #bbf7d0;
+#Projects .project-status.ongoing {
+    color: #28652f;
+    background: #e8f4e9;
 }
 
-.project-status.not {
-    color: #991b1b;
-    background: #fee2e2;
-    border: 1px solid #fecaca;
+#Projects .project-status.not {
+    color: #9a3333;
+    background: #f8e8e8;
 }
 
-.project-status.done {
-    color: #1e40af;
-    background: #dbeafe;
-    border: 1px solid #bfdbfe;
+#Projects .project-status.done {
+    color: #426a9e;
+    background: #e9f0f8;
 }
 
 
-/* ---------------------------------------------------------
-   Responsive layout
-   --------------------------------------------------------- */
+/* Mobile */
 
 @media (max-width: 700px) {
-
-    .project-shortname {
-        font-size: 1.25rem;
+    #Projects .project-date,
+    #Projects .project-call,
+    #Projects .project-shortname {
+        width: auto;
+        margin-right: 0.8rem;
     }
 
-    .project-fullname {
-        font-size: 0.95rem;
-    }
-
-    .project-status-ongoing,
-    .project-status-not,
-     .project-status-done {
-        float: none;
-        display: block;
-        width: fit-content;
-        margin-top: 0.8rem;
-    }
-
-    .project-call {
-        display: block;
-        width: fit-content;
+    #Projects .project-fullname,
+    #Projects .project-funding,
+    #Projects .project-PI,
+    #Projects .project-institutes,
+    #Projects .project-participants {
         margin-left: 0;
+    }
+
+    #Projects .project-call {
+        display: block;
         margin-top: 0.2rem;
     }
-
-    .project-pdf,
-    .project-reports,
-   .project-site {
-        display: block;
-        margin-top: 0.6rem;
-    }
-
-    .project-pdf + .project-reports::before,
-    .project-reports + .project-site::before {
-        display: none;
-    }
 }
-
 
