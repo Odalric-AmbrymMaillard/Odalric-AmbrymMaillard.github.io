@@ -852,29 +852,36 @@ display: inline-block;
    ========================================================= */
 
 /* =========================================================
-   FIRST LINE
+   FIRST ROW
+   Date | Call | Shortname | Fullname | Funding | PI | Status
    ========================================================= */
 
 #Projects .project-main {
-    display: flex;
+    display: grid;
+    grid-template-columns:
+        75px
+        150px
+        auto
+        minmax(180px, 1fr)
+        auto
+        auto
+        auto;
+
+    column-gap: 0.8rem;
     align-items: baseline;
-    gap: 0.9rem;
 }
 
 #Projects .project-date {
-    flex: 0 0 75px;
-    font-weight: 600;
     color: #666;
+    font-weight: 600;
     white-space: nowrap;
 }
 
 #Projects .project-call {
-    flex: 0 0 150px;
     color: #777;
 }
 
 #Projects .project-shortname {
-    flex: 0 0 auto;
     font-size: 1rem;
     font-weight: 700;
     color: #222;
@@ -882,18 +889,16 @@ display: inline-block;
 }
 
 #Projects .project-fullname {
-    flex: 1 1 auto;
+    min-width: 0;
     color: #444;
 }
 
 #Projects .project-funding {
-    flex: 0 0 auto;
     color: #666;
     white-space: nowrap;
 }
 
 #Projects .project-PI {
-    flex: 0 0 auto;
     color: #666;
     white-space: nowrap;
 }
@@ -910,25 +915,49 @@ display: inline-block;
 
 
 /* =========================================================
-   SECOND LINE
+   SECOND ROW
+   Institutions | Participants | Links
    ========================================================= */
 
 #Projects .project-details {
-    display: flex;
-    align-items: baseline;
-    gap: 0.8rem;
-    margin-top: 0.35rem;
+    display: grid;
+    grid-template-columns:
+        minmax(160px, 0.8fr)
+        minmax(300px, 3fr)
+        auto;
 
-    font-size: 0.76rem;
+    column-gap: 1rem;
+    align-items: start;
+
+    margin-top: 0.45rem;
+    padding-top: 0.35rem;
+
+    border-top: 1px solid #f0f0f0;
+
+    font-size: 0.75rem;
+    line-height: 1.5;
     color: #888;
 }
 
+
+/* Institutions */
+
 #Projects .project-institutes {
-    flex: 0 0 auto;
+    min-width: 0;
 }
 
+#Projects .project-institutes::before {
+    content: "Institutions: ";
+    font-weight: 500;
+    color: #777;
+}
+
+
+/* Participants */
+
 #Projects .project-participants {
-    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: break-word;
 }
 
 #Projects .project-participants::before {
@@ -937,26 +966,20 @@ display: inline-block;
     color: #777;
 }
 
-#Projects .project-institutes::after {
-    content: " · ";
-    margin-left: 0.8rem;
-    color: #ccc;
-}
-
 
 /* =========================================================
    LINKS
    ========================================================= */
 
 #Projects .project-links {
-    flex: 0 0 auto;
     white-space: nowrap;
+    text-align: right;
 }
 
 #Projects .project-links a {
     color: #386a91;
     text-decoration: none;
-    margin-left: 0.9rem;
+    margin-left: 0.8rem;
 }
 
 #Projects .project-links a:hover {
@@ -969,8 +992,6 @@ display: inline-block;
    ========================================================= */
 
 #Projects .project-status {
-    flex: 0 0 auto;
-
     font-size: 0.72rem;
     font-weight: 600;
     white-space: nowrap;
@@ -992,7 +1013,6 @@ display: inline-block;
 #Projects .project-status.done {
     color: #52769a;
 }
-
 
 /* =========================================================
    MOBILE
