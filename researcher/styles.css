@@ -850,26 +850,6 @@ display: inline-block;
 /* =========================================================
    RESEARCH PROJECTS
    ========================================================= */
-/* =========================================================
-   RESEARCH PROJECTS
-   ========================================================= */
-#Projects .events > ul {
-    list-style: none;
-    padding: 0;
-    margin: 1.5rem 0 0;
-}
-
-#Projects .events > ul > li {
-    padding: 1rem 0;
-    border-top: 1px solid #ddd;
-    font-size: 0.82rem;
-    line-height: 1.45;
-}
-
-#Projects .events > ul > li:last-child {
-    border-bottom: 1px solid #ddd;
-}
-
 
 /* =========================================================
    FIRST LINE
@@ -1016,7 +996,7 @@ display: inline-block;
 
 /* =========================================================
    MOBILE
-   ========================================================= */
+   ========================================================= 
 
 @media (max-width: 900px) {
 
@@ -1091,3 +1071,4 @@ display: inline-block;
         margin-right: 0.8rem;
     }
 }
+*/
