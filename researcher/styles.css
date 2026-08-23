@@ -850,6 +850,29 @@ display: inline-block;
 /* =========================================================
    RESEARCH PROJECTS
    ========================================================= */
+/* =========================================================
+   PROJECT LIST
+   ========================================================= */
+
+#Projects .events > ul {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+}
+
+#Projects .events > ul > li {
+    display: grid;
+    grid-template-rows: auto auto;
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 1rem 0;
+    border-top: 1px solid #ddd;
+}
+
+#Projects .events > ul > li:last-child {
+    border-bottom: 1px solid #ddd;
+}
 
 /* =========================================================
    ROW 1 — MAIN INFORMATION
