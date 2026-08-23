@@ -901,18 +901,23 @@ display: inline-block;
 }
 
 #Projects .project-call {
+	text-align: center; 
     color: #777;
 }
 
 #Projects .project-shortname {
+	text-align: center; 
     font-weight: 700;
     color: #222;
     white-space: nowrap;
 }
 
-#Projects .project-fullname {
+#Projects .project-fullname {	
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin: 0 0 0.8rem 0;
     min-width: 0;
-    color: #444;
 }
 
 #Projects .project-funding {
