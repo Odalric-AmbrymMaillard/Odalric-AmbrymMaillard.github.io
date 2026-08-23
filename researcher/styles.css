@@ -886,7 +886,7 @@ display: inline-block;
         80px
         minmax(180px, 1fr)
         100px
-		80px
+		60px
         minmax(140px, 180px)
         80px;
 
@@ -922,12 +922,14 @@ display: inline-block;
 }
 
 #Projects .project-funding {
+	text-align: center; 
     color: #666;
     white-space: nowrap;
 }
 
 
 #Projects .project-duration {
+	text-align: center; 
     color: #666;
     white-space: nowrap;
 }
@@ -1003,6 +1005,7 @@ display: inline-block;
     font-weight: 600;
     color: #777;
 }
+
 
 
 /* =========================================================
