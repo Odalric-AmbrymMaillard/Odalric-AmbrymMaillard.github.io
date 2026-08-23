@@ -900,6 +900,7 @@ display: inline-block;
     font-weight: 600;
 }
 
+
 #Projects .project-call {
 	text-align: center; 
     color: #777;
@@ -920,6 +921,12 @@ display: inline-block;
 }
 
 #Projects .project-funding {
+    color: #666;
+    white-space: nowrap;
+}
+
+
+#Projects .project-duration {
     color: #666;
     white-space: nowrap;
 }
