@@ -884,10 +884,10 @@ display: inline-block;
         80px
         150px
         80px
-        minmax(200px, 1fr)
-        80px
-        minmax(120px, 180px)
-        auto;
+        minmax(180px, 1fr)
+        100px
+        minmax(140px, 180px)
+        80px;
 
     gap: 0.8rem;
     align-items: baseline;
