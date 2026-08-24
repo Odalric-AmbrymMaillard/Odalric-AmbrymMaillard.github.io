@@ -882,8 +882,8 @@ display: inline-block;
     display: grid;
     grid-template-columns:
         75px
-        135px
-        95px
+        115px
+        115px
         minmax(185px, 1fr)
         90px
 		60px
