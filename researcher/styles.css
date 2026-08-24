@@ -884,7 +884,7 @@ display: inline-block;
         75px
         115px
         115px
-        185px
+        minmax(280px, 1fr)
         90px
 		60px
         minmax(135px, 180px)
