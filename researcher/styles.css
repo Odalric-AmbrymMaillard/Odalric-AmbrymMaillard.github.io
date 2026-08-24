@@ -881,13 +881,13 @@ display: inline-block;
 #Projects .project-main {
     display: grid;
     grid-template-columns:
-        80px
-        140px
-        80px
-        minmax(180px, 1fr)
-        100px
+        75px
+        135px
+        95px
+        minmax(185px, 1fr)
+        90px
 		60px
-        minmax(140px, 180px)
+        minmax(135px, 180px)
         80px;
 
     gap: 0.8rem;
