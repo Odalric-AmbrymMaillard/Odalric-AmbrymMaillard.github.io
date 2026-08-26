@@ -680,13 +680,13 @@ display: inline-block;
 .pam {
     display: inline-block;
     width: 85%;
-    padding: 20px;
-    margin: 10px 30px;
+    padding: 10px;
+    margin: 10px 10px;
     box-sizing: border-box;
     border: 2px solid #fff;
     border-radius: 8px;
     position: relative;	
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .pam:hover {
