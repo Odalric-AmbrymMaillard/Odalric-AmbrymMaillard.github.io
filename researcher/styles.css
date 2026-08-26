@@ -895,7 +895,7 @@ display: inline-block;
         minmax(280px, 1fr)
         90px
 		60px
-        minmax(135px, 180px)
+        140px
         80px;
 
     gap: 0.8rem;
