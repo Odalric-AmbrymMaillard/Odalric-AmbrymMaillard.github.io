@@ -971,7 +971,7 @@ display: inline-block;
     display: grid;
     grid-template-columns:
         minmax(220px, 1fr)
-        minmax(300px, 2fr)
+        minmax(300px, 1fr)
         auto;
 
     gap: 1rem;
