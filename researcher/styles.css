@@ -969,7 +969,7 @@ display: inline-block;
 #Projects .project-details {
     display: grid;
     grid-template-columns:
-        minmax(180px, 1fr)
+        minmax(220px, 1fr)
         minmax(300px, 3fr)
         auto;
 
