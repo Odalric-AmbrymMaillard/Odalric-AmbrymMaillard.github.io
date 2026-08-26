@@ -892,10 +892,10 @@ display: inline-block;
         75px
         115px
         115px
-        minmax(280px, 1fr)
+        minmax(285px, 1fr)
         90px
 		60px
-        180px
+        200px
         80px;
 
     gap: 0.8rem;
@@ -977,8 +977,8 @@ display: inline-block;
 #Projects .project-details {
     display: grid;
     grid-template-columns:
-        250px
-        minmax(300px, 1fr)
+        305px
+        minmax(400px, 1fr)
         auto;
 
     gap: 1rem;
